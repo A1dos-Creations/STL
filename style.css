@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+.b1677014 {
+  border-style: solid;
+  background-image: linear-gradient(90deg, rgb(63, 63, 63), rgb(99, 99, 99));
+  color: rgb(255, 255, 255);
+  border-radius: 12px;
+  border-width: 4px;
+  border-color: whitesmoke;
+  width:300px;
+  height: 45px;
+  font-family: Lexend Deca;
+  font-size: 16px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Chrome */
+  transition-duration: 0.4s;
+}
+.b1677014:hover {
+  background-image: linear-gradient(90deg, rgb(99, 99, 99), rgb(63, 63, 63));
+  width: 315px;
+  height: 60px;
+  font-size: 20px;
+}
+
+
+/* THEME BUTTON STYLES */
+.theme {
+  width: 30px;
+  height: 30px;
+  display:flex;
+  border-style: none;
+  border-radius: 14px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background-color: #bdbdbd00;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Chrome */
+  transition-duration: 0.4s;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 4px 18px 0 rgba(0,0,0,0.19);
+}
+.theme:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  width: 40px;
+  height: 40px;
+}
+.themeImg {
+  width: 30px;
+  height: 30px;
+}
+.themeImg:hover {
+  width: 40px;
+  height: 40px;
+}
+
+#taskList {
+  background-color: rgba(255, 255, 255, 0.356);
+  border-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  border-style: solid;
+  z-index: -2;
+  min-height: 45px;
+}
+#addTaskBtn {
+  border-radius: 4px;
+  background-color: rgb(214, 214, 214);
+  font-family: Lexend Deca;
+  outline: none;
+  box-shadow: none;
+  border-style: solid;
+  border-color: white;
+  color: black;
+  height: 32px;
+  width: 100px;
+}
+#createTaskBtn {
+  border-radius: 4px;
+  background-color: rgb(214, 214, 214);
+  font-family: Lexend Deca;
+  outline: none;
+  box-shadow: none;
+  border-style: solid;
+  border-color: white;
+  color: black;
+  height: 32px;
+  width: 100px;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+}
+#createTaskBtn:hover {
+  background-color: rgb(167, 167, 167);
+  height: 37px;
+  width: 105px;
+}
+#createTaskBtn:active {
+  background-color: rgb(167, 214, 173);
+  height: 37px;
+  width: 105px;
+}
+
+#QAH {
+  font-family: Lexend Deca;
+  font-weight: bolder;
+  font-size: 22px;
+  color: white;
+  margin-bottom: -11px;
+}
+
+#sortButton {
+  background-color: rgb(214, 214, 214);
+  font-family: Lexend Deca;
+  font-size: 11px;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: none;
+  color: black;
+  border-style: solid;
+  border-color: white;
+  padding: 3px;
+  width: 185px;
+  height: 30px;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  justify-content: center;
+  justify-self: center;
+  text-align: center;
+  margin-top: -57px;
+  margin-bottom: 25px;
+  margin-left: 120px;
+  position: absolute;
+}
+#sortButton:hover {
+  width: 195px;
+  height: 40px;
+  background-color: rgb(167, 167, 167);
+}
+#sortButton:active {
+  background-color: rgb(167, 214, 173);
+  width: 195px;
+  height: 40px;
+}
+
+#addTaskBtn {
+  border-radius: 4px;
+  background-color: rgb(214, 214, 214);
+  font-family: Lexend Deca;
+  outline: none;
+  box-shadow: none;
+  border-style: solid;
+  border-color: white;
+  color: black;
+  height: 32px;
+  width: 100px;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+}
+#addTaskBtn:active {
+  background-color: rgb(167, 214, 173);
+  height: 37px;
+  width: 105px;
+}
+#addTaskBtn:hover {
+  background-color: rgb(167, 167, 167);
+  height: 37px;
+  width: 105px;
+}
+
+.DscHDrk {
+  font-family: Lexend Deca;
+  font-size: 20px;
+  font-weight: bold;
+  width: auto;
+  color: white;
+}
+.DscHLght {
+  font-family: Lexend Deca;
+  font-size: 20px;
+  font-weight: bold;
+  width: auto;
+  color: black;
+}
+.DscPDrk {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  width: auto;
+  color: rgb(255, 255, 255);
+  margin-top: -12px;
+}
+.DscPDrk2 {
+  font-family: Lexend Deca;
+  font-size: 10px;
+  font-weight: light;
+  width: auto;
+  color: rgb(255, 255, 255);
+  margin-top: -12px;
+}
+.DscPLght {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  width: auto;
+  color: black;
+}
+
+:root{
+  --base-color: white;
+  --primary-color: white;
+}
+
+#wrapper {
+  width: 100%;
+  height: 400px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  height: 20px;
+  width: 100px;
+}
+
+.add-folder-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+#add-folder-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#folder-container {
+  margin-top: 20px;
+}
+
+.folder {
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.folder-dropdown {
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.submitButton {
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, button {
+  margin: 10px 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.searchBar {
+  border-radius: 16px;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-family: Lexend Deca, monospace, serif;
+  margin-bottom: 10px;
+  margin-top: -2.25px;
+  margin-left: 30px;
+  width: 90%;
+  padding: 8px;
+}
+.searchBar:focus {
+  outline: none;
+  box-shadow: none;
+}

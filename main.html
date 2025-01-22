@@ -1,0 +1,515 @@
+<html style="background-color: rgba(175, 175, 175, 0);border-radius: 15px;">
+    <table style="margin:1;Width: 300px;Height:200px;border-radius: 45px;"></table>
+    <button id="themeToggle" class="theme">
+        <img id="themeToggleImg" src="./images/dark.png" class="themeHover" style="-webkit-transition-duration: 0.4s;transition-duration: 0.4s;"> <!-- Default Image, dark mode button -->
+    </button>
+    <head style="border-radius: 15px;">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
+        <div id="overlay"></div>
+
+        <button id="menuButton" class="menuButtonDark"></button>
+        <div id="sidePanel" class="sidePanelD">
+          <a href="main.html">
+            <button style="background-color: #555;color: rgb(177, 255, 190);">Home</button>
+          </a>
+          <a href="TaskManager.html">
+            <button>Task Manager</button>
+          </a>
+          <a href="discover.html">
+            <button>Discover</button>
+          </a>
+          <a href="favorites.html">
+            <button>Quick Access</button>
+          </a>
+        </div>
+        <script src="menu.js"></script>
+        <style>
+        .menuButtonDark {
+          position: fixed;
+          top: 0;
+          left: 10px;
+          width: 30px;
+          height: 30px;
+          background-image: url('./images/MenuDark.png');
+          background-size: cover;
+          border: none;
+          cursor: pointer;
+          background-color: #00000000;
+          -webkit-transition-duration: 0.4s; /* Chrome */
+          transition-duration: 0.4s;
+        }
+
+      #menuButton.rotate {
+        transform: rotate(90deg);
+      }
+
+      #menuButton:hover {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menuButtonLight {
+        position: fixed;
+          top: 0;
+          left: 10px;
+          width: 30px;
+          height: 30px;
+          background-image: url('./images/MenuLight.png');
+          background-size: cover;
+          border: none;
+          cursor: pointer;
+          background-color: #00000000;
+          -webkit-transition-duration: 0.4s; /* Chrome */
+          transition-duration: 0.4s;
+      }
+
+      .sidePanelD {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        color: white;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        padding: 10px;
+      }
+
+      #sidePanel.show {
+        left: 0;
+      }
+
+      #sidePanel a {
+        background-color: #00000000;
+      }
+
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: blur(0);
+        background: #00000000;
+        z-index: 999;
+        display: none;
+        -webkit-transition-duration: 0.4s; /* Chrome */
+        transition-duration: 0.4s;
+      }
+
+      #overlay.show {
+        background: rgba(0, 0, 0, 0.208);
+        display: block;
+      }
+
+      #sidePanel button {
+        background-color: #444;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin: 5px 0;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      #sidePanel button:hover {
+        background-color: #555;
+      }
+
+            .titan-one-regular {
+                font-family: "Titan One";
+                font-weight: 400;
+                font-style: bold;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                border: 2px solid #bdbdbd00;
+                border-radius: 0.5rem;
+              }
+            /* FONT STYLING ONLY */
+            </style>
+        </head>
+        <style> /* BUTTONS AND THEMES */
+            /* REGULAR/DEFAULT BUTTONS: */
+            .buttonL {
+                border-style: solid;
+                background-image:linear-gradient(90deg, rgb(122, 122, 122), rgb(99, 99, 99));
+                color: rgb(255, 255, 255);
+                border-radius: 12px;
+                border-width: 4px;
+                border-color: rgb(54, 54, 54);
+                width:300px;
+                height: 45px;
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 16px;
+                margin-top: 20px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+                box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+
+            .buttonL:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+                width: 320px;
+                height: 55;
+                font-size: 19px;
+            }
+
+            .buttonD {
+                border-style: solid;
+                background-image:linear-gradient(90deg, rgb(63, 63, 63), rgb(99, 99, 99));
+                color: rgb(255, 255, 255);
+                border-radius: 12px;
+                border-width: 4px;
+                border-color: whitesmoke;
+                width:300px;
+                height: 45px;
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 16px;
+                margin-top: 20px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+                box-shadow: 0 4px 12px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+            }
+            .buttonD:hover {
+                box-shadow: 0 12px 16px 0 rgba(141,141,141,0.24),0 17px 50px 0 rgba(255, 255, 255, 0.19);
+                width: 320px;
+                height: 55;
+                font-size: 19px;
+            }
+            
+            /* THEME STYLING */
+
+            .theme {
+                display:flex;
+                border-style: none;
+                border-radius: 13px;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 10px;
+                right: 20px;
+                background-color: #bdbdbd00;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 4px 18px 0 rgba(0,0,0,0.19);
+            }
+            .theme:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .themeHover {
+              width: 20px;
+              height: auto;
+              -webkit-transition-duration: 0.4s; /* Chrome */
+              transition-duration: 0.4s;
+            }
+
+            /* THEMES */
+            
+            .lightMode {
+                display: block;
+                background-color: whitesmoke;
+                border-radius: 100px;
+            }
+            .darkMode {
+                display: block;
+                background-color: rgb(33, 33, 33);
+                border-radius: 100px;
+            }
+            .navBarButtonDark {
+                display:flex;
+                border-style: none;
+                border-radius: 8px;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                width: 60px;
+                height: 30px;
+                background-color: #bdbdbd00;
+                border-style: none;
+                margin-top: -15px;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+                box-shadow: 0 2px 6px 0 rgba(150, 150, 150, 0.2), 0 4px 18px 0 rgba(150, 150, 150, 0.19);
+            }
+            .navBarButtonDark:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.2), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .navBarButtonLight {
+                display:none;
+                border-style: none;
+                border-radius: 8px;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                width: 60px;
+                height: 30px;
+                background-color: #bdbdbd00;
+                border-style: none;
+                margin-top: -15px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 4px 18px 0 rgba(0,0,0,0.19);
+            }
+            .navbarButtonLight:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.2), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .mainHeaderL {
+                margin-top: 15px;
+                color: rgb(92, 92, 92);
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 22px;
+                text-align: center;
+                font-size: 30px;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+            }
+            .mainHeaderD {
+                margin-top: 15px;
+                color: rgb(210, 210, 210);
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 22px;
+                text-align: center;
+                font-size: 30px;
+                -webkit-transition-duration: 0.4s; /* Chrome */
+                transition-duration: 0.4s;
+            }
+        </style>
+        <nav>
+            <button class="navBarButtonLight" id="homeButton">
+                <u><b>HOME</b></u>
+            </button>
+        </nav>
+        <body id="mainBody" class="lightMode">
+            <h1 id="Heading" class="mainHeaderL">Hello!</h1>
+
+            <p style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Open your school portals with ease here!</p>
+
+            <div id="wrapper">
+                <a type="button" href="https://aeries.net/student/LoginParent.aspx?page=Dashboard.aspx" target="_blank">
+                    <button id="button1" class="buttonL">
+                        <b>Open Aeries Portal</b>
+                    </button>
+                </a>
+
+                <a type="button" href="https://clever.com/oauth/district-picker?client_id=e2c8af7171e22a82d592&redirect_uri=https%3A%2F%2Fsamlidp.clever.com%2Fchromebook-login%2Foauth&response_type=code&skip=0" target="_blank">
+                    <button id="button2" class="buttonL">
+                        <b style="text-align: center;margin-bottom: 10px;">Open Clever Portal</b>
+                    </button>
+                </a>
+                <!--<button style="background-color: #bdbdbd00;border-color: #bdbdbd00;margin-left: 246px;margin-top: -56px;">
+                    <img id="b2fav" src="./images/DefaultFavorite.png" style="height: 25px;width: auto;">
+                </button> -->
+
+                <a type="button" href="https://classroom.google.com/" target="_blank">
+                    <button id="button3" class="buttonL">
+                        <b>Open Google Classroom</b>
+                    </button>
+                </a>
+
+               </div>
+
+               <button id="targetButton" class="button buttonM" style="display: none;">
+                <b>Custom Website</b>
+                <p style="margin-top: -2px;font-size: 10px;color: rgba(255, 255, 255, 0.696);">Add This Website Below.</p>
+                </button>
+        </body>
+
+        <button class="toggle customContentL" id="togglebodyButton">Add Custom Website</button>
+        
+    <head id="customBttnHead" style="display: none;" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; unsafe-inline">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Button Link Updater</title>
+        <style> /* CUSTOM BUTTON FORM DARK LIGHT CLASSES/STYLES */
+          body {
+            display: none;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+          }
+
+          .favButton {
+            background-color: #bdbdbd00;
+            border-style: none;
+          }
+
+          .deleteButton {
+            background-color: #bdbdbd00;
+            border-style: none;
+          }
+
+          .hidden {
+            display: block;
+          }
+          /* ^^ Sets visibility before. */
+
+          .customContentL {
+            width: 206.16px;
+            height: 39px;
+            font-size: 16px;
+            background-image: linear-gradient(50deg, rgb(100, 232, 255), rgb(39, 161, 218));
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(0, 0, 0);
+            border-style: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px 0 rgba(36, 128, 194, 0.62),0 7px 5px 0 rgba(36, 130, 197, 0.31);
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .customContentL:hover {
+            font-size: 19.5px;
+            width: 250px;
+            height: 50px;
+            box-shadow: 0 12px 16px 0 rgba(36, 128, 194, 0.62),0 17px 50px rgba(36, 130, 197, 0.31);
+          }
+
+          .customContentD {
+            width: 206.16px;
+            height: 39px;
+            font-size: 16px;
+            background-image: linear-gradient(50deg, rgb(102, 41, 186), rgb(171, 8, 186));
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(255, 255, 255);
+            border-style: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px 0 rgba(80, 19, 166, 0.62),0 7px 5px 0 rgba(206, 4, 237, 0.31);
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .customContentD:hover {
+            font-size: 19.5px;
+            width: 250px;
+            height: 50px;
+            box-shadow: 0 12px 16px 0 rgba(80, 19, 166, 0.62),0 17px 50px rgba(206, 4, 237, 0.31);
+          }
+
+          input, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+          }
+          /* 12px 16px 0 ... 0 17px 50px */
+
+          .cstmContent {
+            display: none;
+          }
+          .light {
+            color: black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .dark {
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .IDark {
+            color: white;
+            background-color: rgb(71, 71, 71);
+            border-radius: 17px;
+            border-width: 4.5px;
+            border-color: rgb(221, 221, 221);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .ILight {
+            color: rgb(0, 0, 0);
+            background-color: rgb(152, 152, 152);
+            border-radius: 17px;
+            border-width: 4.5px;
+            border-color: black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .BLight {
+            color: rgb(0, 0, 0);
+            background-color: rgb(152, 152, 152);
+            border-radius: 17px;
+            border-width: 4.5px;
+            border-color: black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 4px 18px 0 rgba(0,0,0,0.19);
+          }
+          .BTLight:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+          }
+          .BDark {
+            color: rgb(255, 255, 255);
+            background-color: rgb(71,71,71);
+            border-radius: 17px;
+            border-width: 4.5px;
+            border-color: rgb(221, 221, 221);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 13px;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+            box-shadow: 0 2px 6px 0 rgba(196, 196, 196, 0.2), 0 4px 18px 0 rgba(196, 196, 196,0.19);
+          }
+          .BTDark:hover {
+            box-shadow: 0 12px 16px 0 rgba(196, 196, 196,0.24),0 17px 50px 0 rgba(196, 196, 196,0.19);
+          }
+
+          .CD {
+            font-size: 13.5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: #d302ba !important;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+          .CL {
+            font-size: 13.5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: #0a5aae !important;
+            -webkit-transition-duration: 0.4s; /* Chrome */
+            transition-duration: 0.4s;
+          }
+        </style>
+
+        <body id="body2">
+            <div type="cstmContent" id="cstmBttnContent" style="display: none;">
+                <br>
+                <br>
+                <label id="textLabel" for="textInput">Enter New Button Text:</label>
+                <br>
+                <input type="text" id="textInput" placeholder="Title your button">
+                <br>
+                <label id="URLabel" for="urlInput">Enter New Button URL:</label>
+                <br>
+                <input type="url" id="urlInput" placeholder="https://example.com">
+                <br>
+                <button id="updateButton">Set Button Text and Link</button>
+                <br>
+                <script src="button.js"></script>
+            </div>
+        </body>
+      <br>
+    </head>
+</html>

@@ -1,0 +1,29 @@
+{
+    "name": "School Tools",
+    "description": "Launch useful school tools with the click of your mouse!",
+    "version": "1.2.1",
+    "manifest_version": 3,
+    "permissions": ["storage"],
+    "host_permissions": ["<all_urls>"],
+    "icons": {
+        "16": "./images/icon16.png",
+        "32": "./images/icon32.png",
+        "48": "./images/icon48.png",
+        "128": "./images/icon128.png"
+    },
+    "action": {
+      "default_popup": "main.html"
+    },
+    "storage": {
+      "local": {}
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'; 'unsafe-inline';"
+    },
+    "oauth2": {
+      "client_id": "745171866281-nb5amkljjgd7f8f2atd14usd06uo7s2g.apps.googleusercontent.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/calendar"
+      ]
+    }
+}

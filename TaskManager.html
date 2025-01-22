@@ -1,0 +1,47 @@
+<head>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
+</head>
+
+<body style="width: 300px; max-width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);color: white;">
+  <section id="return" style="margin-bottom: 20px;margin-top: -9px;margin-left: -7.5px;">
+    <div>
+        <a href="main.html" style="color: whitesmoke;text-decoration: none;">
+           <img src="./images/BackDark.png" style="width: 25px;height: 25px;">
+        </a>   
+    </div> 
+  </section>
+
+  <h1 style="font-family: Lexend Deca;font-weight: bolder;font-size: 22px;color: white;margin-bottom: -11px;">Task Manager</h1>
+
+  <button id="sortButton">Sort by due date (Closest first)</button>
+  <br>
+
+  <button style="font-family: Lexend Deca;" id="createTaskBtn">Create Task</button>
+  <form style="font-family: Lexend Deca;display: none;"  id="taskForm">
+
+      <label style="font-family: Lexend Deca;"  for="taskName">Task Name:</label>
+      <br>
+      <input style="font-family: Lexend Deca;background-color: rgb(22, 22, 22);color: white;outline: none;box-shadow: none;" type="text" id="taskName" required /><br />
+
+      <label style="font-family: Lexend Deca;" for="taskDescription">Description:</label>
+      <br>
+      <textarea style="font-family: Lexend Deca;background-color: rgb(22, 22, 22);color: white;outline: none;box-shadow: none;" id="taskDescription"></textarea><br />
+      <br>
+      <label style="font-family: Lexend Deca;" for="taskDueDate">Due Date:</label>
+      <br>
+      <input style="font-family: Lexend Deca;background-color: rgb(22, 22, 22);color: white;outline: none;box-shadow: none;" type="datetime-local" id="taskDueDate" required /><br />
+
+      <button style="font-family: Lexend Deca;" type="submit" id="addTaskBtn">Add Task</button>
+  </form>
+
+  <p id="tasksCreated" style="font-family: Lexend Deca;font-weight: bold;font-size: 16px;"></p>
+
+  <ul id="taskList"></ul>
+
+  <p id="tlN" style="font-family: Lexend Deca;font-weight: bold;font-size: 16px;margin-top: -46.5px;text-align: center;">No Current Tasks</p>
+
+  <script src="popup.js"></script>
+</body>
