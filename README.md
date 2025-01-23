@@ -10,7 +10,29 @@ School Portal Opener - v1.0.0
 <p style="font-size:7;">Version 1.2.1b</p>
 
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
-As new updates roll out, this github will be updated. </P>
+As new updates roll out, this github will be updated. </P>  
 
-<p>Current github version: 1.2.1 -- Current extension version: 1.2.1</p>
-<p>This github page is directly linked to the source files of STL.</p>
+# Information
+> Whats STL?
+STL is an abreviation of 'School Tool Launcher'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
+> What are it's benefits?
+> 
+STL allows students to access required and necesary school resuources quickly to ensure a smooth learning experience with as little destractions as possible.  
+
+# What's next?
+Next, I am hoping to add a destraction blocker that will be active during school hours. I am also hoping to add an 'auto sign-in' option for select school portals. Users would have the ability to opt-out and delete their information with the click of a button.  
+
+
+# Your Privacy
+> Important note: One of the features discussed above would require the voluntary permission to collect [the] user's personal information, such as usernames (or names) and passwords for certain applications [web apps].
+> 
+Currently, no user information is collected, stored, or sold to third parties. Your information is safe. All files in STL are locataed here. There are no external scripts from web apps, websites, or source computer/s.  
+
+
+# Version
+> This github is automatically updated with the source files.
+
+<p>Current github & extension version: 1.2.1</p>
+
+
+> IMPORTANT NOTE: The current version displayed on this github repository is not the same as the current public version. This version will be published by February 1st, 2025.
