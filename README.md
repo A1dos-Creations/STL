@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/1b7f70aa-6314-4b1b-aa0e-f63d23eb71b0" width="300" height="300">
 </p>
+
 <a href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf?authuser=0&hl=en"><img alt="Chrome Web Store link" src="https://img.shields.io/badge/v1.2.x%20-%20light_green?label=Web%20Store&color=green&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fschool-portal-launcher%2Fpafdkffolelojifgeepmjjofdendeojf%3Fauthuser%3D0%26hl%3Den"></a>
 <a href="https://a1dos-creations.com"><img alt="Static Badge" href="https://a1dos-creations.com" src="https://img.shields.io/badge/Official%20Website%20-%20h?link=https%3A%2F%2Fa1dos-creations.com"></a>
 
