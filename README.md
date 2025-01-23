@@ -6,7 +6,7 @@
 
 # School-Portal-Opener
 School Portal Opener - v1.0.0
-<h1>Welcome To The home for the best School Tools!</h1>
+# Welcome To The home for the best School Tools!
 <p style="font-size:7;">Version 1.2.1b</p>
 
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
