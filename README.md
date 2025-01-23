@@ -13,3 +13,4 @@ School Portal Opener - v1.0.0
 As new updates roll out, this github will be updated. </P>
 
 <p>Current github version: 1.2.1 -- Current extension version: 1.2.1</p>
+<p>This github page is directly linked to the source files of STL.</p>
