@@ -5,10 +5,6 @@
 <a href="https://a1dos-creations.com"><img alt="Static Badge" href="https://a1dos-creations.com" src="https://img.shields.io/badge/Official%20Website%20-%20h?link=https%3A%2F%2Fa1dos-creations.com"></a>
 
 # School-Portal-Opener
-School Portal Opener - v1.0.0
-# Welcome To The home for the best School Tools!
-<p style="font-size:7;">Version 1.2.1b</p>
-
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. </P>  
 
@@ -18,6 +14,9 @@ STL is an abreviation of 'School Tool Launcher'. This extension simplifies the s
 > What are it's benefits?
 > 
 STL allows students to access required and necesary school resuources quickly to ensure a smooth learning experience with as little destractions as possible.  
+
+# About
+Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
 # What's next?
 Next, I am hoping to add a destraction blocker that will be active during school hours. I am also hoping to add an 'auto sign-in' option for select school portals. Users would have the ability to opt-out and delete their information with the click of a button.  
