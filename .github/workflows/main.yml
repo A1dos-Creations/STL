@@ -20,7 +20,7 @@ jobs:
           route: GET /repos/:owner/:repo/releases/:release_id
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          release_id: <RELEASE_ID> # Replace with your release ID
+          release_id: 196332863
 
       - name: Calculate Countdown
         id: countdown
