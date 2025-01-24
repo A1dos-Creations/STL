@@ -2,7 +2,7 @@ name: Update Release Countdown
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # Runs every 10 minutes
+    - cron: '*/10 * * * *' # Runs every 10 minutes to update the countdown
   workflow_dispatch: # Allows manual triggering of the action
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - name: Calculate Countdown
         id: countdown
         run: |
-          TARGET_DATE="2025-02-01T01:00:00Z" # Target in UTC
+          TARGET_DATE="2025-02-01T01:00:00Z" # Target in UTC (Feb 1, 9:00 AM GMT+8)
           NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # Current UTC time
           SECONDS_LEFT=$(( $(date -d "$TARGET_DATE" +%s) - $(date -d "$NOW" +%s) ))
 
@@ -37,7 +37,7 @@ jobs:
             MINUTES=$(( (SECONDS_LEFT % 3600) / 60 ))
             SECONDS=$(( SECONDS_LEFT % 60 ))
 
-            COUNTDOWN_TEXT="${DAYS}d ${HOURS}h ${MINUTES}m ${SECONDS}s left until release."
+            COUNTDOWN_TEXT="**Countdown:** ${DAYS}d ${HOURS}h ${MINUTES}m ${SECONDS}s left until release."
           fi
 
           echo "countdown_text=${COUNTDOWN_TEXT}" >> $GITHUB_ENV
@@ -51,6 +51,7 @@ jobs:
           release_id: 196332863
           body: |
             ${{ fromJson(steps.fetch-description.outputs.data).body }}
-
+            
             ---
+            **Countdown to Release:**
             ${{ env.countdown_text }}
