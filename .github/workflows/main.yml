@@ -1,0 +1,56 @@
+name: Update Release Countdown
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # Runs every 10 minutes
+  workflow_dispatch: # Allows manual triggering of the action
+
+jobs:
+  update-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch Current Release Description
+        id: fetch-description
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/:owner/:repo/releases/:release_id
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          release_id: <RELEASE_ID> # Replace with your release ID
+
+      - name: Calculate Countdown
+        id: countdown
+        run: |
+          TARGET_DATE="2025-02-01T01:00:00Z" # Target in UTC
+          NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # Current UTC time
+          SECONDS_LEFT=$(( $(date -d "$TARGET_DATE" +%s) - $(date -d "$NOW" +%s) ))
+
+          if [ "$SECONDS_LEFT" -le 0 ]; then
+            COUNTDOWN_TEXT="The release is live! 🎉"
+          else
+            DAYS=$(( SECONDS_LEFT / 86400 ))
+            HOURS=$(( (SECONDS_LEFT % 86400) / 3600 ))
+            MINUTES=$(( (SECONDS_LEFT % 3600) / 60 ))
+            SECONDS=$(( SECONDS_LEFT % 60 ))
+
+            COUNTDOWN_TEXT="${DAYS}d ${HOURS}h ${MINUTES}m ${SECONDS}s left until release."
+          fi
+
+          echo "countdown_text=${COUNTDOWN_TEXT}" >> $GITHUB_ENV
+
+      - name: Update Release Description
+        uses: octokit/request-action@v2.x
+        with:
+          route: PATCH /repos/:owner/:repo/releases/:release_id
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          release_id: 196332863
+          body: |
+            ${{ fromJson(steps.fetch-description.outputs.data).body }}
+
+            ---
+            ${{ env.countdown_text }}
