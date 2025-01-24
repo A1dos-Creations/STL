@@ -13,6 +13,8 @@ As new updates roll out, this github will be updated. </P>
 > Whats STL?
 STL is an abreviation of 'School Tool Launcher'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
 
+For schools or educational organizations, please read the [Notice.](./NOTICE.md)
+
 What are it's benefits?
 STL allows students to access required and necesary school resuources quickly to ensure a smooth learning experience with as little destractions as possible.  
 
