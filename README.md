@@ -31,7 +31,8 @@ Currently, no user information is collected, stored, or sold to third parties. Y
 
 
 # ⌚ Version
-> This github is automatically updated with the source files.
+>[!NOTE]
+>  This github is automatically updated with the source files.
 
 Current github & extension version: 1.2.1
 
