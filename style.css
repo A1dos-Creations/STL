@@ -110,6 +110,21 @@
   margin-bottom: -11px;
 }
 
+#clear-all-favorites {
+  width: 30px;
+  height: 30px;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  border-style: none;
+}
+#clear-all-favorites img {
+  width: 30px;
+  height: 30px;
+  outline: none;
+  box-shadow: none;
+}
+
 #sortButton {
   background-color: rgb(214, 214, 214);
   font-family: Lexend Deca;

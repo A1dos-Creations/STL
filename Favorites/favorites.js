@@ -1,58 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('favorites-container'); // Div to hold favorites
+    console.log("Favorites page loaded");
 
-    if (!container) {
-        console.error('Favorites container not found');
+    const favoritesContainer = document.querySelector('#favorites-container');
+    const clearAllButton = document.getElementById('clear-all-favorites');
+
+    if (!favoritesContainer) {
+        console.error("Favorites container not found");
         return;
     }
 
+    // Clear all favorites functionality
+    clearAllButton.addEventListener('click', () => {
+        chrome.storage.local.set({ favorites: [] }, () => {
+            favoritesContainer.innerHTML = '<p>No favorites found.</p>';
+            console.log("All favorites have been cleared.");
+        });
+    });
+
+    // Retrieve favorites from chrome.storage
     chrome.storage.local.get({ favorites: [] }, (data) => {
-        const favorites = data.favorites;
+        const favorites = data.favorites || [];
+        console.log('Favorites retrieved from storage:', favorites);
 
+        // Check if there are any favorites saved
         if (favorites.length === 0) {
-            container.innerHTML = 'No favorites added yet!';
-        } else {
-            favorites.forEach((favoriteData) => {
-                const wrapper = document.createElement('div'); // Wrapper for each favorite
-                wrapper.classList.add('favorite-item');
+            favoritesContainer.innerHTML = '<p>No favorites found.</p>';
+            clearAllButton.style.display = "none";
+            return;
+        } if (favorites.length >= 4) {
+            console.log("More than 2 buttons. Showing delete all.");
+            clearAllButton.style.display = "block";
+        }
 
-                // Restore the original button structure
-                wrapper.innerHTML = favoriteData.html;
+        // Loop through favorites and display them
+        favorites.forEach((favorite) => {
+            const template = document.createElement('div');
+            template.innerHTML = favorite.html; // Insert the stored HTML
+            const clonedDiv = template.firstElementChild;
 
-                // Change the favorite button to an unfavorite button
-                const favoriteButton = wrapper.querySelector('.favorite-button');
-                const favoriteIcon = favoriteButton.querySelector('.favorite-icon');
-                if (favoriteIcon) {
-                    favoriteIcon.src = './images/broken.png'; // Set to unfavorite image
+            if (!clonedDiv) {
+                console.error('Cloned div could not be created from:', favorite.html);
+                return;
+            }
+
+            // Update the unfavorite button functionality
+            const unfavoriteButton = clonedDiv.querySelector('#addQABtn'); // Favorite button
+            if (unfavoriteButton) {
+                const icon = unfavoriteButton.querySelector('#favorite-icon'); // Favorite icon
+
+                // Set the unfavorite image (broken icon)
+                if (icon) {
+                    icon.src = './images/broken.png';
                 }
 
-                // Add unfavorite functionality
-                favoriteButton.addEventListener('click', () => {
-                    chrome.storage.local.get({ favorites: [] }, (data) => {
-                        const updatedFavorites = data.favorites.filter(fav => fav.html !== favoriteData.html);
-                        chrome.storage.local.set({ favorites: updatedFavorites }, () => {
-                            console.log('Favorite removed from favorites page:', favoriteData.html);
-                            wrapper.remove(); // Remove from the DOM
+                // Handle unfavorite logic
+                unfavoriteButton.addEventListener('click', () => {
+                    chrome.storage.local.get({ favorites: [], buttonStates: {} }, (data) => {
+                        const updatedFavorites = data.favorites.filter(fav => fav.id !== favorite.id);
+                        const buttonStates = data.buttonStates || {};
 
-                            // Update the original favorite button on the discover page
-                            chrome.storage.local.get({ discoverButtons: [] }, (discoverData) => {
-                                const discoverButtons = discoverData.discoverButtons || [];
-                                discoverButtons.forEach(discover => {
-                                    if (discover.html === favoriteData.html) {
-                                        const originalButton = document.querySelector(`#${discover.id}`);
-                                        if (originalButton) {
-                                            const icon = originalButton.querySelector('.favorite-icon');
-                                            if (icon) icon.src = './images/favorite.png';
-                                        }
-                                    }
-                                });
-                            });
+                        delete buttonStates[favorite.id];
+
+                        chrome.storage.local.set({ favorites: updatedFavorites, buttonStates }, () => {
+                            console.log(`Unfavorited: ${favorite.id}`);
+                            clonedDiv.remove();
+                            if (updatedFavorites.length === 0) {
+                                favoritesContainer.innerHTML = '<p style="font-family: Lexend Deca;">No favorites found.</p>';
+                                clearAllButton.style.display = "none";
+                            } if (favorites.length >= 4) {
+                                console.log("More than 2 buttons. Showing delete all.");
+                                clearAllButton.style.display = "block";
+                            }
                         });
                     });
                 });
+            }
 
-                container.appendChild(wrapper); // Add to the favorites page
-            });
-        }
+            // Append the cloned element to the favorites container
+            favoritesContainer.appendChild(clonedDiv);
+        });
     });
 });
