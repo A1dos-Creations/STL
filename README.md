@@ -40,3 +40,14 @@ Current github & extension version: 1.2.1
 
 >[!IMPORTANT]
 >The current version displayed on this github repository is not the same as the current public version. This version will be published by February 1st, 2025. You can watch a live countdown here: [Countdown (logwork)](https://logwork.com/countdown-imzs)
+
+
+# ☁️Updates:
+>[!NOTE]
+> **Version 1.2-beta.1 of STL does not release until February 1st, 2025.**
+
+
+- 1/25/2025: Started on Pomodoro timer feature
+- 1/15-20/2025: Started & Finished task manager, discover page, and Quick Access Page.
+- 1/1-14/2025: Rebranded as 'STL' or School Tool Launcher
+- 12/15-31/2025: Created 'SPL' (School Portal Launcher) with base features & UI.
