@@ -1,0 +1,25 @@
+<head>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
+</head>
+
+<body style="width: 300px; max-width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);">
+    <div id="timer-container">
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" min="0" value="0">
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" min="1" max="60" value="25">
+        <label for="seconds">Seconds:</label>
+        <input type="number" id="seconds" min="0" max="59" value="0">
+        <div id="timer-display">00:00</div>
+        <div>
+          <button id="start">Start</button>
+          <button id="pause" disabled>Pause</button>
+          <button id="stop" disabled>Stop</button>
+        </div>
+      </div>
+    <audio id="alarm-sound" src="/audio/alarm1.mp3" preload="auto"></audio>
+    <script src="./timer.js"></script>
+  </body>

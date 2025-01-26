@@ -331,3 +331,41 @@ li {
   outline: none;
   box-shadow: none;
 }
+
+/* TIMER STYLING */
+
+#timer-container {
+  width: 250px;
+  text-align: center;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Lexend Deca;
+}
+
+#timer-display {
+  font-size: 32px;
+  margin: 20px 0;
+  font-family: Lexend Deca;
+}
+
+button {
+  width: 80px;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: Lexend Deca;
+}
+
+button:disabled {
+  background-color: #ccc;
+  font-family: Lexend Deca;
+}
+
