@@ -7,10 +7,25 @@ A1dos Creations prioritizes the security and privacy of STL (School Tool Launche
 ## Permissions and Data Storage
 
 STL utilizes the Chrome Extension `storage` permission solely for storing optional user data, such as:
+
 - Theme preferences.
 - Liked or favorited buttons.
 - Tasks created in the Task Manager.
 - Pomodoro Timer settings and progress.
+
+Additionally, STL uses the following permissions to enable its features:
+
+### Alarm Permission
+- The `alarms` permission is used to implement the Pomodoro Timer feature. This permission allows STL to schedule alarms for timing Pomodoro sessions, breaks, and task intervals.
+- These alarms are triggered locally on the user’s device and do not require or rely on internet access.
+- STL uses this permission to provide accurate and timely notifications when the timer completes, ensuring a seamless user experience without compromising security.
+
+### Scripting Permission
+- The `scripting` permission is used to manage and interact with the DOM dynamically for features like the Pomodoro Timer interface.
+- This permission enables STL to inject scripts safely into the extension's own context to:
+  - Update the timer display in real-time.
+  - Control start, pause, resume, and stop functionalities for the timer.
+- All scripts are strictly scoped to STL and operate only within its predefined boundaries, ensuring no unauthorized access to external or sensitive content.
 
 ### Data Storage Details
 - All stored data is kept locally within the user’s Chrome profile.
@@ -52,7 +67,5 @@ If you identify a security vulnerability or have concerns about STL’s security
 ## Commitment to Transparency
 
 A1dos Creations is dedicated to maintaining STL as a secure, private, and user-focused tool. Security policies will be reviewed and updated as needed to ensure ongoing compliance and user trust.
-
-## Upcoming features may impact this security policy, be sure to frequently check this file for any new updates as new versions of STL release.
 
 **Last Updated:** January 2025
