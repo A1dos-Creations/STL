@@ -8,3 +8,5 @@ While the extension provides powerful functionality for academic navigation, it 
 In the event that the extension is framed or blamed for any inappropriate, un-educational, or unauthorized use, it is important to note that the extension itself does not condone or enable misuse. The software is only a tool to enhance access to educational resources, and its use is governed by the choices made by the user. Any actions or behaviors that go against the intended educational purpose of the extension fall outside the scope of its design and functionality. The developers of the extension are not responsible for any actions taken by users that do not align with its intended use.
 
 Please use this extension responsibly, in line with its purpose to support and facilitate educational engagement.
+
+For more information on using STL correctly and under law, refer to the [License](https://github.com/A1dos-Creations/STL/blob/main/LICENSE.md).
