@@ -36,8 +36,8 @@ By using STL, you agree to the following terms:
 ## Reporting Issues
 
 To report bugs, suggest features, or request permission for specific use cases, please contact A1dos Creations through:
-- [Official Website](https://www.a1doscreations.com)
-- [STL GitHub Repository](https://github.com/A1dosCreations/STL)
+- [Official Website](https://www.a1dos-creations.com)
+- [STL GitHub Repository](https://github.com/A1dos-Creations/STL)
 
 ## Acknowledgments
 
