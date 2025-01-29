@@ -2,6 +2,8 @@
 
 **Copyright 2025 A1dos Creations**
 
+**Effective Date: February 2025**
+
 This Chrome Extension, STL (School Tool Launcher), is the exclusive property of A1dos Creations and is currently in the process of being copyrighted with the United States Copyright Office.
 
 ## Overview
