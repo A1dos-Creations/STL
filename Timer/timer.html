@@ -5,21 +5,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
 </head>
 
-<body style="width: 300px; max-width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);">
+<body style="width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);">
     <div id="timer-container">
         <label for="hours">Hours:</label>
-        <input type="number" id="hours" min="0" value="0">
+        <input type="number" id="hours" min="0" value="0" max="48">
         <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" min="1" max="60" value="25">
+        <input type="number" id="minutes" min="1" max="60" value="0">
         <label for="seconds">Seconds:</label>
         <input type="number" id="seconds" min="0" max="59" value="0">
-        <div id="timer-display">00:00</div>
+        <div id="timer-display" style="font-family: Lexend Deca;">00:00:00</div>
+        <p id="alarm-time">0:00pm/am</p>
         <div>
-          <button id="start">Start</button>
-          <button id="pause" disabled>Pause</button>
-          <button id="stop" disabled>Stop</button>
+          <button id="start"><img src="/images/start.png"></button>
+          <button id="pause" disabled><img src="/images/pause.png"></button>
+          <button id="stop" disabled><img src="/images/stop.png"></button>
         </div>
       </div>
     <audio id="alarm-sound" src="/audio/alarm1.mp3" preload="auto"></audio>
     <script src="./timer.js"></script>
+    <p id="notice">You may experience bugs as this feature is new. Report any bugs you find on our GitHub.</p>
+    <a href="">
+      <p id="notice">Create GitHub Issue Report</p>
+    </a>
   </body>

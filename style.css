@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
+#addQABtn {
+  background-color: transparent;
+  outline: none;
+  border-style: none;
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  justify-items: right;
+  justify-content: right;
+  margin-top: -47px;
+  margin-left: 265px;
+}
+
 .b1677014 {
   border-style: solid;
   background-image: linear-gradient(90deg, rgb(63, 63, 63), rgb(99, 99, 99));
@@ -169,19 +182,19 @@
   border-color: white;
   color: black;
   height: 32px;
-  width: 100px;
+  width: 103px;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
 }
 #addTaskBtn:active {
   background-color: rgb(167, 214, 173);
   height: 37px;
-  width: 105px;
+  width: 108px;
 }
 #addTaskBtn:hover {
   background-color: rgb(167, 167, 167);
   height: 37px;
-  width: 105px;
+  width: 108px;
 }
 
 .DscHDrk {
@@ -350,22 +363,44 @@ li {
   font-family: Lexend Deca;
 }
 
-button {
+#stop {
   width: 80px;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
+  height: 30px;
   margin: 5px;
-  padding: 10px;
-  background-color: #4CAF50;
+  background-color: #ce4949;
   color: white;
   border: none;
   border-radius: 5px;
   font-family: Lexend Deca;
 }
 
+button {
+  width: 80px;
+  height: 30px;
+  margin: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: Lexend Deca;
+}
+button img {
+  width: 20px;
+  height: 20px;
+}
+
 button:disabled {
   background-color: #ccc;
   font-family: Lexend Deca;
 }
+#stop:disabled {
+  background-color: #ccc;
+  font-family: Lexend Deca;
+}
 
+#notice {
+  font-family: Lexend Deca;
+  font-size: smaller;
+  color: rgb(82, 82, 82);
+  text-wrap-style: pretty;
+}

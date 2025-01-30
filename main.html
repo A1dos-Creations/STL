@@ -8,6 +8,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./main.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
 
         <div id="overlay"></div>
 
@@ -19,7 +21,7 @@
           <a href="TaskManager.html">
             <button>Task Manager</button>
           </a>
-          <a href="./Timer/timer.html" style="display: none;"> <!-- Hidden Until Bugs are fixed. -->
+          <a href="./Timer/timer.html"> <!-- Hidden Until Bugs are fixed. -->
             <button id="view-favorites">Pomorodo Timer</button>
           </a>
           <a href="discover.html">
@@ -151,7 +153,7 @@
                 border-color: rgb(54, 54, 54);
                 width:300px;
                 height: 45px;
-                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-family: Lexend Deca;
                 font-size: 16px;
                 margin-top: 20px;
                 cursor: pointer;
@@ -176,7 +178,7 @@
                 border-color: whitesmoke;
                 width:300px;
                 height: 45px;
-                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-family: Lexend Deca;
                 font-size: 16px;
                 margin-top: 20px;
                 cursor: pointer;
@@ -273,7 +275,7 @@
             .mainHeaderL {
                 margin-top: 15px;
                 color: rgb(92, 92, 92);
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-family: Lexend Deca;
                 font-size: 22px;
                 text-align: center;
                 font-size: 30px;
@@ -283,7 +285,7 @@
             .mainHeaderD {
                 margin-top: 15px;
                 color: rgb(210, 210, 210);
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-family: Lexend Deca;
                 font-size: 22px;
                 text-align: center;
                 font-size: 30px;
@@ -291,45 +293,83 @@
                 transition-duration: 0.4s;
             }
         </style>
-        <nav>
-            <button class="navBarButtonLight" id="homeButton">
-                <u><b>HOME</b></u>
-            </button>
-        </nav>
-        <body id="mainBody" class="lightMode">
+        <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;">
             <h1 id="Heading" class="mainHeaderL">Hello!</h1>
 
-            <p style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Open your school portals with ease here!</p>
+            <p id="desc" style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Lexend Deca';text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Welcome! Explore STL.</p>
+            <script src="time.js"></script>
+
+            <button id="show-buttons">Start Timer</button>
+            <div id="timer-buttons" style="display: none;">
+              <button id="10s">10s</button>
+              <button id="30s">30s</button>
+              <button id="1m">1m</button>
+              <button id="5m">5m</button>
+            </div>
+            <div id="timer-display" style="display: none;">
+              <p id="countdown"></p>
+              <button id="pause" style="display: none;">
+                <img src="./images/pause.png" alt="Pause">
+              </button>
+              <button id="stop">
+                <img src="./images/stop.png" alt="Stop">
+              </button>
+            </div>
+            <script src="./mainPageTimer.js"></script>
 
             <div id="wrapper">
+              <div class="mainMenuBtn">
                 <a type="button" href="https://aeries.net/student/LoginParent.aspx?page=Dashboard.aspx" target="_blank">
                     <button id="button1" class="buttonL">
                         <b>Open Aeries Portal</b>
                     </button>
                 </a>
+                <!-- Delete Button -->
+                <button class="delete-button">
+                  <img src="images/trash.png" style="height: 20px;width: auto;">
+                </button>
+              </div>
 
+              <div class="mainMenuBtn">
                 <a type="button" href="https://clever.com/oauth/district-picker?client_id=e2c8af7171e22a82d592&redirect_uri=https%3A%2F%2Fsamlidp.clever.com%2Fchromebook-login%2Foauth&response_type=code&skip=0" target="_blank">
                     <button id="button2" class="buttonL">
                         <b style="text-align: center;margin-bottom: 10px;">Open Clever Portal</b>
                     </button>
                 </a>
-                <!--<button style="background-color: #bdbdbd00;border-color: #bdbdbd00;margin-left: 246px;margin-top: -56px;">
-                    <img id="b2fav" src="./images/DefaultFavorite.png" style="height: 25px;width: auto;">
-                </button> -->
+                <!-- Delete Button -->
+                <button class="delete-button">
+                  <img src="images/trash.png" style="height: 20px;width: auto;">
+                </button>
+              </div>
 
+              <div class="mainMenuBtn">
                 <a type="button" href="https://classroom.google.com/" target="_blank">
-                    <button id="button3" class="buttonL">
-                        <b>Open Google Classroom</b>
-                    </button>
+                  <button id="button3" class="buttonL">
+                    <b>Open Google Classroom</b>
+                  </button>
                 </a>
+                <!-- Delete Button -->
+                <button class="delete-button">
+                  <img src="images/trash.png" style="height: 20px;width: auto;">
+                </button>
+              </div>
 
-               </div>
+              <script src="delete.js"></script>
 
-               <button id="targetButton" class="button buttonM" style="display: none;">
+              <p id="empty"></p>
+              <a href="./discover.html">
+                <button>Discover Portals</button>
+              </a>
+
+            </div>
+
+              <button id="targetButton" class="button buttonM" style="display: none;">
                 <b>Custom Website</b>
                 <p style="margin-top: -2px;font-size: 10px;color: rgba(255, 255, 255, 0.696);">Add This Website Below.</p>
-                </button>
+              </button>
         </body>
+
+        <script src="./favoritesMain.js"></script>
 
         <button class="toggle customContentL" id="togglebodyButton">Add Custom Website</button>
         
@@ -365,7 +405,7 @@
             font-size: 16px;
             background-image: linear-gradient(50deg, rgb(100, 232, 255), rgb(39, 161, 218));
             font-weight: bold;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-family: Lexend Deca;
             color: rgb(0, 0, 0);
             border-style: none;
             border-radius: 12px;
@@ -386,7 +426,7 @@
             font-size: 16px;
             background-image: linear-gradient(50deg, rgb(102, 41, 186), rgb(171, 8, 186));
             font-weight: bold;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-family: Lexend Deca;
             color: rgb(255, 255, 255);
             border-style: none;
             border-radius: 12px;
@@ -413,14 +453,14 @@
           }
           .light {
             color: black;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
           }
           .dark {
             color: white;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
@@ -431,7 +471,7 @@
             border-radius: 17px;
             border-width: 4.5px;
             border-color: rgb(221, 221, 221);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
@@ -442,7 +482,7 @@
             border-radius: 17px;
             border-width: 4.5px;
             border-color: black;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
@@ -453,7 +493,7 @@
             border-radius: 17px;
             border-width: 4.5px;
             border-color: black;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
@@ -468,7 +508,7 @@
             border-radius: 17px;
             border-width: 4.5px;
             border-color: rgb(221, 221, 221);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-size: 13px;
             -webkit-transition-duration: 0.4s; /* Chrome */
             transition-duration: 0.4s;
@@ -480,7 +520,7 @@
 
           .CD {
             font-size: 13.5px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-weight: bold;
             color: #d302ba !important;
             -webkit-transition-duration: 0.4s; /* Chrome */
@@ -488,7 +528,7 @@
           }
           .CL {
             font-size: 13.5px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Lexend Deca;
             font-weight: bold;
             color: #0a5aae !important;
             -webkit-transition-duration: 0.4s; /* Chrome */

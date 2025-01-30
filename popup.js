@@ -93,17 +93,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const taskName = document.getElementById("taskName").value;
     const taskDescription = document.getElementById("taskDescription").value;
     const taskDueDate = document.getElementById("taskDueDate").value;
     
+    const selectedDueDate = new Date(taskDueDate);
+    const now = new Date();
+
+    // Ensure the selected date is in the future
+    if (selectedDueDate <= now) {
+        alert("Please select a date and time in the future.");
+        return;
+    }
+
     const newTask = {
         id: Date.now(),
         name: taskName,
         description: taskDescription,
-        dueDate: new Date(taskDueDate),
+        dueDate: selectedDueDate,
         completed: false,
-        notified: false // Track if notification has already been sent
+        notified: false
     };
     
     saveTask(newTask, renderTasks);
@@ -111,10 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
     taskForm.style.display = "none";
 
     numTasks++;
-    console.log(numTasks)
+    console.log(numTasks);
     taskCreatedLabel.textContent = `Tasks Created: ${numTasks}`;
     taskCreatedLabel.style.display = "none";
-  });
+});
+
 
   const taskCreatedLabel = document.getElementById("tasksCreated");
   taskCreatedLabel.style.display = "none";
