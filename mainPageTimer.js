@@ -47,7 +47,7 @@ function startCountdown() {
         countdownDisplay.textContent = formatTime(timeRemaining);
       } else {
         clearInterval(countdownTimer);
-        countdownDisplay.textContent = 'Time’s up!';
+        countdownDisplay.textContent = 'Times up!';
       }
     }
   }, 1000);
