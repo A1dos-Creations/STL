@@ -293,13 +293,13 @@
                 transition-duration: 0.4s;
             }
         </style>
-        <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;">
+        <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;text-align: center;">
             <h1 id="Heading" class="mainHeaderL">Hello!</h1>
 
             <p id="desc" style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Lexend Deca';text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Welcome! Explore STL.</p>
             <script src="time.js"></script>
 
-            <button id="show-buttons">Start Timer</button>
+            <button id="show-buttons" class="show-buttonsL">Start Timer</button>
             <div id="timer-buttons" style="display: none;">
               <button id="10s">10s</button>
               <button id="30s">30s</button>
@@ -357,11 +357,21 @@
               <script src="delete.js"></script>
 
               <p id="empty"></p>
-              <a href="./discover.html">
-                <button>Discover Portals</button>
+              <a href="./discover.html" id="portal-disc-A">
+                <button id="portal-disc" class="portal-discL">Discover Portals</button>
               </a>
 
             </div>
+
+            <!-- 
+            REMOVED FOR BUG FIXING AND RE-DESIGN
+            <div id="favorites-container">
+              <p id="favorites-desc" class="favorites-descD">Some of your favorites:</p>
+            </div>
+            <a href="favorites.html" id="favorite-button-A" class="favorite-buttonD">
+              <button class="favorite-buttonD" id="favorite-button">Favorites</button>
+            </a>
+          -->
 
               <button id="targetButton" class="button buttonM" style="display: none;">
                 <b>Custom Website</b>
@@ -369,7 +379,10 @@
               </button>
         </body>
 
-        <script src="./favoritesMain.js"></script>
+        <!-- 
+        REMOVED FOR BUG FIXING AND RE-DESIGN
+        <script src="./favoritesMain.js"></script> 
+        -->
 
         <button class="toggle customContentL" id="togglebodyButton">Add Custom Website</button>
         
@@ -398,48 +411,6 @@
             display: block;
           }
           /* ^^ Sets visibility before. */
-
-          .customContentL {
-            width: 206.16px;
-            height: 39px;
-            font-size: 16px;
-            background-image: linear-gradient(50deg, rgb(100, 232, 255), rgb(39, 161, 218));
-            font-weight: bold;
-            font-family: Lexend Deca;
-            color: rgb(0, 0, 0);
-            border-style: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px 0 rgba(36, 128, 194, 0.62),0 7px 5px 0 rgba(36, 130, 197, 0.31);
-            -webkit-transition-duration: 0.4s; /* Chrome */
-            transition-duration: 0.4s;
-          }
-          .customContentL:hover {
-            font-size: 19.5px;
-            width: 250px;
-            height: 50px;
-            box-shadow: 0 12px 16px 0 rgba(36, 128, 194, 0.62),0 17px 50px rgba(36, 130, 197, 0.31);
-          }
-
-          .customContentD {
-            width: 206.16px;
-            height: 39px;
-            font-size: 16px;
-            background-image: linear-gradient(50deg, rgb(102, 41, 186), rgb(171, 8, 186));
-            font-weight: bold;
-            font-family: Lexend Deca;
-            color: rgb(255, 255, 255);
-            border-style: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px 0 rgba(80, 19, 166, 0.62),0 7px 5px 0 rgba(206, 4, 237, 0.31);
-            -webkit-transition-duration: 0.4s; /* Chrome */
-            transition-duration: 0.4s;
-          }
-          .customContentD:hover {
-            font-size: 19.5px;
-            width: 250px;
-            height: 50px;
-            box-shadow: 0 12px 16px 0 rgba(80, 19, 166, 0.62),0 17px 50px rgba(206, 4, 237, 0.31);
-          }
 
           input, button {
             margin: 10px 0;
@@ -555,4 +526,8 @@
         </body>
       <br>
     </head>
+    <p id="notice">You may experience bugs there are many new features. Report any bugs you find on our GitHub.</p>
+    <a href="https://github.com/A1dos-Creations/STL/issues/new?template=Blank+issue" target="_blank">
+      <p id="notice">Create GitHub Issue Report</p>
+    </a>
 </html>

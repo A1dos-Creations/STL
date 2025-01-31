@@ -156,9 +156,33 @@ const header = document.getElementById("Heading");
 
 const menuButton = document.getElementById("menuButton");
 
+// ↓↓ Main.html file const values ↓↓
+const showTimerBtn = document.getElementById("show-buttons");
+const portalBtn = document.getElementById("portal-disc");
+const favBtn = document.getElementById("favorite-button");
+const favsDesc = document.getElementById("favorites-desc");
+
 // Function to apply the saved theme
 function applySavedTheme(theme) {
   if (theme === "darkMode") {
+
+    // ↓↓ main.html file values ↓↓
+
+    showTimerBtn.classList.add("show-buttonsD");
+    showTimerBtn.classList.remove("show-buttonsL");
+
+    portalBtn.classList.add("portal-discD");
+    portalBtn.classList.remove("portal-discL");
+
+    /*
+    favBtn.classList.add("favorite-buttonD");
+    favBtn.classList.remove("favorite-buttonL");
+
+    favsDesc.classList.add("favorites-descD");
+    favsDesc.classList.remove("favorites-descL");
+    */
+
+    // ↑↑ ↑↑ ↑↑ ↑↑ ↑↑
 
     background.classList.add("darkMode");
     background.classList.remove("lightMode");
@@ -196,6 +220,25 @@ function applySavedTheme(theme) {
 
     themeToggleImg.src = "./images/light.png";
   } else {
+
+    // ↓↓ main.html file values ↓↓
+
+    showTimerBtn.classList.add("show-buttonsL");
+    showTimerBtn.classList.remove("show-buttonsD");
+    
+    portalBtn.classList.add("portal-discL");
+    portalBtn.classList.remove("portal-discD");
+    
+    /*
+    favBtn.classList.add("favorite-buttonL");
+    favBtn.classList.remove("favorite-buttonD");
+
+    favsDesc.classList.add("favorites-descL");
+    favsDesc.classList.remove("favorites-descD");
+    */
+    
+    // ↑↑ ↑↑ ↑↑ ↑↑ ↑↑
+
     background.classList.add("lightMode");
     background.classList.remove("darkMode");
 

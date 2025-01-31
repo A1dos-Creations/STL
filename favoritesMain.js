@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     console.log("Main page loaded");
 
-    const favoritesContainer = document.getElementById('wrapper');
+    const favoritesContainer = document.getElementById('favorites-container');
 
     if (!favoritesContainer) {
         console.error("Favorites container not found");
@@ -69,3 +69,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+*/
