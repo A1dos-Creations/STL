@@ -26,5 +26,8 @@
     "resources": ["audio/alarm1.mp3"],
     "matches": ["<all_urls>"]
   }
-]
+],
+"externally_connectable": {
+  "matches": ["https://a1dos-creations.com/*"]
+}
 }
