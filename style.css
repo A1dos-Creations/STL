@@ -404,3 +404,12 @@ button:disabled {
   color: rgb(82, 82, 82);
   text-wrap-style: pretty;
 }
+
+#sHeader {
+  font-family: Lexend Deca;
+  font-size: 4ch;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: -30px;
+}
