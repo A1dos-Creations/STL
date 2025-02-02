@@ -6,7 +6,7 @@
     "background": {
       "service_worker": "Timer/background.js"
     },
-    "permissions": ["storage", "alarms"],
+    "permissions": ["storage"],
     "icons": {
         "16": "./images/icon16.png",
         "32": "./images/icon32.png",
