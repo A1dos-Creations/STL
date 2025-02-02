@@ -7,6 +7,7 @@
 
 >[!IMPORTANT]
 >Due to review delays, STL v1.2.2 may not be availible for an undisclosed ammount of time. I apologize for the inconvenience.
+> UPDATE: STL is now in review, it should be availible by Monday night. I apologize for any inconvenience.
 
 # 🚀[STL] School Tool Launcher ✨
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
