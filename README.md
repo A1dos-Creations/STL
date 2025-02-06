@@ -45,7 +45,7 @@ Current github Version: v2.1.1
 Current Published Version: v1.3.1b
 
 >[!IMPORTANT]
->The current version displayed on this github repository is not the same as the current public version. This version will be published by February 1st, 2025. You can watch a live countdown here: [Countdown (logwork)](https://logwork.com/countdown-imzs)
+>The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git.
 
 
 # ☁️Updates:
