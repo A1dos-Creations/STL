@@ -25,8 +25,9 @@ STL allows students to access required and necesary school resuources quickly to
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
 # 🌀 What's next?
-Next, I am hoping to add a destraction blocker that will be active during school hours. I am also hoping to add an 'auto sign-in' option for select school portals. Users would have the ability to opt-out and delete their information with the click of a button.  
+I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. This will use a thrid party service named "Clerk". Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in STL! ❤️
 
+- A1dos, 2/4/25
 
 # 🛡️Your Privacy
 >[!IMPORTANT]
