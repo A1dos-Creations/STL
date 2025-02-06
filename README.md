@@ -45,7 +45,7 @@ Current github Version: v2.1.1
 Current Published Version: v1.3.1b
 
 >[!IMPORTANT]
->The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the ![Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
+>The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
 
 
 # ☁️Updates:
