@@ -13,6 +13,8 @@
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. </P>  
 
+> We are aware of the glitch with the Aeries portal button. We are currently working on a fix that does not require the re-evaluation of STL.
+
 # 📑Information
 > Whats STL?
 STL is an abreviation of 'School Tool Launcher'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
