@@ -54,7 +54,7 @@ Current Published Version: v1.3.1b
 >[!NOTE]
 > **Version 1.2-beta.1 of STL has released!**
 
-- 2/13/2025: Submmitted to Chrome Web Store for patch 1.4.1.
+- 2/13/2025: Submmitted to Chrome Web Store for patch 1.3.2.
 - 2/12/2025: Fixed Aeries Portal Glitch & Added sound alerts to 'Pomodoro Timer' feature (page).
 - 2/11/2025: Accepted for use for all CCUSD students.
 - 2/7/2025: Submitted to CCUSD for review.
