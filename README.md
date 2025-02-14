@@ -2,15 +2,18 @@
   <img src="https://github.com/user-attachments/assets/1b7f70aa-6314-4b1b-aa0e-f63d23eb71b0" width="300" height="300">
 </p>
 
-<a href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf?authuser=0&hl=en"><img alt="Chrome Web Store link" src="https://img.shields.io/badge/v1.2.x%20-%20light_green?label=Web%20Store&color=green&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fschool-portal-launcher%2Fpafdkffolelojifgeepmjjofdendeojf%3Fauthuser%3D0%26hl%3Den"></a>
-<a href="https://a1dos-creations.com"><img alt="Static Badge" href="https://a1dos-creations.com" src="https://img.shields.io/badge/Official%20Website%20-%20h?link=https%3A%2F%2Fa1dos-creations.com"></a>
+<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf?authuser=0&hl=en">![Static Badge](https://img.shields.io/badge/v1.2.1%20-%20green?style=for-the-badge&label=Chrome%20Web%20Store)
+</a>
+<a align="center" href="https://a1dos-creations.com">![Official Website](https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge)</a>
 
 >[!IMPORTANT]
->Due to review delays, STL v1.2.2 may not be availible for an undisclosed ammount of time. I apologize for the inconvenience.
+>STL Version 1.2.1 is LIVE! 🎉
 
 # 🚀[STL] School Tool Launcher ✨
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. </P>  
+
+> We are aware of the glitch with the Aeries portal button. We are currently working on a fix that does not require the re-evaluation of STL.
 
 # 📑Information
 > Whats STL?
@@ -25,8 +28,9 @@ STL allows students to access required and necesary school resuources quickly to
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
 # 🌀 What's next?
-Next, I am hoping to add a destraction blocker that will be active during school hours. I am also hoping to add an 'auto sign-in' option for select school portals. Users would have the ability to opt-out and delete their information with the click of a button.  
+I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. This will use a thrid party service named "Clerk". Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in STL! ❤️
 
+- A1dos, 2/4/25
 
 # 🛡️Your Privacy
 >[!IMPORTANT]
@@ -39,16 +43,24 @@ Currently, no user information is collected, stored, or sold to third parties. Y
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github & extension version: 1.2.1
+Current github Version: v2.1.1
+Current Published Version: v1.3.1b
 
 >[!IMPORTANT]
->The current version displayed on this github repository is not the same as the current public version. This version will be published by February 1st, 2025. You can watch a live countdown here: [Countdown (logwork)](https://logwork.com/countdown-imzs)
+>The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
 
 
 # ☁️Updates:
 >[!NOTE]
-> **Version 1.2-beta.1 of STL does not release until February 1st, 2025.**
+> **Version 1.2-beta.1 of STL has released!**
 
+- 2/13/2025: Submmitted to Chrome Web Store for patch 1.3.2.
+- 2/12/2025: Fixed Aeries Portal Glitch & Added sound alerts to 'Pomodoro Timer' feature (page).
+- 2/11/2025: Accepted for use for all CCUSD students.
+- 2/7/2025: Submitted to CCUSD for review.
+- 2/2/2025: Accepted to chrome Webstore.
+- 2/1/2025: Rejected from Chrome Webstore & re-submitted.
+- 1/30/2025: Submitted for review.
 - 1/26/2025: Pomodoro Feature bug fixes.
 - 1/25/2025: Started on Pomodoro timer feature.
 - 1/15-20/2025: Started & Finished task manager, discover page, and Quick Access Page.
