@@ -37,6 +37,125 @@
   font-size: 20px;
 }
 
+#googleSignInButton {
+  outline: none;
+  border-style: none;
+  box-shadow: none;
+}
+
+#personalInfoH {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px; 
+}
+
+#AppearanceH {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  display: none;
+}
+
+#nameInput {
+  font-family: Lexend Deca;
+  font-size: 12.5px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin-top: 10px;
+  width: 100px;
+  height: 20px;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  box-shadow: none;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+#nameInput:hover {
+  width: 115px;
+  height: 35px;
+  font-size: 14px;
+}
+#saveBtn {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  width: 75px;
+  height: 22px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+#saveBtn:hover {
+  background-color: rgb(167, 167, 167);
+  width: 80px;
+  height: 27px;
+}
+
+#alert {
+  font-family: Lexend Deca;
+  font-size: 14.5px;
+  color: rgb(175, 255, 167);
+  opacity: 6;
+}
+
+#PersonalInfoNameP {
+  color: white;
+  font-family: Lexend Deca;
+  font-size: 11px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  font-style: italic;
+  opacity: .7;
+}
+#PersonalInfoN {
+  color: white;
+  font-family: Lexend Deca;
+  font-size: 14.25px;
+}
+
+#openPersonalInfo {
+  background-color: transparent;
+  outline: none;
+  border-style: none;
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  margin-top: -37px;
+  margin-left: 170px;
+  justify-items: center;
+}
+
+.PersonalInfoHidden {
+  opacity: 0;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.PersonalInfoShowing {
+  opacity: 1;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.PIIOpen {
+  transform: rotateX(180deg);
+  -webkit-transition-delay: 0.04s;
+  transition-delay: 0.04s;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.PIIClosed {
+  transform: rotateX(0deg);
+  -webkit-transition-delay: 0.04s;
+  transition-delay: 0.04s;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
 
 /* THEME BUTTON STYLES */
 .theme {
@@ -412,4 +531,74 @@ button:disabled {
   color: white;
   text-align: center;
   margin-top: -30px;
+}
+
+form {
+  margin-top: 10px;
+}
+input, button {
+  margin: 5px 0;
+  padding: 5px;
+}
+
+#alarmSoundLabel {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  color: white;
+  margin-top: 50px;
+}
+
+#alarm-sound {
+  font-family: Lexend Deca;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 145px;
+  height: 25px;
+  position: flex;
+  display: block;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+#alarm-sound:hover {
+background-color: rgb(167, 167, 167);
+  font-size: 14px;
+}
+
+#timer-settings {
+  margin-top: 15px;
+  justify-content: center;
+  justify-items: center;
+  margin-bottom: 20px;
+}
+
+option {
+  background-color: white;
+  font-family: Lexend Deca;
+  font-size: 11.25px;
+  color: black;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+option:hover {
+  background-color: rgb(167, 167, 167);
+}
+
+#stopAlarm {
+  width: 80px;
+  height: 30px;
+  margin: 5px;
+  font-size: 10px;
+  background-color: #ff4e4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: Lexend Deca;
+  display: block;
+  justify-self: center;
+}
+#stopAlarm:disabled {
+  background-color: #ccc;
 }

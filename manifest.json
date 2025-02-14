@@ -1,12 +1,12 @@
 {
     "name": "School Tools",
     "description": "Launch useful school tools with the click of your mouse!",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "manifest_version": 3,
     "background": {
       "service_worker": "Timer/background.js"
     },
-    "permissions": ["storage"],
+    "permissions": ["storage", "offscreen"],
     "icons": {
         "16": "./images/icon16.png",
         "32": "./images/icon32.png",
@@ -18,16 +18,24 @@
     "storage": {
       "local": {}
     },
-    "content_security_policy": {
-      "extension_pages": "script-src 'self'; object-src 'self';"
-    },
     "web_accessible_resources": [
   {
-    "resources": ["audio/alarm1.mp3"],
+    "resources": [
+      "audio/alarm1.mp3",
+      "audio/alarm2.mp3",
+      "audio/alarm3.mp3",
+      "audio/alarm4.mp3"
+    ],
     "matches": ["<all_urls>"]
   }
-],
-"externally_connectable": {
-  "matches": ["https://a1dos-creations.com/*"]
-}
+  ],
+  "host_permissions": [
+    "https://a1dos-creations.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "externally_connectable": {
+    "matches": ["https://a1dos-creations.com/*"]
+  }
 }

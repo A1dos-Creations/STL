@@ -312,3 +312,11 @@
   display: none;
   opacity: 0;
 }
+
+#CCUSDNotice {
+  font-family: Lexend Deca;
+  font-size: 9px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: -10px;
+}

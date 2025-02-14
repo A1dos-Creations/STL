@@ -3,20 +3,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
+
+    <script defer src="/textEdit.js"></script>
 </head>
 
 <body style="width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);">
     <section id="return" style="margin-bottom: 20px;margin-top: -9px;margin-left: -7.5px;">
         <div>
-            <a href="main.html" style="color: whitesmoke;text-decoration: none;">
+            <a href="/main.html" style="color: whitesmoke;text-decoration: none;">
                <img src="/images/BackDark.png" style="width: 25px;height: 25px;">
             </a>   
         </div> 
     </section>
 
     <h1 id="sHeader">Settings</h1>
+    <h2 id="PersonalInfoH">Personal Information</h2>
+    <button id="openPersonalInfo"><img id="PersonalInfoImg" src="/images/Expand.png" style="height: 20px;width: auto;"></button>
+    <div id="PersonalInfo" class="PersonalInfoHidden">
+        <p id="PersonalInfoN">Name:</p>
+        <p id="PersonalInfoNameP">What we should call you.</p>
+        <p id="alert"></p>
+        <input type="text" id="nameInput" placeholder="Name" class="settingsInput">
+        <button id="saveBtn">SAVE</button>
+    </div>
 
-    <section id="googleSignIn"> <!-- GOOGLE SIGN IN SECTION FOR GOOGLE CALENDAR SYNCING, AND EXTRA FEATURES -->
+    <div id="login-section">
+        <h3>Login</h3>
+        <form id="extension-login-form">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <script src="popup.js"></script>
+
+    <h2 id="AppearanceH">Appearance</h2>
+
+
+    <section id="googleSignIn" style="display: none;"> <!-- GOOGLE SIGN IN SECTION FOR GOOGLE CALENDAR SYNCING, AND EXTRA FEATURES -->
         <button id="googleSignInButton">Sign in with Google</button>
 
         <script src="./Account/signIn.js"></script>

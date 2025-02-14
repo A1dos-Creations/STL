@@ -20,9 +20,19 @@
           <button id="pause" disabled><img src="/images/pause.png"></button>
           <button id="stop" disabled><img src="/images/stop.png"></button>
         </div>
+        <button id="stopAlarm" disabled>Stop Alarm</button>
       </div>
-    <audio id="alarm-sound" src="/audio/alarm1.mp3" preload="auto"></audio>
-    <script src="./timer.js"></script>
+    <div id="timer-settings">
+        <label for="alarm-sound" id="alarmSoundLabel">Alarm Sound:<b style="color: rgb(255, 81, 81);">*</b></label>
+        <br>
+        <select id="alarm-sound">
+          <option value="alarm1.mp3">Alarm 1</option>
+          <option value="alarm2.mp3">Alarm 2</option>
+          <option value="alarm3.mp3">Alarm 3</option>
+          <option value="alarm4.mp3">Alarm 4</option>
+        </select>
+      </div>
+    <script src="./timer.js" defer></script>
     <p id="notice">You may experience bugs as this feature is new. Report any bugs you find on our GitHub.</p>
     <a href="https://github.com/A1dos-Creations/STL/issues/new?template=Blank+issue" target="_blank">
       <p id="notice">Create GitHub Issue Report</p>

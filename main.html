@@ -30,7 +30,7 @@
           <a href="favorites.html">
             <button id="view-favorites">Quick Access</button>
           </a>
-          <a href="./Settings/settingsMain.html" style="display: none;">
+          <a href="./Settings/settingsMain.html">
             <button id="settings" style="background: none;height: 25px;width: 25px;">
               <img src="./images/settings.png" alt="Settings" style="height: 20px;width: auto;">
             </button>
@@ -300,7 +300,7 @@
         </style>
         <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;text-align: center;">
             <h1 id="Heading" class="mainHeaderL">Hello!</h1>
-
+            <script src="name.js" defer></script>
             <p id="desc" style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Lexend Deca';text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Welcome! Explore STL.</p>
             <script src="time.js"></script>
 
@@ -323,8 +323,9 @@
             <script src="./mainPageTimer.js"></script>
 
             <div id="wrapper">
+              <p id="CCUSDNotice">*May Not Work For Accounts not Under CCUSD.*</p>
               <div class="mainMenuBtn">
-                <a type="button" href="https://aeries.net/student/LoginParent.aspx?page=Dashboard.aspx" target="_blank">
+                <a type="button" href="https://portal.centralusd.k12.ca.us/Parent/LoginParent.aspx" target="_blank">
                     <button id="button1" class="buttonL">
                         <b>Open Aeries Portal</b>
                     </button>
@@ -336,7 +337,7 @@
               </div>
 
               <div class="mainMenuBtn">
-                <a type="button" href="https://clever.com/oauth/district-picker?client_id=e2c8af7171e22a82d592&redirect_uri=https%3A%2F%2Fsamlidp.clever.com%2Fchromebook-login%2Foauth&response_type=code&skip=0" target="_blank">
+                <a type="button" href="https://clever.com/oauth/district-picker" target="_blank">
                     <button id="button2" class="buttonL">
                         <b style="text-align: center;margin-bottom: 10px;">Open Clever Portal</b>
                     </button>
@@ -348,7 +349,7 @@
               </div>
 
               <div class="mainMenuBtn">
-                <a type="button" href="https://classroom.google.com/" target="_blank">
+                <a type="button" href="https://classroom.google.com/h/" target="_blank">
                   <button id="button3" class="buttonL">
                     <b>Open Google Classroom</b>
                   </button>
