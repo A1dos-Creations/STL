@@ -2,12 +2,12 @@
   <img src="https://github.com/user-attachments/assets/1b7f70aa-6314-4b1b-aa0e-f63d23eb71b0" width="300" height="300">
 </p>
 
-<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf?authuser=0&hl=en">![Static Badge](https://img.shields.io/badge/v1.2.1%20-%20green?style=for-the-badge&label=Chrome%20Web%20Store)
+<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf">![Static Badge](https://img.shields.io/badge/v1.2.2%20-%20green?style=for-the-badge&label=Chrome%20Web%20Store)
 </a>
 <a align="center" href="https://a1dos-creations.com">![Official Website](https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge)</a>
 
 >[!IMPORTANT]
->STL Version 1.2.1 is LIVE! 🎉
+>STL Version 1.2.2 is LIVE! 🎉
 
 # 🚀[STL] School Tool Launcher ✨
 <P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
