@@ -54,6 +54,8 @@ Current Published Version: v1.3.1b
 >[!NOTE]
 > **Version 1.2-beta.1 of STL has released!**
 
+- 2/22-23/2025: Fixed database and encryption errors.
+- 2/19-21/2025: Created STL's login API and website. Locate the github [here](https://github.com/A1dos-Creations/login-api-website)
 - 2/13/2025: Submmitted to Chrome Web Store for patch 1.3.2.
 - 2/12/2025: Fixed Aeries Portal Glitch & Added sound alerts to 'Pomodoro Timer' feature (page).
 - 2/11/2025: Accepted for use for all CCUSD students.
