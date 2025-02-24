@@ -1,5 +1,5 @@
 // sync.js
-export async function syncGoogleTasks() {
+/*export async function syncGoogleTasks() {
     try {
       // Obtain the OAuth token (prompts the user if necessary)
       const token = await getAuthToken();
@@ -111,4 +111,4 @@ export async function syncGoogleTasks() {
     if (!dueDateObj || !dueDateObj.year || !dueDateObj.month || !dueDateObj.day) return null;
     return `${dueDateObj.year}-${String(dueDateObj.month).padStart(2, '0')}-${String(dueDateObj.day).padStart(2, '0')}`;
   }
-  
+  */
