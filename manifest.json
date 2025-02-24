@@ -7,7 +7,7 @@
       "service_worker": "Timer/background.js",
       "type": "module"
     },
-    "permissions": ["storage", "offscreen", "identity"],
+    "permissions": ["storage", "offscreen"],
     "icons": {
         "16": "/images/icon16.png",
         "32": "/images/icon32.png",
