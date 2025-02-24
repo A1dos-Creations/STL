@@ -31,19 +31,7 @@
     "matches": ["<all_urls>"]
   }
   ],
-  "host_permissions": [
-    "https://www.googleapis.com/*",
-    "https://accounts.google.com/*"
-  ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "oauth2": {
-    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/calendar.readonly",
-      "https://www.googleapis.com/auth/classroom.courses.readonly",
-      "https://www.googleapis.com/auth/classroom.coursework.me.readonly"
-    ]
   }
 }
