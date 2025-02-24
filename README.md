@@ -10,19 +10,21 @@
 >STL Version 1.2.2 is LIVE! 🎉
 
 # 🚀[STL] School Tool Launcher ✨
-<P>This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
-As new updates roll out, this github will be updated. </P>  
+This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
+As new updates roll out, this github will be updated. 
 
-> We are aware of the glitch with the Aeries portal button. We are currently working on a fix that does not require the re-evaluation of STL.
+>[!IMPORTANT]
+>**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use most features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such as tasks and timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
 
 # 📑Information
 > Whats STL?
 STL is an abreviation of 'School Tool Launcher'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
 
-For schools or educational organizations, please read the [Notice.](./NOTICE.md)
-
-What are it's benefits?
+**What are STL's benefits?**
 STL allows students to access required and necesary school resuources quickly to ensure a smooth learning experience with as little destractions as possible.  
+
+>[!NOTE]
+>For schools or educational organizations, please read our [notice for educational institutions.](./NOTICE.md)
 
 # 🧾About
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
@@ -32,19 +34,21 @@ I am planning on adding a link to Google's Calendar and Google Classroom for mor
 
 - A1dos, 2/4/25
 
+We are currently in the process of rolling out (A1dos Creations) accounts! Soon you will be able to create an account with A1dos! This will allow you to manage your tasks from anywhere (even without the extension installed!) and more *epic* features that are coming soon! Stay tuned for updates, and check out the official [A1dos Login API website github](https://github.com/A1dos-Creations/login-api-website).
+
 # 🛡️Your Privacy
 >[!IMPORTANT]
 >One of the features discussed above would require the voluntary permission to collect [the] user's personal information, such as usernames (or names) and passwords for certain applications [web apps].
 
-Currently, no user information is collected, stored, or sold to third parties. Your information is safe. All files in STL are locataed here. There are no external scripts from web apps, websites, or source computer/s.  
+In the published version of STL, users have the option to enter their name in settings, this information is not shared or stored on any device or server other than the user's local computer.
 
 
 # ⌚ Version
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v2.1.1
-Current Published Version: v1.3.1b
+Current github Version: v2.3.1
+Current Published Version: v1.3.1
 
 >[!IMPORTANT]
 >The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
