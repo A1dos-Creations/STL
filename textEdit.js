@@ -674,3 +674,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // END OF TEXT EDIT --
+
+  // START OF HOVER SCRIPT (APPEARANCE) --
+  const par = document.getElementById("AppearanceH");
+  const info = document.getElementById("AppearanceP");

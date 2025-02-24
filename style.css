@@ -51,15 +51,6 @@
   margin-top: 10px; 
 }
 
-#AppearanceH {
-  font-family: Lexend Deca;
-  font-size: 15px;
-  font-weight: bold;
-  color: white;
-  margin-top: 10px;
-  display: none;
-}
-
 #nameInput {
   font-family: Lexend Deca;
   font-size: 12.5px;
@@ -444,10 +435,12 @@ li {
   margin-bottom: 5px;
 }
 
+/* CUSTOM STYLES */
 .hidden {
   display: none;
 }
 
+/* DISCOVER PAGE STYLING */
 .searchBar {
   border-radius: 16px;
   background-color: rgb(49, 49, 49);
@@ -601,4 +594,74 @@ option:hover {
 }
 #stopAlarm:disabled {
   background-color: #ccc;
+}
+
+/* LOGIN / REGISTER SETTINGS - STYLING */
+#loginBtn {
+  width:fit-content ;
+  justify-items: center;
+  justify-content: center;
+  height: 30px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-family: Lexend Deca;
+}
+
+#logoutBtn {
+  width:fit-content ;
+  height: 20px;
+  background-color: #ee4949;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-family: Lexend Deca;
+  display: none;
+}
+
+#deleteBtn {
+  width:fit-content ;
+  height: 20px;
+  background-color: #ee4949;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-family: Lexend Deca;
+  display: none;
+}
+
+/* Appearance */
+#AppearanceH {
+  font-family: Lexend Deca;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+}
+#AppearanceP {
+  font-family: Lexend Deca;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: -30px;
+}
+
+#openAppearanceInfo {
+  background-color: transparent;
+  outline: none;
+  border-style: none;
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  justify-items: center;
+  margin-top: -100px;
+  margin-left: 100px;
+}
+
+#notice-ccusd{
+  background-color: #ac5959;
+  color: white;
 }

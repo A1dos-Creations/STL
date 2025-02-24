@@ -187,3 +187,46 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.storage.local.set({ timer: message.timer });
   }
 });
+
+// --- End of TIMER Section ---
+
+
+// --- Start of GOOGLE SYNCING Section ---
+
+import { syncGoogleTasks } from './sync.js';
+// Import or define other modules or functions as needed
+import { otherBackgroundFunction } from './otherBackgroundModule.js';
+
+// Existing background functionality
+function initializeOtherBackgroundFeatures() {
+  // Your existing background code here
+  console.log("Initializing other background features...");
+  // For example, you might have other listeners or initialization routines:
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'doSomethingElse') {
+      // Handle your other message
+      otherBackgroundFunction(message.data)
+        .then(result => sendResponse({ success: true, data: result }))
+        .catch(error => sendResponse({ success: false, error: error.message }));
+      return true; // Indicates async response
+    }
+  });
+}
+
+// Add message listener for Google sync tasks
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'syncGoogleTasks') {
+    syncGoogleTasks()
+      .then(() => sendResponse({ success: true }))
+      .catch(err => sendResponse({ success: false, error: err.message }));
+    return true; // Keeps the messaging channel open for async response
+  }
+});
+
+// Initialize your other background functionalities
+initializeOtherBackgroundFeatures();
+
+// You can also add additional listeners or initialization code below as needed
+console.log("Background service worker initialized.");
+
+// --- End of GOOGLE SYNCING Section ---
