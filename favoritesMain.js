@@ -1,4 +1,4 @@
-/*document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log("Main page loaded");
 
     const favoritesContainer = document.getElementById('favorites-container');
