@@ -2,6 +2,8 @@
   <img src="https://github.com/user-attachments/assets/1b7f70aa-6314-4b1b-aa0e-f63d23eb71b0" width="300" height="300">
 </p>
 
+# 🚀[STL] School Tool Launcher ✨
+
 <div align="center">
 <a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf"><img alt="Static Badge" src="https://img.shields.io/badge/Chrome%20Web%20Store%20-%20green?style=for-the-badge&label=v1.4.2"></a>
 <a align="center" href="https://a1dos-creations.com"><img alt="Static Badge" src="https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge"></a>
@@ -9,10 +11,8 @@
 <a href="https://paypal.me/a1dos?country.x=US&locale.x=en_US"><img alt="Static Badge" src="https://img.shields.io/badge/Consider%20Donating%20%F0%9F%92%96%20-%20darkred?style=for-the-badge"></a>
 </div>
 
->[!IMPORTANT]
->STL Version 1.4.2 is LIVE! 🎉
+<br>
 
-# 🚀[STL] School Tool Launcher ✨
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
 
