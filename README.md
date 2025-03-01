@@ -7,7 +7,7 @@
 <a href="https://discord.gg/F2aC2yJq"><img alt="Static Badge" src="https://img.shields.io/badge/Discord%20-%20green?style=for-the-badge&label=Join%20The"></a>
 
 >[!IMPORTANT]
->STL Version 1.2.2 is LIVE! 🎉
+>STL Version 1.4.2 is LIVE! 🎉
 
 # 🚀[STL] School Tool Launcher ✨
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
