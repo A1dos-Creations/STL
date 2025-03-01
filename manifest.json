@@ -1,7 +1,7 @@
 {
     "name": "School Tools",
     "description": "Launch useful school tools with the click of your mouse!",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "manifest_version": 3,
     "background": {
       "service_worker": "Timer/background.js",
