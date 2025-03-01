@@ -5,6 +5,7 @@
 <a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf">![Static Badge](https://img.shields.io/badge/v1.2.2%20-%20green?style=for-the-badge&label=Chrome%20Web%20Store)</a>
 <a align="center" href="https://a1dos-creations.com">![Official Website](https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge)</a>
 <a href="https://discord.gg/F2aC2yJq"><img alt="Static Badge" src="https://img.shields.io/badge/Discord%20-%20green?style=for-the-badge&label=Join%20The"></a>
+<a href="https://paypal.me/a1dos?country.x=US&locale.x=en_US"><img alt="Static Badge" src="https://img.shields.io/badge/Consider%20Donating%20%F0%9F%92%96%20-%20darkred?style=for-the-badge"></a>
 
 >[!IMPORTANT]
 >STL Version 1.4.2 is LIVE! 🎉
@@ -15,6 +16,12 @@ As new updates roll out, this github will be updated.
 
 >[!IMPORTANT]
 >**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use most features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such as tasks and timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
+
+We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
+Please consider donating $1, it helps a ton, and your generosity is deeply appreciated! 💖
+
+Donation Link:
+https://paypal.me/a1dos?country.x=US&locale.x=en_US
 
 # 📑Information
 > Whats STL?
