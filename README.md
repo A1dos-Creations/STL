@@ -2,19 +2,28 @@
   <img src="https://github.com/user-attachments/assets/1b7f70aa-6314-4b1b-aa0e-f63d23eb71b0" width="300" height="300">
 </p>
 
-<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf">![Static Badge](https://img.shields.io/badge/v1.2.2%20-%20green?style=for-the-badge&label=Chrome%20Web%20Store)
-</a>
-<a align="center" href="https://a1dos-creations.com">![Official Website](https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge)</a>
-
->[!IMPORTANT]
->STL Version 1.2.2 is LIVE! 🎉
-
 # 🚀[STL] School Tool Launcher ✨
+
+<div align="center">
+<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf"><img alt="Static Badge" src="https://img.shields.io/badge/Chrome%20Web%20Store%20-%20green?style=for-the-badge&label=v1.4.2"></a>
+<a align="center" href="https://a1dos-creations.com"><img alt="Static Badge" src="https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge"></a>
+<a href="https://discord.gg/F2aC2yJq"><img alt="Static Badge" src="https://img.shields.io/badge/Discord%20-%20green?style=for-the-badge&label=Join%20The"></a>
+<a href="https://paypal.me/a1dos?country.x=US&locale.x=en_US"><img alt="Static Badge" src="https://img.shields.io/badge/Consider%20Donating%20%F0%9F%92%96%20-%20darkred?style=for-the-badge"></a>
+</div>
+
+<br>
+
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
 
 >[!IMPORTANT]
 >**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use most features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such as tasks and timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
+
+We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
+Please consider donating $1, it helps a ton, and your generosity is deeply appreciated! 💖
+
+Donation Link:
+https://paypal.me/a1dos?country.x=US&locale.x=en_US
 
 # 📑Information
 > Whats STL?
@@ -47,8 +56,8 @@ In the published version of STL, users have the option to enter their name in se
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v2.3.1
-Current Published Version: v1.3.1
+Current github Version: v2.4.1
+Current Published Version: v1.4.2
 
 >[!IMPORTANT]
 >The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
@@ -56,8 +65,11 @@ Current Published Version: v1.3.1
 
 # ☁️Updates:
 >[!NOTE]
-> **Version 1.2-beta.1 of STL has released!**
+> **Version 1.4.2 of STL has released!**
 
+- 3/1/2025: Created [A1dos Creations Discord server](https://discord.gg/F2aC2yJq).
+- 2/28/2025: Added STL login/register form that connects to the [Login API](https://github.com/A1dos-Creations/login-api-website).
+- 2/25/2025: Fixed CORS bugs. 
 - 2/22-23/2025: Fixed database and encryption errors.
 - 2/19-21/2025: Created STL's login API and website. Locate the github [here](https://github.com/A1dos-Creations/login-api-website)
 - 2/13/2025: Submmitted to Chrome Web Store for patch 1.3.2.
