@@ -596,44 +596,6 @@ option:hover {
   background-color: #ccc;
 }
 
-/* LOGIN / REGISTER SETTINGS - STYLING */
-#loginBtn {
-  width:fit-content ;
-  justify-items: center;
-  justify-content: center;
-  height: 30px;
-  background-color: #4285f4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  font-family: Lexend Deca;
-}
-
-#logoutBtn {
-  width:fit-content ;
-  height: 20px;
-  background-color: #ee4949;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  font-family: Lexend Deca;
-  display: none;
-}
-
-#deleteBtn {
-  width:fit-content ;
-  height: 20px;
-  background-color: #ee4949;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  font-family: Lexend Deca;
-  display: none;
-}
-
 /* Appearance */
 #AppearanceH {
   font-family: Lexend Deca;
@@ -664,4 +626,37 @@ option:hover {
 #notice-ccusd{
   background-color: #ac5959;
   color: white;
+}
+
+/* REGISTER/SIGN IN SECTION STYLING */
+#auth-container {
+  margin-top: 50px;
+}
+
+#a-header {
+  font-family: Lexend Deca;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+#register-btn, #login-btn {
+  width:fit-content ;
+  justify-items: center;
+  justify-content: center;
+  height: 30px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-family: Lexend Deca;
+  margin-top: 10px;
+}
+#message{
+  font-family: Lexend Deca;
+  font-size: 11px;
+  color: rgb(68, 226, 37);
+  margin-top: 10px;
 }

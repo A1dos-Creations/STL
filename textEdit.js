@@ -617,6 +617,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lowerText = text.toLowerCase();
     return bannedWords.some(word => lowerText.includes(word));
   }
+
+  
   
   // Load saved name if it exists
   chrome.storage.local.get("username", (data) => {
@@ -632,18 +634,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if the input contains any banned words
     if (containsBannedWord(name)) {
       alertElem.textContent = "The name you entered is prohibited or contains explicit material.";
+      alertElem.style.color = "red";
       setTimeout(() => {
         alertElem.textContent = "";
+        alertElem.style.color = "lightGreen";
       }, 3500);
       return; // Stop further processing
     }
   
     // Save the name if it passes the filter
     chrome.storage.local.set({ username: name }, () => {
+      if(name === "Ms. Madrid" || name === "Victor" || name === "victor" || name === "Niso" || name === "niso") {
+        alertElem.textContent = "Hi " + name + ". - From Devin :)";
+        setTimeout(() => {
+          alertElem.textContent = "";
+        }, 3500);
+      } else {
       alertElem.textContent = "Name saved. Hello, " + name + "!";
       setTimeout(() => {
         alertElem.textContent = "";
       }, 3500);
+    }
     });
   });
   
