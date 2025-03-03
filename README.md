@@ -13,6 +13,9 @@
 
 <br>
 
+>[!IMPORTANT]
+>**You can now create an A1dos Creations account on our website!** Soon you will be able to sign-into that account on STL! Please note that this isn't free for me! *Please* consider donating to keep STL alive!
+
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
 
