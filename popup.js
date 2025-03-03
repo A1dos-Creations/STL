@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskCreatedLabel = document.getElementById("tasksCreated");
   const syncGoogleBtn = document.getElementById("syncGoogleBtn"); // New sync button
   let numTasks = 0;
+
+  const apiBaseUrl = "https://a1dos-login.onrender.com";
   
   requestNotificationPermission();
 
@@ -186,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         header.className = "task-header";
   
         const title = document.createElement("h3");
-        title.textContent = task.name;
+        title.textContent = task.synced ? `🔄 ${task.name}` : task.name; 
         title.style.fontFamily = "Lexend Deca";
   
         // Determine if the task is due today
@@ -310,14 +312,112 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
   
-  function saveTask(task, callback) {
+  async function saveTask(task, callback) {
+    const token = localStorage.getItem('authToken');
+  
+    if (token) {
+      // User is logged in → Save to server
+      try {
+        const response = await fetch(`${apiBaseUrl}/tasks`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(task)
+        });
+  
+        const newTask = await response.json();
+        console.log("Task saved to server:", newTask);
+        fetchTasks();
+      } catch (err) {
+        console.error("Error saving task to server:", err);
+      }
+    } else {
+      // User is NOT logged in → Save locally
+      const transaction = db.transaction(storeName, "readwrite");
+      const store = transaction.objectStore(storeName);
+      store.put(task);
+  
+      transaction.oncomplete = () => callback();
+      transaction.onerror = (event) => console.error("Save task error:", event.target.error);
+    }
+  }
+
+  async function syncLocalTasks(token) {
+    const localTasks = await getLocalTasks();
+  
+    if (localTasks.length === 0) return console.log("No local tasks to sync.");
+  
+    try {
+      const response = await fetch(`${apiBaseUrl}/sync-tasks`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ tasks: localTasks })
+      });
+  
+      const result = await response.json();
+      console.log("Tasks synced:", result);
+  
+      // 🗑 Clear local tasks after syncing
+      clearLocalTasks();
+    } catch (err) {
+      console.error("Error syncing tasks:", err);
+    }
+  }
+  
+  async function getLocalTasks() {
+    return new Promise((resolve) => {
+      const transaction = db.transaction(storeName, "readonly");
+      const store = transaction.objectStore(storeName);
+      const request = store.getAll();
+  
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => {
+        console.error("Fetch tasks error:", event.target.error);
+        resolve([]);
+      };
+    });
+  }
+  
+  function clearLocalTasks() {
     const transaction = db.transaction(storeName, "readwrite");
     const store = transaction.objectStore(storeName);
-    store.put(task);
-    taskListLabel.style.display = "none";
-    transaction.oncomplete = () => callback();
-    transaction.onerror = (event) => console.error("Save task error:", event.target.error);
+    store.clear();
+    console.log("Local tasks cleared after sync.");
   }
+  
+
+  async function loginUser() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+  
+    fetch(`${apiBaseUrl}/login-user`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(async (data) => {
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        showMessage(`Login successful! Welcome, ${data.user.name}`, 'green');
+  
+        // 🔄 Sync local tasks
+        await syncLocalTasks(data.token);
+        fetchTasks(); // Refresh task list
+      } else {
+        showMessage(data, 'red');
+      }
+    })
+    .catch(err => showMessage(`Login error: ${err.message}`, 'red'));
+  }
+  
+  
   
   function fetchTasks(callback) {
     const transaction = db.transaction(storeName, "readonly");
