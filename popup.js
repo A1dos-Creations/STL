@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Request notification permission when the page loads.
   function requestNotificationPermission() {
     if (Notification.permission === "default") {
       Notification.requestPermission().then((permission) => {
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskList = document.getElementById("taskList");
   const taskListLabel = document.getElementById("tlN");
   const taskCreatedLabel = document.getElementById("tasksCreated");
-  const syncGoogleBtn = document.getElementById("syncGoogleBtn"); // New sync button
+  const syncGoogleBtn = document.getElementById("syncGoogleBtn");
   let numTasks = 0;
   
   requestNotificationPermission();
@@ -51,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const dueDate = new Date(task.dueDate);
       const timeLeft = dueDate - now;
   
-      // If the task is due that day, less than 4 hours remain, and no notification was sent
       if (
         isSameDay(now, dueDate) &&
         timeLeft > 0 &&
@@ -59,41 +57,39 @@ document.addEventListener("DOMContentLoaded", () => {
         !task.notified
       ) {
         sendNotification(task);
-        task.notified = true; // Mark the task as notified
+        task.notified = true; 
         saveTask(task, () => console.log(`Notification sent for task: ${task.name}`));
       }
     });
   }
   
-  // IndexedDB setup
   const dbName = "TaskManagerDB";
   const storeName = "tasks";
   let db;
   
-  const request = indexedDB.open(dbName, 1);
+  const requestIDB = indexedDB.open(dbName, 1);
   
-  request.onupgradeneeded = (event) => {
+  requestIDB.onupgradeneeded = (event) => {
       db = event.target.result;
       if (!db.objectStoreNames.contains(storeName)) {
           db.createObjectStore(storeName, { keyPath: "id" });
       }
   };
   
-  request.onsuccess = (event) => {
+  requestIDB.onsuccess = (event) => {
       db = event.target.result;
       renderTasks();
   };
   
-  request.onerror = (event) => {
+  requestIDB.onerror = (event) => {
       console.error("Database error:", event.target.error);
   };
   
-  // Toggle display of task creation form
   createTaskBtn.addEventListener("click", () => {
       taskForm.style.display = taskForm.style.display === "block" ? "none" : "block";
   });
   
-  // Event listener for task form submission
+  // When a task is created, save it locally then sync to Google Calendar
   taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
   
@@ -104,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedDueDate = new Date(taskDueDate);
     const now = new Date();
   
-    // Ensure the selected date is in the future
     if (selectedDueDate <= now) {
         alert("Please select a date and time in the future.");
         return;
@@ -117,10 +112,15 @@ document.addEventListener("DOMContentLoaded", () => {
         dueDate: selectedDueDate,
         completed: false,
         notified: false,
-        source: "manual" // Mark manual tasks as such
+        source: "manual",
+        calendarEventId: null  // This will store the Google Calendar event ID
     };
     
-    saveTask(newTask, renderTasks);
+    saveTask(newTask, () => {
+      renderTasks();
+      // After saving locally, add the task to Google Calendar.
+      addTaskEvent(newTask);
+    });
     taskForm.reset();
     taskForm.style.display = "none";
   
@@ -130,13 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
     taskCreatedLabel.style.display = "none";
   });
   
-  // New: Event listener for the Sync with Google button
+  // Sync Google tasks button (if applicable)
   if(syncGoogleBtn) {
     syncGoogleBtn.addEventListener("click", () => {
       chrome.runtime.sendMessage({ action: "syncGoogleTasks" }, (response) => {
         if(response && response.success) {
           console.log("Google tasks synced successfully.");
-          // Refresh the tasks list to include the newly synced tasks.
           renderTasks();
         } else {
           console.error("Error syncing tasks:", response && response.error);
@@ -155,16 +154,82 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
   
-  let sortOrder = "asc"; // Default sorting order: "asc" for closest first
+  let sortOrder = "asc";
   
-  // Add event listener for sorting button
   const sortButton = document.getElementById("sortButton");
   sortButton.addEventListener("click", () => {
-    sortOrder = sortOrder === "asc" ? "desc" : "asc"; // Toggle sort order
-    renderTasks(); // Re-render tasks
+    sortOrder = sortOrder === "asc" ? "desc" : "asc"; 
+    renderTasks();
     sortButton.textContent = `Sort by Due Date (${sortOrder === "asc" ? "Closest First" : "Furthest First"})`;
   });
   
+  // API Integration: Google Calendar syncing functions
+  function addTaskEvent(task) {
+    const token = localStorage.getItem("authToken");
+    if (!token) return;
+    // Call the API endpoint to add the task event
+    fetch('https://a1dos-login.onrender.com/add-task-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token: token,
+        taskTitle: task.name,
+        taskDueDate: task.dueDate,
+        taskDescription: task.description
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        // Save the returned event ID to the task object
+        task.calendarEventId = data.eventId;
+        console.log("Task event added to calendar, event ID:", data.eventId);
+        // Optionally update the task in IndexedDB with the new calendarEventId here.
+      } else {
+        console.error("Failed to add task event:", data.message);
+      }
+    })
+    .catch(err => console.error("Error adding task event:", err));
+  }
+
+  function deleteTaskEvent(task, callback) {
+    const token = localStorage.getItem("authToken");
+    if (!token || !task.calendarEventId) {
+      callback();
+      return;
+    }
+    fetch('https://a1dos-login.onrender.com/delete-task-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token, eventId: task.calendarEventId })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        console.log("Task event removed from calendar.");
+      } else {
+        console.error("Failed to delete task event:", data.message);
+      }
+      callback();
+    })
+    .catch(err => {
+      console.error("Error deleting task event:", err);
+      callback();
+    });
+  }
+
+  // New function: Delete task and its calendar event if present
+  function deleteTaskWithCalendar(task, callback) {
+    if (task.calendarEventId) {
+      deleteTaskEvent(task, () => {
+        deleteTask(task.id, callback);
+      });
+    } else {
+      deleteTask(task.id, callback);
+    }
+  }
+  
+  // Render tasks from IndexedDB
   function renderTasks() {
     taskList.innerHTML = "";
     fetchTasks((tasks) => {
@@ -189,19 +254,16 @@ document.addEventListener("DOMContentLoaded", () => {
         title.textContent = task.name;
         title.style.fontFamily = "Lexend Deca";
   
-        // Determine if the task is due today
         const dueDate = new Date(task.dueDate);
         const now = new Date();
         const isToday = isDueToday(dueDate);
         const timeUntilDue = dueDate - now;
         const isLessThan12Hours = timeUntilDue > 0 && timeUntilDue <= 12 * 60 * 60 * 1000;
   
-        // Modify the task's appearance based on due date
         if (isToday) {
           title.style.color = isLessThan12Hours ? "#692a2a" : "#e57373";
           title.style.marginTop = "-15.5px";
   
-          // Add urgency indicators (! or !!)
           const urgencyIndicator = document.createElement("span");
           urgencyIndicator.textContent = isLessThan12Hours ? "!!" : "!";
           urgencyIndicator.style.color = isLessThan12Hours ? "#692a2a" : "#e57373";
@@ -223,9 +285,9 @@ document.addEventListener("DOMContentLoaded", () => {
         completeBtn.addEventListener("click", () => {
           task.completed = !task.completed;
           title.style.color = "#38a839";
-          delay(2000) // wait 2 seconds
-          .then(() => { 
-              deleteTask(task.id, renderTasks);
+          delay(2000)
+          .then(() => {
+              deleteTaskWithCalendar(task, renderTasks);
           });
         });
   
@@ -241,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteBtn.alt = "Delete";
         deleteBtn.style.width = "20px";
         deleteBtn.style.height = "20px";
-        deleteBtn.addEventListener("click", () => deleteTask(task.id, renderTasks));
+        deleteBtn.addEventListener("click", () => deleteTaskWithCalendar(task, renderTasks));
   
         buttons.append(completeBtn, editBtn, deleteBtn);
         header.append(title, buttons);
@@ -259,12 +321,10 @@ document.addEventListener("DOMContentLoaded", () => {
         taskList.appendChild(li);
   
         if (isToday) {
-          // Create a span for displaying the countdown
           const timeMessageElement = document.createElement("p");
           timeMessageElement.style.fontSize = "0.9em";
-          timeMessageElement.style.color = "#e57373"; // Same light red color
+          timeMessageElement.style.color = "#e57373";
   
-          // Function to update the countdown every second
           function updateCountdown() {
             const remainingTime = dueDate - new Date();
             if (remainingTime <= 0) {
@@ -275,24 +335,19 @@ document.addEventListener("DOMContentLoaded", () => {
               const minutesLeft = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
               const secondsLeft = Math.floor((remainingTime % (1000 * 60)) / 1000);
               let timeMessage = `Due soon! Due in ${hoursLeft}:${minutesLeft}:${secondsLeft}!`;
-  
-              // If less than 1 hour, show only minutes and seconds
               if (hoursLeft === 0) {
                 timeMessage = `Due soon! Due in ${minutesLeft}:${secondsLeft}!`;
               }
-  
               timeMessageElement.textContent = timeMessage;
             }
           }
           
           header.appendChild(timeMessageElement);
-  
-          // Update the countdown immediately, then every second
           updateCountdown();
           const countdownInterval = setInterval(updateCountdown, 1000);
         }
   
-        if (!task.dueDate || !task.name) { // Shows the "No Current Tasks" text when there are no tasks rendered
+        if (!task.dueDate || !task.name) {
           taskListLabel.style.display = "block";
         } else {
           taskListLabel.style.display = "none";
@@ -324,7 +379,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const store = transaction.objectStore(storeName);
     const request = store.getAll();
     taskCreatedLabel.textContent = `Tasks Created: ${numTasks}`;
-  
     request.onsuccess = () => callback(request.result);
     request.onerror = (event) => console.error("Fetch tasks error:", event.target.error);
   }
@@ -346,21 +400,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function editTask(task) {
-    // Pre-fill the form fields with the task's current data
     document.getElementById("taskName").value = task.name;
     document.getElementById("taskDescription").value = task.description;
   
-    // Correct the due date to show in the input field
     const taskDueDate = new Date(task.dueDate);
-  
-    // Adjust for local time zone offset
     const localISODate = new Date(taskDueDate.getTime() - taskDueDate.getTimezoneOffset() * 60000)
         .toISOString()
         .slice(0, -1);
-  
     document.getElementById("taskDueDate").value = localISODate;
-  
-    // Delete the task temporarily and show the form for editing
     deleteTask(task.id, () => {
       taskForm.style.display = "block";
     });
