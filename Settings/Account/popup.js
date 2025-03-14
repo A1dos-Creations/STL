@@ -10,37 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('login-btn').addEventListener('click', loginUser);
     document.getElementById('register-btn').addEventListener('click', registerUser);
 
-    function startTokenValidityPolling() {
-      setInterval(() => {
-        const token = localStorage.getItem('authToken');
-        if (!token) return;
-        fetch('https://a1dos-login.onrender.com/verify-token', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token })
-        })
-        .then(res => {
-          if (!res.ok) {
-            throw new Error("Token invalid or expired");
-          }
-          return res.json();
-        })
-        .then(data => {
-          if (!data.valid) {
-            throw new Error("Token invalid");
-          }
-        })
-        .catch(err => {
-          console.error("Token check failed:", err);
-          localStorage.clear();
-          window.location.href = "./auth.html";
-        });
-      }, 5000);
-    }
-
-    startTokenValidityPolling();
-
-
     function loginUser() {
       const email = emailInput.value.trim();
       const password = passwordInput.value.trim();
