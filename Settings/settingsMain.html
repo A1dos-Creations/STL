@@ -5,9 +5,51 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
 
     <script defer src="/textEdit.js"></script>
+
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #66bb6a;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
 </head>
 
-<body style="width: 300px;max-height: 500px;min-height: 300px;background-color: rgb(33, 33, 33);">
+<body style="width: 300px;max-height: 560px;min-height: 300px;background-color: rgb(33, 33, 33);overflow: hidden;scroll-behavior: smooth;">
     <section id="return" style="margin-bottom: 20px;margin-top: -9px;margin-left: -7.5px;">
         <div>
             <a href="/main.html" style="color: whitesmoke;text-decoration: none;">
@@ -38,9 +80,14 @@
     <button id="register-btn">Register</button>
     <div id="message"></div>
     <script src="./Account/popup.js"></script>
-    <p style="color: white;">Sync Tasks to Google Calendar <br><i style="color: rgb(158, 158, 158);">(REQUIRES SIGN-IN ON WEBSITE)</i></p>
-    <input type="checkbox" checked id="calendarSyncToggle">
-    <span id="calendarStatus"></span>
+    <p style="color: white;font-family: Lexend Deca;font-size: 14px;">Sync Tasks to Google Calendar <br><i style="color: rgb(158, 158, 158);">(REQUIRES SIGN-IN ON WEBSITE)</i></p>
+    <div style="margin-top: 5px;font-size: 30px;font-weight: bolder;margin-bottom: 1px;">
+        <label class="switch">
+            <input type="checkbox" checked id="calendarSyncToggle">
+            <span class="slider"></span>
+        </label>
+        <span id="calendarStatus"></span>
+    </div>
 
     <div style="display: none;">
     <label for="schoolDistrict">Select School District:</label>

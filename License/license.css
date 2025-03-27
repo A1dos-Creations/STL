@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+#upgradeCode{
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    width: 170px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    font-family: Lexend Deca;
+}
+#upgradeCode:active{
+    border-color: white;
+    outline: none;
+}
+#upgradeCode:hover{
+    background-color:  rgb(207, 240, 199);
+    height: 40px;
+    width: 190px;
+}
+#claimBtn{
+    margin-top: 10px;
+    background-color: rgb(172, 196, 166);
+    font-family: Lexend Deca;
+    border-radius: 8px;
+    border-color: white;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    height: 30px;
+    width: 170px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+#claimBtn:hover{
+    background-color:  rgb(146, 196, 133);
+    height: 40px;
+    width: 190px;
+}

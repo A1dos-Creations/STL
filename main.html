@@ -38,7 +38,13 @@
               <img src="./images/settings.png" alt="Settings" style="height: 20px;width: auto;">
             </button>
           </a>
+          <a href="./License/license.html">
+            <button id="license" style="background: none;height: 35px;width: 35px;margin-bottom: -50px;margin-top: 240px;margin-left: 70px;margin-right: -20px;position: absolute;">
+              <img src="./images/License.png" alt="License Button" style="height: 30px;width: 30px;" id="licenseImg">
+            </button>
+          </a>
         </div>
+        <script src="/License/licenseHandler.js"></script>
         <script src="menu.js"></script>
         <style>
         .menuButtonDark {
@@ -300,8 +306,38 @@
                 -webkit-transition-duration: 0.4s; /* Chrome */
                 transition-duration: 0.4s;
             }
+
+            /* ACCOUNT POPUP */
+            .accPopShow{
+              margin-left: -150px;
+              background-color: rgb(78, 201, 41);
+              padding: 5px 10px;
+              width: 110%;
+              position:absolute;
+              border: none;
+              border-radius: 15px;
+              -webkit-transition-duration: 0.4s;
+              transition-duration: 0.4s;
+              text-align: left;
+            }
+            .accPopHide{
+              margin-left: 150px;
+              background-color: rgba(73, 216, 30, 0.411);
+              padding: 5px 10px;
+              width: 110%;
+              position:absolute;
+              border: none;
+              border-radius: 15px;
+              -webkit-transition-duration: 0.4s;
+              transition-duration: 0.4s;
+              text-align: left;
+            }
         </style>
         <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;text-align: center;">
+          <div id="accountDiv" class="accPopHide">
+            <p style="margin-left: 15px;font-family: Lexend Deca;">Want access to more features? <br><a href="https://a1dos-creations.com/account/auth" target="_blank" style="font-size: 17px;font-weight: bolder;color: #2d7fd6;">Create an account now!</a></p>
+          </div>
+          <script src="./hover.js"></script>
             <h1 id="Heading" class="mainHeaderL">Hello!</h1>
             <script src="name.js" defer></script>
             <p id="desc" style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Lexend Deca';text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Welcome! Explore STL.</p>
