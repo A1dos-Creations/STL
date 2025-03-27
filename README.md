@@ -59,7 +59,7 @@ In the published version of STL, users have the option to enter their name in se
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v1.7.1
+Current github Version: v1.7.3
 Current Published Version: v1.5.1
 
 >[!IMPORTANT]
@@ -70,6 +70,9 @@ Current Published Version: v1.5.1
 >[!NOTE]
 > **Version 1.5.1 of STL has released!**
 
+- 3/23/2025: Added license page and began rework on 'Pomodoro Timer'.
+- 3/20-22/2025: Fixing UI bugs on [main website](https://a1dos-creations.com)
+- 3/15-19/2025: Fixing bugs & polishing A1dos Accounts and Database.
 - 3/1/2025: Created [A1dos Creations Discord server](https://discord.gg/F2aC2yJq).
 - 2/28/2025: Added STL login/register form that connects to the [Login API](https://github.com/A1dos-Creations/login-api-website).
 - 2/25/2025: Fixed CORS bugs. 
