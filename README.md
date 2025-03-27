@@ -20,7 +20,7 @@ This is the official github for School Tool Launcher. Here you will find the sou
 As new updates roll out, this github will be updated. 
 
 >[!IMPORTANT]
->**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use most features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such as tasks and timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
+>**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use some features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
 
 We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
 Please consider donating $1, it helps a ton, and your generosity is deeply appreciated! 💖
