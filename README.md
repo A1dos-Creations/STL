@@ -18,6 +18,7 @@
 
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
+Check the updates [here.](https://github.com/A1dos-Creations/STL/blob/main/README.md#%EF%B8%8Fupdates)
 
 >[!IMPORTANT]
 >**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use some features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
