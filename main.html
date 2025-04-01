@@ -19,34 +19,70 @@
             <button style="background-color: #555;color: rgb(177, 255, 190);">Home</button>
           </a>
           <a href="TaskManager.html">
-            <button>Task Manager</button>
+            <button id="TaskManager">Task Manager</button>
           </a>
+          <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_taskMngr">
+            <p style="margin-top: -11px;font-size: 23px;">-</p>
+          </button>
           <a href="./Timer/timer.html">
-            <button id="pomodoro-timer">Pomorodo Timer</button>
+            <button id="pomodoro-timer">Pomodoro Timer</button>
           </a>
+          <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_timer">
+            <p style="margin-top: -11px;font-size: 23px;">-</p>
+          </button>
           <a href="discover.html">
-            <button>Discover</button>
+            <button id="Discover">Discover</button>
           </a>
-          <a href="favorites.html">
+          <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_dscvr">
+            <p style="margin-top: -11px;font-size: 23px;">-</p>
+          </button>
+          <a href="favorites.html" id="Favs">
             <button id="view-favorites">Quick Access</button>
           </a>
+          <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -90px;margin-left: 210px;" id="remove_qck">
+            <p style="margin-top: -11px;font-size: 23px;">-</p>
+          </button>
           <a href="notice.html">
-            <button id="notice-ccusd" style="background-color: #ac5959;color: white;font-weight: bolder;">!  Notice  !</button>
+            <button id="notice-ccusd" style="background-color: #ac5959;">!  Notice  !</button>
           </a>
           <a href="./Settings/settingsMain.html">
             <button id="settings" style="background: none;height: 25px;width: 25px;">
-              <img src="./images/settings.png" alt="Settings" style="height: 20px;width: auto;">
+              <img src="./images/settings.png" alt="Settings" id="settingsImg" class="default">
             </button>
           </a>
-          <a href="./License/license.html">
-            <button id="license" style="background: none;height: 35px;width: 35px;margin-bottom: -50px;margin-top: 240px;margin-left: 70px;margin-right: -20px;position: absolute;">
+          <a>
+            <button id="license" style="opacity: 0.5;position: absolute;background: none;height: 35px;width: 35px;margin-bottom: -50px;margin-top: 240px;margin-left: 70px;margin-right: -20px;position: absolute;">
               <img src="./images/License.png" alt="License Button" style="height: 30px;width: 30px;" id="licenseImg">
+            </button>
+          </a>
+          <a id="edit_menu">
+            <button id="edit_menu_btn" style="background: none;height: 35px;width: 35px;margin-bottom: -50px;margin-top: 240px;margin-left: -140px;margin-right: -20px;position: absolute;">
+              <img src="./images/edit_dark.png" alt="edit_page" style="height: 30px;width: 30px;">
             </button>
           </a>
         </div>
         <script src="/License/licenseHandler.js"></script>
         <script src="menu.js"></script>
         <style>
+          .menu-editing{
+            width: 80%;
+          }
+          #notice-ccusd{
+            background-color: #ac5959;
+            color: white;
+            font-weight: bolder;
+          }
+          #settings img.default{
+            height: 20px;
+            width: 20px;
+            transition-duration: 0.4s;
+          }
+          #settings img.rotate{
+            transform: rotate(110deg);
+            height: 20px;
+            width: 20px;
+            transition-duration: 0.4s;
+          }
         .menuButtonDark {
           position: fixed;
           top: 0;
@@ -106,6 +142,9 @@
 
       #sidePanel a {
         background-color: #00000000;
+        border-radius: 9px;
+        border: none;
+        text-decoration: none;
       }
 
       #overlay {
@@ -135,29 +174,31 @@
         margin: 5px 0;
         cursor: pointer;
         width: 100%;
+        border-radius: 9px;
+        border: none;
+        transition-duration: 0.2s;
+        font-family: Lexend Deca;
       }
 
       #sidePanel button:hover {
         background-color: #555;
       }
 
-            .titan-one-regular {
-                font-family: "Titan One";
-                font-weight: 400;
-                font-style: bold;
-            }
+      .titan-one-regular {
+        font-family: "Titan One";
+        font-weight: 400;
+        font-style: bold;
+      }
 
-            body {
-                margin: 0;
-                padding: 0;
-                border: 2px solid #bdbdbd00;
-                border-radius: 0.5rem;
-              }
-            /* FONT STYLING ONLY */
+      body {
+        margin: 0;
+        padding: 0;
+        border: 2px solid #bdbdbd00;
+        border-radius: 0.5rem;
+      }
             </style>
         </head>
         <style> /* BUTTONS AND THEMES */
-            /* REGULAR/DEFAULT BUTTONS: */
             .buttonL {
                 border-style: solid;
                 background-image:linear-gradient(90deg, rgb(122, 122, 122), rgb(99, 99, 99));

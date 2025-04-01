@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const apiBaseUrl = 'https://a1dos-login.onrender.com';
+    const apiBaseUrl = 'https://api.a1dos-creations.com';
 
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       fetch(`${apiBaseUrl}/login-user`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Client-Source': 'extension' },
         body: JSON.stringify({ email, password })
       })
         .then(res => res.json())
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveSchoolBtn = document.getElementById("saveSchoolBtn");
     const token = localStorage.getItem("authToken");
 
-    fetch("https://a1dos-login.onrender.com/get-schools")
+    fetch("https://api.a1dos-creations.com/get-schools")
         .then(res => res.json())
         .then(data => {
             Object.keys(data).forEach(district => {
