@@ -14,13 +14,14 @@
 <br>
 
 >[!IMPORTANT]
->**You can now create an A1dos Creations account on our website!** Soon you will be able to sign-into that account on STL! Please note that this isn't free for me! *Please* consider donating to keep STL alive!
+>**You can now create an A1dos Creations account on our website!** You can also sign-in to this account on STL. Please note that this isn't free for me! *Please* consider donating to keep STL alive!
 
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
+Check the updates [here.](https://github.com/A1dos-Creations/STL/blob/main/README.md#%EF%B8%8Fupdates)
 
 >[!IMPORTANT]
->**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use most features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such as tasks and timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
+>**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use some features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
 
 We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
 Please consider donating $1, it helps a ton, and your generosity is deeply appreciated! 💖
@@ -42,7 +43,7 @@ STL allows students to access required and necesary school resuources quickly to
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
 # 🌀 What's next?
-I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. This will use a thrid party service named "Clerk". Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in STL! ❤️
+I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in STL! ❤️
 
 - A1dos, 2/4/25
 
@@ -59,8 +60,8 @@ In the published version of STL, users have the option to enter their name in se
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v1.7.1
-Current Published Version: v1.5.1
+Current github Version: v1.7.3
+Current Published Version: v1.5.1 (v1.5.2 In review)
 
 >[!IMPORTANT]
 >The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
@@ -70,6 +71,12 @@ Current Published Version: v1.5.1
 >[!NOTE]
 > **Version 1.5.1 of STL has released!**
 
+- 3/30/2025: Added menu edit feature & disabled Pomodoro Timer feature temporarily. Updated Account management page with STL linked notifications.
+- 3/29/2025: Updated side-panel menu UI.
+- 3/26-28/2025: Updated menu UI and button functionality.
+- 3/23/2025: Added license page and began rework on 'Pomodoro Timer'.
+- 3/20-22/2025: Fixing UI bugs on [main website](https://a1dos-creations.com)
+- 3/15-19/2025: Fixing bugs & polishing A1dos Accounts and Database.
 - 3/1/2025: Created [A1dos Creations Discord server](https://discord.gg/F2aC2yJq).
 - 2/28/2025: Added STL login/register form that connects to the [Login API](https://github.com/A1dos-Creations/login-api-website).
 - 2/25/2025: Fixed CORS bugs. 
