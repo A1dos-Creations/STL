@@ -9,15 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="width: max-content;"> 
     <div class="calculator">
-        <div class="mode-selector">
-             <select id="calcMode" disabled> <option value="standard" selected>Standard</option>
-                <option value="scientific">Scientific</option>
-                </select>
+        <div class="top-bar"> <div class="mode-selector">
+                 <select id="calcMode" disabled> <option value="standard" selected>Standard</option>
+                    <option value="scientific">Scientific</option>
+                    </select>
+            </div>
+             <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <span class="theme-label">Dark Mode</span> </div>
         </div>
 
-        <input type="text" id="display" readonly>
+        <input type="text" id="display" inputmode="numeric">
 
         <div class="buttons">
             <button class="button function clear">C</button>
@@ -45,6 +52,7 @@
             <button class="button equals">&equals;</button>
         </div>
     </div>
+    <script src="lib/math.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

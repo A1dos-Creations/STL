@@ -35,11 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeTmr = document.getElementById("remove_timer");
   const removeDcvr = document.getElementById("remove_dscvr");
   const removeQck = document.getElementById("remove_qck");
+  const removeCalc = document.getElementById("remove_calc");
 
   const btn_Tsk = document.getElementById("TaskManager");
   const btn_Tmr = document.getElementById("pomodoro-timer");
   const btn_Dcvr = document.getElementById("Discover");
   const btn_Qck = document.getElementById("view-favorites");
+  const btn_Calc = document.getElementById("Calc");
 
   const editBtn = document.getElementById("edit_menu");
 
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isEditMode = false;
 
-  [removeTsk, removeTmr, removeQck, removeDcvr].forEach(btn => {btn.style.display = "none";});
+  [removeTsk, removeTmr, removeQck, removeDcvr, removeCalc].forEach(btn => {btn.style.display = "none";});
 
   overlay.addEventListener('click', () => {
     isEditMode = false;
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn_Tmr_Shwn: true,
     btn_Qck_Shwn: true,
     btn_Dcvr_Shwn: true,
+    btn_Calc_Shwn: true,
   }
   chrome.storage.local.get(Object.keys(defaultValues), (result) => {
     const valuesToSet = {};
@@ -98,6 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
         removeBtn: removeDcvr,
         featureBtn: btn_Dcvr,
         isShown: result.btn_Dcvr_Shwn,
+      });
+      updateButtonUI({
+        removeBtn: removeCalc,
+        featureBtn: btn_Calc,
+        isShown: result.btn_Calc_Shwn,
       });
     });
   }
@@ -150,6 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   removeDcvr.addEventListener("click", () => {
     toggleButton("btn_Dcvr_Shwn");
+  });
+  removeCalc.addEventListener("click", () => {
+    toggleButton("btn_Calc_Shwn");
   });
 
   editBtn.addEventListener("click", () => {
