@@ -1,0 +1,111 @@
+/* Import Fonts (Alternative to HTML link) */
+
+body {
+    font-family: 'Lexend Deca', 'Roboto', sans-serif; /* Primary: Lexend Deca, Fallback: Roboto */
+    width: 280px; /* Adjust width as needed */
+    margin: 0;
+    background-color: #f8f9fa; /* Light background */
+}
+
+.calculator {
+    background-color: #ffffff; /* White calculator body */
+    border-radius: 15px; /* Rounded corners for the main container */
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Ensures children respect border-radius */
+}
+
+/* Mode Selector Styling (Basic) */
+.mode-selector {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+#calcMode {
+    font-family: inherit;
+    padding: 5px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.8em;
+}
+
+#calcMode:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+#display {
+    width: 100%;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    height: 60px;
+    font-size: 2.5em; /* Larger display font */
+    text-align: right;
+    border: none;
+    background-color: #e9ecef; /* Slightly off-white display background */
+    color: #212529; /* Dark text color */
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Rounded corners for display */
+    font-family: 'Roboto', sans-serif; /* Display might look better with Roboto */
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 10px; /* Spacing between buttons */
+}
+
+.button {
+    font-family: 'Lexend Deca', 'Roboto', sans-serif;
+    font-size: 1.2em;
+    padding: 15px 0; /* Vertical padding, horizontal handled by grid */
+    border: none;
+    border-radius: 10px; /* Rounded buttons */
+    background-color: #f1f3f5; /* Light grey buttons */
+    color: #495057; /* Dark grey text */
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #dee2e6; /* Slightly darker on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+    background-color: #ced4da; /* Even darker when clicked */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific Button Styles */
+.button.operator {
+    background-color: #ffc107; /* Example: Amber for operators */
+    color: #fff; /* White text */
+    font-weight: 500;
+}
+.button.operator:hover { background-color: #e0a800; }
+.button.operator:active { background-color: #c69500; }
+
+.button.function {
+    background-color: #adb5bd; /* Grey for functions like C, +/-, % */
+    color: #fff;
+}
+.button.function:hover { background-color: #9fa7af; }
+.button.function:active { background-color: #8e979e; }
+
+.button.equals {
+    grid-column: span 1; /* Make equals button span columns if needed, default 1 */
+    background-color: #0d6efd; /* Blue for equals */
+    color: #fff;
+    font-weight: 500;
+}
+.button.equals:hover { background-color: #0b5ed7; }
+.button.equals:active { background-color: #0a58ca; }
+
+.button.zero {
+    grid-column: span 2; /* Make zero button wider */
+}
