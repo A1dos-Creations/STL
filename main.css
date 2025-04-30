@@ -23,6 +23,9 @@
     border-style: none;
   }
 
+  #stai-Btn:hover{
+    background-color:#285a3e;
+  }
   .show-buttonsD {
     width: 206.16px;
     height: 39px;

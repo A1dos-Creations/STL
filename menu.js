@@ -36,12 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeDcvr = document.getElementById("remove_dscvr");
   const removeQck = document.getElementById("remove_qck");
   const removeCalc = document.getElementById("remove_calc");
+  const removeAI = document.getElementById("remove_ai");
 
   const btn_Tsk = document.getElementById("TaskManager");
   const btn_Tmr = document.getElementById("pomodoro-timer");
   const btn_Dcvr = document.getElementById("Discover");
   const btn_Qck = document.getElementById("view-favorites");
   const btn_Calc = document.getElementById("Calc");
+  const btn_AI = document.getElementById("stai");
 
   const editBtn = document.getElementById("edit_menu");
 
@@ -61,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn_Qck_Shwn: true,
     btn_Dcvr_Shwn: true,
     btn_Calc_Shwn: true,
+    btn_AI_Shwn: true,
   }
   chrome.storage.local.get(Object.keys(defaultValues), (result) => {
     const valuesToSet = {};
@@ -106,6 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
         removeBtn: removeCalc,
         featureBtn: btn_Calc,
         isShown: result.btn_Calc_Shwn,
+      });
+      updateButtonUI({
+        removeBtn: removeAI,
+        featureBtn: btn_AI,
+        isShown: result.btn_AI_Shwn,
       });
     });
   }
@@ -161,6 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   removeCalc.addEventListener("click", () => {
     toggleButton("btn_Calc_Shwn");
+  });
+  removeAI.addEventListener("click", () => {
+    toggleButton("btn_AI_Shwn");
   });
 
   editBtn.addEventListener("click", () => {

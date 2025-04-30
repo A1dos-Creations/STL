@@ -1,7 +1,7 @@
 {
     "name": "School Tools",
     "description": "Allows students and teachers to launch useful school tools quickly and easily.",
-    "version": "1.5.2",
+    "version": "1.6",
     "manifest_version": 3,
     "background": {
       "service_worker": "Timer/background.js",
