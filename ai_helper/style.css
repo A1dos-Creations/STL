@@ -1,0 +1,500 @@
+/* Basic Reset / Box Sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lexend Deca', 'Roboto', sans-serif; /* Example Font Stack */
+    width: 350px; /* Or adjust as needed */
+    background-color: var(--body-bg, #f0f2f5);
+    color: var(--text-primary, #212529);
+    padding-bottom: 10px; /* Add padding at bottom */
+    transition: background-color 0.3s ease, color 0.3s ease; /* For potential theme changes */
+}
+
+/* --- Theme Variables (Ensure these are defined) --- */
+:root {
+    --body-bg: #f0f2f5;
+    --calculator-bg: #ffffff;
+    --display-bg: #e9ecef; /* Used for AI messages */
+    --display-text: #212529; /* Used for AI messages */
+    --button-bg: #f1f3f5;
+    --button-text: #495057;
+    --equals-bg: #0d6efd; /* Used for user messages and send button */
+    --equals-text: #fff; /* Used for user messages and send button */
+    --equals-hover-bg: #0b5ed7;
+    --select-border: #ced4da; /* Used for borders */
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --error-red: #dc3545;
+    --toggle-bg: #ccc;
+    --toggle-knob: white;
+    --toggle-active-bg: #0d6efd; /* Match user message/button */
+    --label-color: #495057;
+}
+
+/* --- Header Controls & Theme Toggle Switch Styles --- */
+.header-controls {
+    display: flex;
+    justify-content: center; /* Position to the right */
+    padding: 8px 15px 0 15px; /* Add some padding */
+    margin-bottom: 15px;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between switch and label */
+}
+
+.theme-label {
+    font-size: 0.8em;
+    color: var(--display-text);
+    transition: color 0.3s ease;
+    user-select: none; /* Prevent text selection */
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Width of the switch */
+    height: 20px; /* Height of the switch */
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-bg);
+    transition: .4s;
+    border-radius: 20px; /* Rounded slider background */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; /* Knob height */
+    width: 14px; /* Knob width */
+    left: 3px; /* Initial position */
+    bottom: 3px; /* Position from bottom */
+    background-color: var(--toggle-knob);
+    transition: .4s;
+    border-radius: 50%; /* Circular knob */
+}
+
+/* Change background color when checkbox is checked */
+input:checked + .slider {
+    background-color: var(--toggle-active-bg);
+}
+
+/* Add focus style */
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--toggle-active-bg);
+}
+
+/* Move the knob when checkbox is checked */
+input:checked + .slider:before {
+    transform: translateX(20px); /* Move knob to the right (40px width - 2*3px padding - 14px knob width) */
+}
+
+/* Define theme variables (example light mode) */
+:root {
+    --body-bg: #f0f2f5;
+    --calculator-bg: #ffffff; /* Keeping for consistency if added back */
+    --display-bg: #e9ecef;
+    --display-text: #212529;
+    --button-bg: #f1f3f5;
+    --button-text: #495057;
+    --equals-bg: #0d6efd;
+    --equals-text: #fff;
+    --equals-hover-bg: #0b5ed7;
+    --select-border: #ced4da;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --error-red: #dc3545;
+}
+
+/* Example Dark Mode Variables (Add body.dark-mode toggle logic if needed) */
+body.dark-mode {
+    --body-bg: #121212;
+    --calculator-bg: #1e1e1e;
+    --display-bg: #333333;
+    --display-text: #e0e0e0;
+    --button-bg: #4f4f4f;
+    --button-text: #f5f5f5;
+    --equals-bg: #2979ff;
+    --equals-text: #f5f5f5;
+    --equals-hover-bg: #216aee;
+    --select-border: #666;
+    --text-primary: #f5f5f5;
+    --text-secondary: #adb5bd;
+    --error-red: #f8d7da;
+}
+
+
+/* --- Chat Container --- */
+.chat-container {
+    padding: 15px 15px 5px 15px; /* Added top padding */
+    /* max-width: 350px; /* Width controlled by body */
+    margin: 0 auto;
+    color: var(--text-primary);
+}
+
+.chat-container h2 {
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.chat-info {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* --- Model Info Hover --- */
+
+.model-info-container {
+    display: flex;
+    justify-content: flex-end; /* Example: Align to the right */
+    padding: 0 15px; /* Match other padding */
+    margin-bottom: -10px; /* Example: Adjust spacing if needed */
+    position: relative; /* Allows absolute positioning relative to container edge */
+    z-index: 10; /* Ensure popup appears above chat box if overlapping */
+}
+
+.model-info {
+    position: relative; /* Crucial for positioning the text box */
+    display: inline-block; /* Take only needed space */
+}
+
+.info-icon {
+    width: 18px; /* Size of your icon */
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: help; /* Indicate it's clickable/hoverable for info */
+    display: block; /* Ensure it takes space */
+
+    /* Set DEFAULT (Light Mode) icon */
+    background-image: url('/images/info_black.png'); /* !! REPLACE with actual path to your BLACK/DARK icon !! */
+}
+
+/* Change icon for Dark Mode */
+body.dark-mode .info-icon {
+    background-image: url('/images/info_white.png'); /* !! REPLACE with actual path to your WHITE icon !! */
+}
+
+.model-info-text {
+    /* Appearance */
+    background-color: var(--calculator-bg, #fff); /* Use theme variable */
+    color: var(--text-secondary, #333); /* Use theme variable */
+    border: 1px solid var(--select-border, #ccc); /* Use theme variable */
+    border-radius: 6px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    width: max-content; /* Adjust width based on content */
+    max-width: 250px; /* Prevent it from getting too wide */
+    font-size: 0.85em;
+    line-height: 1.5;
+
+    /* Positioning */
+    position: absolute;
+    bottom: 100%; /* Position above the icon */
+    left: 50%; /* Center horizontally relative to icon */
+    transform: translateX(-50%) translateY(-5px); /* Adjust final position (move up slightly) */
+    /* Alternative: Position to the side */
+    /* right: 100%; */
+    /* top: 50%; */
+    /* transform: translateY(-50%) translateX(-10px); */
+    /* margin-right: 10px; */ /* Add space from icon */
+
+    /* Initial State & Fade Animation */
+    opacity: 0;
+    visibility: hidden; /* Hide completely and remove from layout flow */
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s, transform 0.3s ease; /* Fade opacity, delay visibility toggle */
+    z-index: 11; /* Ensure text is above icon */
+}
+
+.model-info-text h2 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: var(--text-primary); /* Use theme variable */
+}
+
+.model-info-text p {
+    margin-bottom: 4px;
+}
+.model-info-text p:last-child {
+    margin-bottom: 0;
+}
+.model-info-text .info-note {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 8px;
+    border-top: 1px dashed var(--select-border);
+    padding-top: 8px;
+    color: var(--text-secondary);
+}
+
+
+/* --- Show on Hover --- */
+/* When hovering over the icon's container (.model-info), make the text visible */
+.info-icon {
+    width: 18px; /* Or your icon's size */
+    height: 18px; /* Or your icon's size */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: help;
+    display: block; /* Or inline-block */
+    transition: background-image 0.1s ease-in-out; /* Optional: slight fade for swap */
+
+    /* --- Set DEFAULT (Light Mode) icon --- */
+    background-image: url('/images/info_black.png');
+}
+body.dark-mode .info-icon {
+    /* Make sure this path points to your WHITE/LIGHT icon file */
+    background-image: url('/images/info_white.png');
+}
+
+.model-info{
+    position: relative;
+    height: max-content;
+}
+.model-info-text {
+    /* Appearance (Keep existing styles) */
+    background-color: var(--calculator-bg, #fff);
+    color: var(--text-secondary, #333);
+    border: 1px solid var(--select-border, #ccc);
+    border-radius: 6px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    width: max-content;
+    max-width: 250px; /* Adjust if needed */
+    font-size: 0.85em;
+    line-height: 1.5;
+    height: max-content;
+
+    /* --- Positioning (ADJUST VALUES HERE) --- */
+    position: absolute;
+    /* Adjust 'top' to clear the header/icon row */
+    top: 35px;  /* << TRY ADJUSTING THIS VALUE (e.g., 30px, 40px) */
+    /* Adjust 'left' to position horizontally */
+    left: 115px; /* << TRY ADJUSTING THIS VALUE (e.g., 10px, 20px) */
+    /* Remove any transform: translateX(...) */
+    /* --- End Positioning Update --- */
+
+    /* Initial State & Fade Animation (Keep existing styles) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Keep fade */
+    z-index: 11;
+}
+
+.model-info:hover .model-info-text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+/* --- Chat Box --- */
+.chat-box {
+    height: 280px; /* Adjust height */
+    overflow-y: auto;
+    border: 1px solid var(--select-border);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--calculator-bg); /* Use calculator bg for contrast */
+    display: flex;
+    flex-direction: column;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar styling (optional) */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-box::-webkit-scrollbar-track {
+  background: var(--button-bg);
+  border-radius: 3px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: var(--text-secondary);
+  border-radius: 3px;
+}
+
+
+.message {
+    max-width: 85%;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    /* Animation for messages appearing */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.message p {
+    margin: 0;
+}
+
+.message.user {
+    background-color: var(--equals-bg);
+    color: var(--equals-text);
+    border-bottom-right-radius: 3px;
+    align-self: flex-end; /* Align user messages to right */
+    margin-left: 15%;
+}
+
+.message.ai {
+    background-color: var(--display-bg);
+    color: var(--display-text);
+    border-bottom-left-radius: 3px;
+    align-self: flex-start; /* Align AI messages to left */
+    margin-right: 15%;
+}
+
+/* --- Chat Input Area --- */
+.chat-input-area {
+    display: flex;
+    align-items: flex-end; /* Align items to bottom for text area */
+    gap: 8px;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border-radius: 18px; /* Rounded input */
+    border: 1px solid var(--select-border);
+    resize: none; /* Prevent manual resize */
+    font-family: inherit;
+    font-size: 0.95em;
+    background-color: var(--calculator-bg);
+    color: var(--text-primary);
+    line-height: 1.4;
+    max-height: 80px; /* Limit height */
+    overflow-y: auto; /* Allow scrolling if text exceeds max height */
+}
+#chat-input:focus {
+    outline: none;
+    border-color: var(--equals-bg);
+    box-shadow: 0 0 0 2px var(--equals-bg-transparent, rgba(13, 110, 253, 0.25)); /* Use a theme variable or fallback */
+}
+/* Add a placeholder variable if needed */
+:root { --equals-bg-transparent: rgba(13, 110, 253, 0.25); }
+body.dark-mode { --equals-bg-transparent: rgba(41, 121, 255, 0.3); }
+
+
+#send-button {
+    background-color: var(--equals-bg);
+    color: var(--equals-text);
+    border: none;
+    border-radius: 50%; /* Make it circular */
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+    margin-bottom: 1px; /* Align slightly better with textarea */
+}
+
+#send-button:hover {
+    background-color: var(--equals-hover-bg);
+}
+#send-button:disabled {
+    background-color: #ccc; /* Use a theme variable? var(--button-disabled-bg, #ccc) */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#send-button svg {
+    fill: currentColor;
+}
+
+/* --- Loading Indicator --- */
+.loading-indicator {
+  border: 3px solid var(--button-bg); /* Light grey */
+  border-top: 3px solid var(--equals-bg); /* Blue */
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  margin: 0 5px; /* Adjust position */
+  flex-shrink: 0;
+  margin-bottom: 9px; /* Align */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Error Message --- */
+ .error-message {
+     color: var(--error-red);
+     font-size: 0.85em;
+     margin-top: 8px;
+     text-align: center;
+     min-height: 1.2em; /* Reserve space even when hidden */
+ }
+
+ /* --- Dark Mode Adjustments --- */
+ body.dark-mode .message.ai {
+     background-color: var(--button-bg); /* Match button bg in dark */
+     color: var(--button-text);
+ }
+  body.dark-mode .loading-indicator {
+     border: 3px solid var(--button-bg);
+     border-top: 3px solid var(--equals-bg);
+  }
+  body.dark-mode #send-button:disabled {
+     background-color: #555; /* Darker disabled */
+ }
+
+ /* In style.css */
+
+.message {
+    max-width: 85%;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    /* Added for fade-in animation */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Use transition instead of animation */
+}

@@ -33,5 +33,9 @@
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+  },
+  "host_permissions": [
+    "https://api.a1dos-creations.com/*",
+    "https://a1dos-login.onrender.com/*"
+  ]
 }

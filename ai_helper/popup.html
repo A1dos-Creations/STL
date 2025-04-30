@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Helper</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="model-info">
+            <div id="model-info-icon" class="info-icon" aria-label="Model Information"></div>
+            <div class="model-info-text">
+                <h2>This AI uses Google's Gemini AI.</h2>
+                <p>Model: <span id="model-name">gemini-1.5-pro-latest</span></p>
+                <p>Version: <span id="model-version">latest</span></p>
+                <p class="info-note">AI responses are intended to help guide understanding, not provide direct answers.</p>
+            </div>
+        </div>
+        <h2 style="font-size: 45px;">AI Helper</h2>
+        <div class="chat-info">
+            <p>Ask for help understanding topics. Remember, I can't give direct answers!</p>
+            <div class="header-controls"> <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode"/>
+                    <span class="slider round"></span>
+                </label>
+                <span class="theme-label" id="theme-label-text">Dark Mode</span>
+            </div>
+            </div>
+            <p style="font-size: 0.8em;">Messages remaining today: <span id="remaining-count">10</span></p>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="message ai"><p>How can I help you learn today?</p></div>
+        </div>
+        <div class="chat-input-area">
+            <textarea id="chat-input" placeholder="Type your question..." rows="2" aria-label="Chat input"></textarea>
+            <button id="send-button" aria-label="Send Message">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z"/></svg>
+            </button>
+             <div class="loading-indicator" id="loading-indicator" style="display: none;" aria-label="Loading"></div>
+        </div>
+         <p id="chat-error" class="error-message" role="alert" style="display: none;"></p>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
