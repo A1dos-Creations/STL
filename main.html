@@ -24,12 +24,13 @@
           <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_taskMngr">
             <p style="margin-top: -11px;font-size: 23px;">-</p>
           </button>
-          <a href="./Timer/timer.html">
+          <a href="./Timer/popup.html">
             <button id="pomodoro-timer">Pomodoro Timer</button>
           </a>
           <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_timer">
             <p style="margin-top: -11px;font-size: 23px;">-</p>
           </button>
+        <!--
           <a href="discover.html">
             <button id="Discover">Discover</button>
           </a>
@@ -42,6 +43,7 @@
           <button style="width: 30px;height: 30px;border-radius: 20px;background-color: #e44949;position: absolute;margin-top: -40px;margin-left: 210px;" id="remove_qck">
             <p style="margin-top: -11px;font-size: 23px;">-</p>
           </button>
+        -->
           <a href="calculator/popup.html" id="Calc">
             <button id="Calc-Btn">Calculator</button>
           </a>
@@ -397,8 +399,9 @@
             <script src="name.js" defer></script>
             <p id="desc" style="text-shadow: 10px rgba(174, 100, 224, 0.638);font-family: 'Lexend Deca';text-align: center;color: rgb(174, 100, 224);text-wrap:pretty;font: size 10px;;font-weight: bold;">Welcome! Explore STL.</p>
             <script src="time.js"></script>
-
-            <button id="show-buttons" class="show-buttonsL">Start Timer</button>
+            <a href="Timer/popup.html" style="text-decoration: none;">
+              <button id="show-buttons" class="show-buttonsL">Start Timer</button>
+            </a>
             <div id="timer-buttons" style="display: none;">
               <button id="10s" class="s10">10s</button>
               <button id="30s" class="s30">30s</button>
@@ -419,7 +422,7 @@
             <div id="wrapper">
               <p id="CCUSDNotice">*May Not Work For Accounts not Under CCUSD.*</p>
               <div class="mainMenuBtn">
-                <a type="button" href="https://portal.centralusd.k12.ca.us/Parent/LoginParent.aspx" target="_blank">
+                <a type="button" href="https://culvercityusd.aeries.net/student/LoginParent.aspx?page=Dashboard.aspx" target="_blank">
                     <button id="button1" class="buttonL">
                         <b>Open Aeries Portal</b>
                     </button>
@@ -431,7 +434,7 @@
               </div>
 
               <div class="mainMenuBtn">
-                <a type="button" href="https://clever.com/oauth/district-picker" target="_blank">
+                <a type="button" href="https://clever.com/login?student" target="_blank">
                     <button id="button2" class="buttonL">
                         <b style="text-align: center;margin-bottom: 10px;">Open Clever Portal</b>
                     </button>

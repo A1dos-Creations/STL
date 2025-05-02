@@ -274,6 +274,140 @@ body.dark-mode .info-icon {
     background-image: url('/images/info_white.png');
 }
 
+/* --- Conversation Management Section --- */
+.conversation-management {
+    padding: 10px 15px 5px 15px; /* Padding around the section */
+    border-bottom: 1px solid var(--select-border, #ccc); /* Separator line */
+    margin-bottom: 10px; /* Space below */
+}
+
+.conversation-management h3 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 500;
+}
+
+#new-chat-button {
+    /* Style like other buttons or create specific style */
+    display: block; /* Make it block level */
+    width: 100%; /* Full width */
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--button-bg, #e9ecef); /* Use theme variable */
+    color: var(--button-text, #495057); /* Use theme variable */
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#new-chat-button:hover {
+    background-color: var(--button-hover-bg, #dee2e6); /* Use theme variable */
+}
+
+/* Conversation List */
+.conversation-list-ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+    max-height: 150px; /* Limit height and make scrollable */
+    overflow-y: auto;
+    border: 1px solid var(--select-border, #ccc); /* Optional border */
+    border-radius: 6px;
+    background-color: var(--calculator-bg, #fff); /* Use theme variable */
+}
+
+/* Individual List Item */
+.conversation-list-ul li {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--select-border, #eee); /* Separator */
+    font-size: 0.9em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* Space out title and button */
+    align-items: center;
+    transition: background-color 0.2s ease;
+    color: var(--text-primary);
+}
+
+.conversation-list-ul li:last-child {
+    border-bottom: none; /* Remove border from last item */
+}
+
+.conversation-list-ul li:hover {
+    background-color: var(--button-bg, #f1f3f5); /* Highlight on hover */
+}
+
+.conversation-list-ul li span {
+    /* Allow text to wrap if needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px; /* Space before delete button */
+}
+
+/* Delete Button Styling */
+.delete-convo-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--error-red, #dc3545); /* Red color */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0 5px;
+    line-height: 1;
+    border-radius: 4px;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.delete-convo-btn:hover {
+    background-color: var(--error-red, #dc3545);
+    color: white;
+}
+
+/* Style for loading/empty state */
+.conversation-list-ul li:only-child {
+    font-style: italic;
+    color: var(--text-secondary);
+    cursor: default;
+    text-align: center;
+}
+.conversation-list-ul li:only-child:hover {
+     background-color: transparent;
+}
+
+
+/* Dark Mode Adjustments for Conversation List */
+body.dark-mode .conversation-list-ul {
+     background-color: var(--calculator-bg);
+     border-color: var(--select-border);
+}
+body.dark-mode .conversation-list-ul li {
+     border-bottom-color: var(--select-border);
+     color: var(--text-primary);
+}
+body.dark-mode .conversation-list-ul li:hover {
+    background-color: var(--button-bg);
+}
+body.dark-mode #new-chat-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+body.dark-mode #new-chat-button:hover {
+    background-color: var(--button-hover-bg);
+}
+body.dark-mode .delete-convo-btn {
+    color: var(--error-red, #f8d7da);
+}
+body.dark-mode .delete-convo-btn:hover {
+     background-color: var(--error-red, #f8d7da);
+     color: black; /* Adjust contrast */
+}
+
 .model-info{
     position: relative;
     height: max-content;

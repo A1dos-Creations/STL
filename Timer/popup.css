@@ -1,0 +1,253 @@
+/* Basic Reset & Variables */
+:root {
+    --bg-light: #ffffff;
+    --text-light: #333333;
+    --primary-light: #007bff;
+    --primary-hover-light: #0056b3;
+    --secondary-light: #e9ecef;
+    --secondary-hover-light: #ced4da;
+    --input-bg-light: #f8f9fa;
+    --input-border-light: #ced4da;
+
+    --bg-dark: #22272e;
+    --text-dark: #c9d1d9;
+    --primary-dark: #58a6ff;
+    --primary-hover-dark: #1f6feb;
+    --secondary-dark: #30363d;
+    --secondary-hover-dark: #444c56;
+    --input-bg-dark: #1c2128;
+    --input-border-dark: #444c56;
+
+    --slider-bg-light: #ccc;
+    --slider-bg-dark: #555; /* Or use primary colors */
+    --slider-knob-light: white;
+    --slider-knob-dark: #bbb;
+    --slider-checked-bg-light: var(--primary-light);
+    --slider-checked-bg-dark: var(--primary-dark);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    width: 320px; /* Adjust width as needed */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+.container {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid; /* Color set by theme */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+body.light-mode .header { border-color: var(--secondary-light); }
+body.dark-mode .header { border-color: var(--secondary-dark); }
+
+.header h1 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;  /* Width of the slider track */
+    height: 24px; /* Height of the slider track */
+    flex-shrink: 0; /* Prevent shrinking in flex container */
+  }
+  
+  /* Hide default HTML checkbox */
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider track */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--slider-bg-light);
+    transition: background-color .3s ease-in-out; /* Animate background */
+    border-radius: 24px; /* Make it rounded */
+  }
+  
+  /* The slider knob */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; /* Size of the knob */
+    width: 18px;  /* Size of the knob */
+    left: 3px;   /* Initial position */
+    bottom: 3px; /* Initial position */
+    background-color: var(--slider-knob-light);
+    transition: transform .3s ease-in-out; /* Animate position */
+    border-radius: 50%; /* Make knob circular */
+  }
+  
+  /* Styles when checked (Dark Mode) */
+  input:checked + .slider {
+    background-color: var(--slider-checked-bg-light); /* Track color when checked */
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px); /* Move knob to the right (width - knob_width - 2*padding) -> 50 - 18 - 2*3 = 26 */
+  }
+  
+  /* Dark Mode Specific Slider Colors */
+  body.dark-mode .slider {
+      background-color: var(--slider-bg-dark);
+  }
+  body.dark-mode .slider:before {
+      background-color: var(--slider-knob-dark);
+  }
+  body.dark-mode input:checked + .slider {
+      background-color: var(--slider-checked-bg-dark);
+  }
+
+body.light-mode #theme-toggle { color: var(--text-light); }
+body.dark-mode #theme-toggle { color: var(--text-dark); }
+
+
+/* Timer Display */
+.timer-display {
+    font-size: 3em;
+    font-weight: 300;
+    text-align: center;
+    margin: 10px 0;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
+}
+body.light-mode .timer-display { color: var(--primary-light); }
+body.dark-mode .timer-display { color: var(--primary-dark); }
+
+
+/* Inputs & Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.custom-timer-inputs .inputs-row,
+.alarm-selection {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="number"],
+select {
+    padding: 8px 10px;
+    border: 1px solid; /* Color set by theme */
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+body.light-mode input[type="number"],
+body.light-mode select {
+    background-color: var(--input-bg-light);
+    border-color: var(--input-border-light);
+    color: var(--text-light);
+}
+body.dark-mode input[type="number"],
+body.dark-mode select {
+    background-color: var(--input-bg-dark);
+    border-color: var(--input-border-dark);
+    color: var(--text-dark);
+}
+
+input[type="number"] {
+    width: 55px; /* Adjust as needed */
+    text-align: center;
+    -moz-appearance: textfield; /* Firefox */
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-timer-inputs span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+select {
+    flex-grow: 1; /* Make select fill available space */
+}
+
+/* Controls & Preset Buttons */
+.controls, .preset-buttons {
+    display: flex;
+    justify-content: space-around; /* or space-between */
+    gap: 10px;
+    margin-top: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+    flex-grow: 1; /* Make buttons fill space equally */
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#start-timer { background-color: var(--primary-light); color: white; }
+#stop-timer, #reset-timer { background-color: var(--secondary-light); color: var(--text-light); }
+.preset-btn { background-color: var(--secondary-light); color: var(--text-light); font-size: 0.9em; padding: 8px 10px; flex-grow: 0;} /* Smaller presets */
+
+body.dark-mode #start-timer { background-color: var(--primary-dark); color: var(--bg-dark); }
+body.dark-mode #stop-timer,
+body.dark-mode #reset-timer,
+body.dark-mode .preset-btn { background-color: var(--secondary-dark); color: var(--text-dark); }
+
+
+#start-timer:hover:not(:disabled) { background-color: var(--primary-hover-light); }
+#stop-timer:hover:not(:disabled),
+#reset-timer:hover:not(:disabled),
+.preset-btn:hover:not(:disabled) { background-color: var(--secondary-hover-light); }
+
+body.dark-mode #start-timer:hover:not(:disabled) { background-color: var(--primary-hover-dark); }
+body.dark-mode #stop-timer:hover:not(:disabled),
+body.dark-mode #reset-timer:hover:not(:disabled),
+body.dark-mode .preset-btn:hover:not(:disabled) { background-color: var(--secondary-hover-dark); }
+
+.preset-timers {
+    margin-top: 10px;
+    border-top: 1px solid; /* Color set by theme */
+    padding-top: 15px;
+}
+body.light-mode .preset-timers { border-color: var(--secondary-light); }
+body.dark-mode .preset-timers { border-color: var(--secondary-dark); }

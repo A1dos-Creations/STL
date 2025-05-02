@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pomodoro Timer</h1>
+            <label class="theme-switch" for="theme-slider-input" aria-label="Toggle theme">
+                <input type="checkbox" id="theme-slider-input">
+                <span class="slider round"></span>
+            </label>
+            </div>
+
+        <div id="timer-display" class="timer-display">00:00:00</div>
+
+        <div class="custom-timer-inputs">
+             <label>Set Custom Time:</label>
+             <div class="inputs-row">
+                  <input type="number" id="hours" min="0" placeholder="HH" value="0">
+                  <span>:</span>
+                  <input type="number" id="minutes" min="0" max="59" placeholder="MM" value="25">
+                  <span>:</span>
+                  <input type="number" id="seconds" min="0" max="59" placeholder="SS" value="0">
+             </div>
+        </div>
+
+        <div class="alarm-selection">
+            <label for="alarm-sound">Alarm Sound:</label>
+            <select id="alarm-sound">
+                <option value="alarm1.mp3">Alarm 1</option>
+                <option value="alarm2.mp3">Alarm 2</option>
+                <option value="alarm3.mp3">Alarm 3</option>
+                <option value="alarm4.mp3">Alarm 4</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <button id="start-timer">Start</button>
+            <button id="stop-timer">Stop</button>
+            <button id="reset-timer">Reset</button>
+        </div>
+
+        <div class="preset-timers">
+            <label>Quick Timers:</label>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-seconds="10">10s</button>
+                <button class="preset-btn" data-seconds="30">30s</button>
+                <button class="preset-btn" data-seconds="60">1m</button>
+                <button class="preset-btn" data-seconds="300">5m</button>
+                <button class="preset-btn" data-seconds="600">10m</button>
+                <button class="preset-btn" data-seconds="3600">1h</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

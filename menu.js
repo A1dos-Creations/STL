@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isEditMode = false;
 
-  [removeTsk, removeTmr, removeQck, removeDcvr, removeCalc].forEach(btn => {btn.style.display = "none";});
+  [removeTsk, removeTmr, removeCalc].forEach(btn => {btn.style.display = "none";});
 
   overlay.addEventListener('click', () => {
     isEditMode = false;
@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const defaultValues = {
     btn_Tsk_Shwn: true,
     btn_Tmr_Shwn: true,
-    btn_Qck_Shwn: true,
-    btn_Dcvr_Shwn: true,
+   // btn_Qck_Shwn: true,
+   // btn_Dcvr_Shwn: true,
     btn_Calc_Shwn: true,
     btn_AI_Shwn: true,
   }
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         featureBtn: btn_Tmr,
         isShown: result.btn_Tmr_Shwn,
       });
+      /*
       updateButtonUI({
         removeBtn: removeQck,
         featureBtn: btn_Qck,
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         featureBtn: btn_Dcvr,
         isShown: result.btn_Dcvr_Shwn,
       });
+      */
       updateButtonUI({
         removeBtn: removeCalc,
         featureBtn: btn_Calc,
@@ -161,12 +163,14 @@ document.addEventListener("DOMContentLoaded", () => {
   removeTmr.addEventListener("click", () => {
     toggleButton("btn_Tmr_Shwn");
   });
+  /*
   removeQck.addEventListener("click", () => {
     toggleButton("btn_Qck_Shwn");
   });
   removeDcvr.addEventListener("click", () => {
     toggleButton("btn_Dcvr_Shwn");
   });
+  */
   removeCalc.addEventListener("click", () => {
     toggleButton("btn_Calc_Shwn");
   });
