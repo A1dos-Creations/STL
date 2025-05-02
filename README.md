@@ -20,7 +20,7 @@ This is the official github for School Tool Launcher. Here you will find the sou
 As new updates roll out, this github will be updated. 
 Check the updates [here.](https://github.com/A1dos-Creations/STL/blob/main/README.md#%EF%B8%8Fupdates)
 
->[!IMPORTANT]
+>[!WARNING]
 >**NOTICE TO ALL CCUSD STUDENTS**: A new promodoro timer has been added, it may not work on school-owned computers due to JavaScript restrictions.
 
 We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
