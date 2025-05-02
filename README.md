@@ -21,7 +21,7 @@ As new updates roll out, this github will be updated.
 Check the updates [here.](https://github.com/A1dos-Creations/STL/blob/main/README.md#%EF%B8%8Fupdates)
 
 >[!IMPORTANT]
->**NOTICE TO ALL CCUSD STUDENTS**: We are aware that most CCUSD (Culver City Unified School District) students cannot properly use some features of STL. This is because CCUSD computers cannot use or run JavaScript on Google Chrome. This disables all background service workers that allow features such timers to work properly. We apologize for the inconvinience and are working on the issue. _This issue may take several weeks to resolve._
+>**NOTICE TO ALL CCUSD STUDENTS**: A new promodoro timer has been added, it may not work on school-owned computers due to JavaScript restrictions.
 
 We don't collect any revenue from STL or A1dos Creations, and keeping the upcoming accounts feature's databases up and running costs money! 
 Please consider donating $1, it helps a ton, and your generosity is deeply appreciated! 💖
@@ -60,8 +60,8 @@ In the published version of STL, users have the option to enter their name in se
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v1.7.3
-Current Published Version: v1.5.1 (v1.5.2 In review)
+Current github Version: v1.6.2
+Current Published Version: v1.6.1 (v1.6.2 In review)
 
 >[!IMPORTANT]
 >The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
@@ -69,8 +69,11 @@ Current Published Version: v1.5.1 (v1.5.2 In review)
 
 # ☁️Updates:
 >[!NOTE]
-> **Version 1.5.1 of STL has released!**
+> **Version 1.6.1 of STL has released!**
 
+- 5/1/2025: Updated ST_AI to newer & faster, added memory, added new Promodoro Timer feature
+- 4/23-30/2025: Polishing ST_AI (AI Helper).
+- 4/15-22/2025: Added calculator & base of ST_AI feature.
 - 3/30/2025: Added menu edit feature & disabled Pomodoro Timer feature temporarily. Updated Account management page with STL linked notifications.
 - 3/29/2025: Updated side-panel menu UI.
 - 3/26-28/2025: Updated menu UI and button functionality.
