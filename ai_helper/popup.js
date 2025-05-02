@@ -236,15 +236,24 @@ function addMessage(text, sender, isHistoryLoading = false) { // sender is 'user
 
     // Function to update the remaining message count UI
     function updateRemainingCount(count) {
-        // Ensure count is a non-negative number
-        messagesRemaining = Math.max(0, parseInt(count, 10) || 0);
-        remainingCountSpan.textContent = messagesRemaining;
-
-         // Disable input if limit reached
-         const limitReached = messagesRemaining <= 0;
-         chatInput.disabled = limitReached;
-         sendButton.disabled = limitReached;
-         chatInput.placeholder = limitReached ? "Daily limit reached." : "Type your question...";
+        console.log("updateRemainingCount received:", count, typeof count); // Add log to see input
+    
+        if (count === Infinity || count === 'Infinity') {
+            messagesRemaining = Infinity;
+            remainingCountSpan.textContent = 'Unlimited'; // Display "Unlimited"
+        } else {
+            const numericCount = parseInt(count, 10);
+            messagesRemaining = Math.max(0, isNaN(numericCount) ? 0 : numericCount);
+            remainingCountSpan.textContent = messagesRemaining;
+        }
+    
+        const limitReached = (typeof messagesRemaining === 'number' && messagesRemaining <= 0);
+        console.log("Limit reached check:", limitReached, "messagesRemaining:", messagesRemaining); // Add log
+    
+        chatInput.disabled = limitReached;
+        sendButton.disabled = limitReached;
+        chatInput.placeholder = limitReached ? "Daily limit reached." : "Type your question...";
+    
     }
 
     // Function to toggle loading indicator and disable/enable input
