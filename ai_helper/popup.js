@@ -238,7 +238,7 @@ function addMessage(text, sender, isHistoryLoading = false) { // sender is 'user
     function updateRemainingCount(count) {
         console.log("updateRemainingCount received:", count, typeof count); // Add log to see input
     
-        if (count === Infinity || count === 'Infinity') {
+        if (count === "Unlimited" || count === Infinity) {
             messagesRemaining = Infinity;
             remainingCountSpan.textContent = 'Unlimited'; // Display "Unlimited"
         } else {
