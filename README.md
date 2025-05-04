@@ -39,6 +39,13 @@ STL allows students to access required and necesary school resuources quickly to
 >[!NOTE]
 >For schools or educational organizations, please read our [notice for educational institutions.](./NOTICE.md)
 
+# 💸 UPGRADES?
+We are in the process of adding 'STL+' (STL premium) for a small fee of $2-5 per month to unlock infinite messages to ST_AI, more features, and unlimited customizability!
+
+(WIP)
+
+Currently, only Admins have infinite messages with ST_AI
+
 # 🧾About
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
