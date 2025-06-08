@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A1dos Button Sync</title>
+    <style>
+        body { font-family: sans-serif; width: 250px; padding: 10px; text-align: center;}
+        button { padding: 8px 12px; margin-top: 10px; cursor: pointer; }
+        #status { margin-top: 10px; font-size: 0.9em; }
+        ul#buttons-list { list-style: none; padding:0; max-height: 200px; overflow-y: auto; }
+        ul#buttons-list li { background-color: #f0f0f0; margin-bottom: 5px; padding: 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h3>Button Sync</h3>
+    <button id="syncButton">Sync Now</button>
+    <div id="status">Ready to sync.</div>
+    <h4>Your Buttons:</h4>
+    <ul id="buttons-list">
+        <li>Loading...</li>
+    </ul>
+    <script src="popup.js"></script>
+</body>
+</html>

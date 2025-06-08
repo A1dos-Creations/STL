@@ -1,36 +1,27 @@
 <head>
-    <link rel="stylesheet" href="./license.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Code</title>
+    <link rel="stylesheet" href="license.css">
 </head>
-<body style="width: 300px;max-height: 560px;min-height: 300px;background-color: rgb(33, 33, 33);">
-    <section id="return" style="margin-bottom: 20px;margin-top: -9px;margin-left: -7.5px;">
-        <div>
-            <a href="/main.html" style="color: whitesmoke;text-decoration: none;">
-               <img src="/images/BackDark.png" style="width: 25px;height: 25px;">
-            </a>   
-        </div> 
-    </section>
+<body>
+    <div class="container">
+        <h2>Unlock Premium</h2>
+        <div id="userInfo">
+            <p>User ID: <span id="displayUserId">Not logged in</span></p>
+        </div>
 
-    <h1 style="color: white;font-family: Lexend Deca;text-align: center;">License</h1>
-    <div id="licenseHandler&&32a" style="margin-bottom: 10px;">
-        <h2 style="color: white;font-family: Lexend Deca;text-align: center;">Enter Your Upgrade Code</h2>
-        <input type="text" id="upgradeCode" placeholder="Enter code here" maxlength="20"/>
-        <button id="claimBtn">Claim Upgrade</button>
-        <div class="message" id="messageL" style="font-size: 13px;margin-bottom: 0px;font-family: Lexend Deca;"></div>
+        <div id="claimSection">
+            <label for="productCode">Enter Product Code:</label>
+            <input type="text" id="productCode" placeholder="ABC-123-XYZ">
+            <button id="claimButton">Claim Code</button>
+        </div>
+
+        <div id="statusSection" style="display:none;">
+            <p id="premiumStatus">Status: Checking...</p>
+        </div>
+        <div id="messageArea"></div>
     </div>
-
-    <p style="color: white;font-family: Lexend Deca;margin-top: 10px;">
-        <strong style="margin-top: 10px;">What does premium entail?</strong> Well, you get:
-        <ul style="color: white;font-family: Lexend Deca;">
-            <li>Access to exclusive features</li>
-            <li>Priority customer support</li>
-            <li>Free exclusive updates</li>
-            <li>Regular new content</li>
-            <li>School & Scheduling features</li>
-        </ul>
-    </p>
-
-    <script src="./licenseHandler.js"></script>
+    <script src="licenseHandler.js"></script>
 </body>
+</html>
