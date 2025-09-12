@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <script src="../lib/firebase-app-compat.js"></script>
+    <script src="../lib/firebase-auth-compat.js"></script>
+    <script src="../lib/firebase-firestore-compat.js"></script>
+    <script src="../lib/firebase-functions-compat.js"></script>
+    <script src="../lib/firebase-storage-compat.js"></script>
+    
+    <script src="../lib/marked.min.js"></script>
+
+    <script src="../firebase-init.js"></script>
+    <script src="popup.js"></script>
 </head>
 <body>
 
@@ -16,9 +27,8 @@
             <div class="model-info">
                 <div id="model-info-icon" class="info-icon" aria-label="Model Information"></div>
                 <div class="model-info-text">
-                    <h2>This AI uses Google's Gemini AI. Specs:</h2>
-                    <p>Model: <span id="model-name">gemini-2.0-flash-latest</span></p>
-                    <p>Version: <span id="model-version">latest</span></p>
+                    <h2>This AI uses Google's Gemini AI.</h2>
+                    <p>Model: <span id="model-name">gemini-1.5-flash</span></p>
                     <p class="info-note">AI responses are intended to help guide understanding, not provide direct answers.</p>
                 </div>
             </div>
@@ -28,36 +38,65 @@
                 <input type="checkbox" id="themeToggle" aria-label="Toggle theme"/>
                 <span class="slider round"></span>
             </label>
-            <span class="theme-label" id="theme-label-text">Dark Mode</span> </div>
+            <span class="theme-label" id="theme-label-text">Dark Mode</span> 
+        </div>
     </div>
+
     <div class="conversation-management">
-        <h3>Conversations</h3>
-        <button id="new-chat-button" class="button small-button">New Chat</button>
-        <ul id="conversation-list" class="conversation-list-ul">
-            <li>Loading conversations...</li>
-        </ul>
+        <button id="conversation-toggle-button" class="conversation-toggle">
+            <span>Conversations</span>
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+        </button>
+        <div id="collapsible-content" class="collapsible-content">
+            <button id="new-chat-button" class="button small-button">New Chat</button>
+            <ul id="conversation-list" class="conversation-list-ul">
+                <li>Loading conversations...</li>
+            </ul>
+
+            <div class="premium-section">
+                <div id="premium-status">Status: Checking...</div>
+                <div class="license-form">
+                    <input type="text" id="license-input" placeholder="Enter license code...">
+                    <button id="claim-button">Claim</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr class="separator">
 
     <div class="chat-container">
-        <h2>AI Helper</h2>
-        <div class="chat-info">
-            <p>Ask for help understanding topics. Remember, I can't give direct answers!</p>
-            <p>Messages remaining today: <span id="remaining-count"><i>Loading...</i></span></p> 
-            <p>You must be loggged in to use ST AI!</p></div>
         <div class="chat-box" id="chat-box">
-            <div class="message ai"><p>Select or start a new conversation.</p></div>
             </div>
-        <div class="chat-input-area">
-            <textarea id="chat-input" placeholder="Select a conversation..." rows="2" aria-label="Chat input" disabled></textarea>
-            <button id="send-button" aria-label="Send Message" disabled>
-                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z"/></svg>
-            </button>
+
+        <div id="chat-input-container" class="chat-input-container">
+            <div id="image-preview-container"></div>
+            <textarea id="chat-input" placeholder="Add a prompt or take a screenshot..." rows="1"></textarea>
+            <div class="input-buttons">
+                 <button id="expand-btn" class="icon-button utility-button" aria-label="Expand Input">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-320 280-520l56-56 144 144 144-144 56 56-200 200ZM280-80l-56-56 144-144 144 144-56 56-88-88-88 88Z"/></svg>
+                </button>
+                <button id="screenshot-btn" class="icon-button utility-button" aria-label="Take Screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M160-120q-33 0-56.5-23.5T80-200v-400q0-33 23.5-56.5T160-680h120l80-80h240l80 80h120q33 0 56.5 23.5T880-600v400q0 33-23.5 56.5T800-120H160Zm320-140q83 0 141.5-58.5T680-460q0-83-58.5-141.5T480-660q-83 0-141.5 58.5T280-460q0 83 58.5 141.5T480-260Zm0-80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM160-200h640v-400H160v400Zm320-260Z"/></svg>
+                </button>
+                <button id="send-button" class="icon-button send-button" aria-label="Send Message">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="loading-indicator-wrapper">
              <div class="loading-indicator" id="loading-indicator" style="display: none;" aria-label="Loading"></div>
         </div>
-         <p id="chat-error" class="error-message" role="alert" style="display: none;"></p>
+        <p id="chat-error" class="error-message" role="alert" style="display: none;"></p>
     </div>
-    <script src="popup.js"></script>
+
+    <div id="custom-confirm-overlay" class="custom-confirm-overlay" style="display: none;">
+        <div class="custom-confirm-box">
+            <p>Are you sure you want to delete this conversation?</p>
+            <div class="custom-confirm-buttons">
+                <button id="confirm-cancel-btn">Cancel</button>
+                <button id="confirm-delete-btn" class="delete">Delete</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

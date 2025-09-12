@@ -11,6 +11,16 @@
         <link rel="stylesheet" href="./main.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap">
 
+        <script src="./lib/firebase-app-compat.js"></script>
+        <script src="./lib/firebase-auth-compat.js"></script>
+        <script src="./lib/firebase-firestore-compat.js"></script>
+        <script src="./lib/firebase-functions-compat.js"></script>
+        <script src="../lib/firebase-storage-compat.js"></script>
+
+        <script src="firebase-init.js"></script>
+        <script src="menu.js"></script>
+        <script src="name.js"></script>
+
         <div id="overlay"></div>
 
         <button id="menuButton" class="menuButtonDark"></button>
@@ -18,9 +28,9 @@
           <a href="main.html">
             <button style="background-color: #555;color: rgb(177, 255, 190);">Home</button>
           </a>
-          <a href="./popup/popup.html">
+          <!--<a href="./popup/popup.html">
             <button id="synced-buttons">Synced Buttons</button>
-          </a>
+          </a>-->
           <a href="TaskManager.html">
             <button id="TaskManager">Task Manager</button>
           </a>
@@ -80,8 +90,6 @@
             </a>
         </div>
         </div>
-        <script src="/License/licenseHandler.js"></script>
-        <script src="menu.js"></script>
         <style>
           .menu-editing{
             width: 80%;
@@ -394,7 +402,13 @@
             }
         </style>
         <body id="mainBody" class="lightMode" style="justify-content: center;justify-items: center;text-align: center;">
-          <div id="accountDiv" class="accPopHide">
+          
+          <div class="notice" style="display: none;">
+            <h1 class="notice_err">ERROR</h1>
+            <p>Our servers are currently down indefinitely. I do not have enough money to keep School Tools running. This is the indefinite end of School Tools. Goodbye. <br><b style="font-size: 17px;">- Devin S</b></p>
+          </div>
+          
+          <div id="accountDiv" class="" style="display: none;">
             <p style="margin-left: 15px;font-family: Lexend Deca;">Want access to more features? <br><a href="https://a1dos-creations.com/account/auth" target="_blank" style="font-size: 17px;font-weight: bolder;color: #2d7fd6;">Create an account now!</a></p>
           </div>
           <script src="./hover.js"></script>

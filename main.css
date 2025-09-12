@@ -23,6 +23,16 @@
     border-style: none;
   }
 
+.notice{
+    background-color: #d70b0b4f;
+    font-family: "Lexend Deca", sans-serif, -apple-system, system-ui, serif;
+    padding: 5px 15px;
+    width: 110%;
+    margin-bottom: 25px;
+    margin-top: -25px;
+    color: white;
+}
+
   #stai-Btn:hover{
     background-color:#285a3e;
   }

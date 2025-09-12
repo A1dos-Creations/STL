@@ -1,530 +1,257 @@
-// popup.js - AI Chat Feature Logic
+// Extension/ai_helper/popup.js
 
-document.addEventListener('DOMContentLoaded', function() {
-     // --- Get Theme Elements ---
-     const themeToggle = document.getElementById('themeToggle');
-     const themeLabel = document.getElementById('theme-label-text'); // Optional label text
-     const body = document.body;
-     let currentConversationId = null;
- 
-     // --- Theme Handling Logic ---
-     function setTheme(theme) { // theme should be 'light' or 'dark'
-         body.classList.remove('light-mode', 'dark-mode'); // Remove existing theme classes
-         body.classList.add(theme + '-mode'); // Add the current theme class
-         themeToggle.checked = (theme === 'dark'); // Sync checkbox state to the theme
- 
-         // Update label text (Optional)
-         if (themeLabel) {
-             themeLabel.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
-         }
- 
-         // Save the theme preference to Chrome storage
-         chrome.storage.local.set({ preferredTheme: theme }, () => {
-             if (chrome.runtime.lastError) {
-                 console.error("Error saving theme:", chrome.runtime.lastError);
-             } else {
-                 console.log('Theme preference saved:', theme);
-             }
-         });
-     }
- 
-     // Listener for the theme toggle switch change event
-     if (themeToggle) {
-         themeToggle.addEventListener('change', () => {
-             setTheme(themeToggle.checked ? 'dark' : 'light');
-         });
-     }
- 
-     // Function to load and apply saved theme on startup
-     async function loadAndApplyTheme() {
-         try {
-             // *** This part retrieves the saved theme ***
-             const data = await chrome.storage.local.get('preferredTheme');
-             const currentTheme = data.preferredTheme || 'light'; // Default to light if nothing stored
-             setTheme(currentTheme); // Apply the loaded (or default) theme
-             console.log('Applied theme:', currentTheme);
-         } catch (error) {
-             console.error("Error loading theme:", error);
-             setTheme('light'); // Default to light on error
-         }
-     }
-     // --- End Theme Handling Logic ---
- 
+document.addEventListener("DOMContentLoaded", function () {
+  // --- Get UI Elements ---
+  const chatBox = document.getElementById("chat-box");
+  const chatInput = document.getElementById("chat-input");
+  const sendButton = document.getElementById("send-button");
+  const loadingIndicator = document.getElementById("loading-indicator");
+  const chatError = document.getElementById("chat-error");
+  const conversationListElement = document.getElementById("conversation-list");
+  const newChatButton = document.getElementById("new-chat-button");
+  const screenshotBtn = document.getElementById("screenshot-btn");
+  const imagePreviewContainer = document.getElementById("image-preview-container");
+  const chatInputContainer = document.getElementById("chat-input-container");
+  const expandBtn = document.getElementById("expand-btn");
+  const conversationToggleButton = document.getElementById("conversation-toggle-button");
+  const collapsibleContent = document.getElementById("collapsible-content");
+  const premiumStatusDiv = document.getElementById("premium-status");
+  const licenseInput = document.getElementById("license-input");
+  const claimButton = document.getElementById("claim-button");
 
+  let currentUser = null;
+  let currentConversationId = null;
+  let pendingScreenshotBlob = null;
+  let isCreatingConversation = false;
 
-    // --- AI Chat Logic ---
-    const chatBox = document.getElementById('chat-box');
-    const chatInput = document.getElementById('chat-input');
-    const sendButton = document.getElementById('send-button');
-    const remainingCountSpan = document.getElementById('remaining-count');
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const chatError = document.getElementById('chat-error');
-    const conversationListElement = document.getElementById('conversation-list');
-    const newChatButton = document.getElementById('new-chat-button');
-
-    const BACKEND_URL = 'https://api.a1dos-creations.com/api/chat';
-
-    let userId = null;
-    let messagesRemaining = 5; // Default assumption, updated by backend response
-
-    // Function to get or create a unique user ID using chrome.storage.local
-    async function getUserId() {
-        try {
-            // Use await for cleaner async handling
-            const result = await chrome.storage.local.get(['aiChatUserId']);
-            if (result.aiChatUserId) {
-                console.log("Retrieved User ID:", result.aiChatUserId);
-                return result.aiChatUserId;
-            } else {
-                const newUserId = crypto.randomUUID(); // Generate unique ID
-                await chrome.storage.local.set({ aiChatUserId: newUserId });
-                console.log("Generated new User ID:", newUserId);
-                return newUserId;
-            }
-        } catch (error) {
-            console.error("Error accessing chrome.storage.local:", error);
-            showError("Could not initialize user session. Please reload.");
-            // Disable input if we can't get/set a user ID
-            chatInput.disabled = true;
-            sendButton.disabled = true;
-            return null;
-        }
-    }
-
-    // Function to add a message to the chat box UI
-    // Keep track of any active typing intervals to clear them if needed
-let typingIntervalId = null;
-
-// Function to add a message to the chat box UI
-function addMessage(text, sender, isHistoryLoading = false) { // sender is 'user' or 'ai'
-    if (!text || typeof text !== 'string') {
-        console.warn("Attempted to add invalid message content:", text);
-        return;
-    }
-
-    // --- Stop any previous AI typing animation ---
-    if (typingIntervalId) {
-        clearInterval(typingIntervalId);
-        typingIntervalId = null;
-        // Ensure the last AI message element is fully displayed if interrupted
-        const lastAiMessage = chatBox.querySelector('.message.ai:last-child p');
-        if (lastAiMessage && !lastAiMessage.dataset.isComplete) {
-             // Find the full text if stored, otherwise might be tricky
-             // For now, we assume interruption means starting fresh
-        }
-    }
-    // -----------------------------------------
-
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message', sender);
-
-    const paragraph = document.createElement('p');
-    messageElement.appendChild(paragraph);
-    chatBox.appendChild(messageElement);
-
-    // Scroll immediately to show the bubble starting
-    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' });
-
-    if (sender === 'model' && !isHistoryLoading) {
-        // --- Simulate typing for NEW AI messages ---
-        const words = text.trim().split(/(\s+)/);
-        let currentWordIndex = 0;
-        paragraph.textContent = '▋'; // Initial cursor block
-        paragraph.dataset.isComplete = 'false'; // Mark as incomplete
-
-        typingIntervalId = setInterval(() => {
-            if (currentWordIndex < words.length) {
-                paragraph.textContent = paragraph.textContent.slice(0, -1);
-                paragraph.textContent += words[currentWordIndex];
-                paragraph.textContent += '▋';
-                currentWordIndex++;
-                chatBox.scrollTop = chatBox.scrollHeight; // Scroll with typing
-            } else {
-                clearInterval(typingIntervalId);
-                typingIntervalId = null;
-                paragraph.textContent = paragraph.textContent.slice(0, -1); // Remove final cursor
-                paragraph.dataset.isComplete = 'true'; // Mark as complete
-            }
-        }, 50); // Typing speed
-
+  auth.onAuthStateChanged((user) => {
+    currentUser = user;
+    if (user) {
+      initializeApp();
     } else {
-        // User messages OR historical AI messages appear instantly
-        paragraph.textContent = text.trim();
-        // If loading history, maybe don't scroll for every message, scroll once at the end
-        if (!isHistoryLoading) {
-             chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' });
-        }
+      showLoginMessage();
     }
-    // --- END UPDATED LOGIC ---
-    // Add fade-in animation via CSS class (optional)
-    requestAnimationFrame(() => {
-        messageElement.style.opacity = '1';
-        messageElement.style.transform = 'translateY(0)';
+  });
+
+  function initializeApp() {
+    loadAndApplyTheme();
+    newChatButton.addEventListener("click", startNewConversation);
+    sendButton.addEventListener("click", sendMessage);
+    screenshotBtn.addEventListener("click", takeScreenshot);
+    claimButton.addEventListener("click", claimLicense);
+    expandBtn.addEventListener("click", () => chatInputContainer.classList.toggle('expanded'));
+    conversationToggleButton.addEventListener("click", () => {
+        conversationToggleButton.classList.toggle('open');
+        collapsibleContent.classList.toggle('open');
     });
+    chatInput.addEventListener("keydown", (event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); sendMessage(); } });
+    chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = (chatInput.scrollHeight) + 'px'; });
+    
+    loadConversationList();
+    checkAndDisplayPremiumStatus();
+    chatBox.innerHTML = `<div class="message model"><p>Select or start a new conversation.</p></div>`;
+  }
 
+  async function uploadImageAndGetUrl() {
+    if (!pendingScreenshotBlob || !currentUser) return null;
+    try {
+        const fileName = `${Date.now()}.jpg`;
+        const storagePath = `users/${currentUser.uid}/${fileName}`;
+        const storageRef = storage.ref(storagePath);
+        const snapshot = await storageRef.put(pendingScreenshotBlob);
+        const downloadUrl = await snapshot.ref.getDownloadURL();
+        return downloadUrl;
+    } catch (error) {
+        // This will force the detailed error to appear in a popup.
+        alert("Upload Error Details: " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        console.error("Upload failed:", error);
+        return null;
+    }
+  }
+
+  async function sendMessage() {
+    const messageText = chatInput.value.trim();
+    const imageToUpload = pendingScreenshotBlob;
+
+    if (!currentUser || (!messageText && !imageToUpload)) return;
+    if (!currentConversationId) {
+        const newId = await startNewConversation();
+        if (!newId) { showError("Could not start conversation."); return; }
+    }
+
+    addMessage("user", messageText, imageToUpload ? URL.createObjectURL(imageToUpload) : null);
+    chatInput.value = "";
+    chatInput.style.height = 'auto';
+    // The problematic clearImagePreview() call was removed from here.
+
+    const generatingMessageId = `gen-${Date.now()}`;
+    addMessage("model", null, null, false, generatingMessageId);
+
+    let finalImageUrl = null;
+    if (imageToUpload) {
+      finalImageUrl = await uploadImageAndGetUrl();
+      
+      // FIX: The line is moved here. We now clear the preview
+      // and blob AFTER the upload is successfully finished.
+      clearImagePreview(); 
+      
+      if (!finalImageUrl) {
+        // If upload fails, the alert() has already fired. We just clean up the UI.
+        const generatingMessage = document.getElementById(generatingMessageId);
+        if (generatingMessage) generatingMessage.remove();
+        return;
+      }
+    }
+
+    try {
+      const chatWithAIFunction = functions.httpsCallable("chatWithAI");
+      const result = await chatWithAIFunction({
+        conversationId: currentConversationId,
+        newMessageText: messageText,
+        imageUrl: finalImageUrl,
+      });
+      
+      updateGeneratingMessage(generatingMessageId, result.data.reply, false);
+      loadConversationList(); 
+    } catch (error) {
+      console.error("Error calling chat function:", error);
+      updateGeneratingMessage(generatingMessageId, `Error: ${error.message}`, true);
+    }
 }
+  
+  // --- All other functions below are unchanged ---
 
-    // Function to handle sending a message to the backend
-    async function sendMessage() {
-        const messageText = chatInput.value.trim();
-        const token = localStorage.getItem('authToken');
-
-        // Ensure userId is loaded and message is not empty
-        if (!userId) {
-            showError("User session not initialized. Please try reloading.");
-            return;
-        }
-        if (!messageText) {
-            return;
-        }
-
-        // Check remaining messages locally (as a quick check)
-        if (messagesRemaining <= 0) {
-             showError("You have reached your daily message limit.");
-             return;
-        }
-
-
-        addMessage(messageText, 'user'); // Display user message immediately
-        chatInput.value = ''; // Clear input field
-        chatInput.style.height = 'auto'; // Reset height after clearing
-        setLoading(true);
-        clearError();
-
-        try {
-            // Make the fetch request to the backend
-            const response = await fetch(BACKEND_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: userId,
-                    message: messageText,
-                    token: token
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                // Handle specific errors like rate limiting (429) or other server errors
-                 if (response.status === 429) {
-                     showError(data.error || 'Daily message limit reached.');
-                     updateRemainingCount(data.remaining !== undefined ? data.remaining : 0);
-                 } else {
-                     throw new Error(data.error || `Request failed with status ${response.status}`);
-                 }
-                 // Don't proceed to add AI message if response not okay
-                 setLoading(false); // Stop loading on error
-                 return; // Exit function early
-            }
-
-            // Success - display AI reply and update count
-            addMessage(data.reply, 'ai');
-            updateRemainingCount(data.remaining);
-
-        } catch (error) {
-            console.error("Error sending/receiving chat message:", error);
-            showError(`Error: ${error.message}. Could not connect to helper.`);
-             // Don't assume remaining count changed if fetch itself failed
-        } finally {
-            // Ensure loading state is turned off regardless of success/error
-            setLoading(false);
-        }
-    }
-
-    // Function to update the remaining message count UI
-    function updateRemainingCount(count) {
-        console.log("updateRemainingCount received:", count, typeof count); // Add log to see input
-    
-        if (count === "Unlimited" || count === Infinity) {
-            messagesRemaining = Infinity;
-            remainingCountSpan.textContent = 'Unlimited'; // Display "Unlimited"
-        } else {
-            const numericCount = parseInt(count, 10);
-            messagesRemaining = Math.max(0, isNaN(numericCount) ? 0 : numericCount);
-            remainingCountSpan.textContent = messagesRemaining;
-        }
-    
-        const limitReached = (typeof messagesRemaining === 'number' && messagesRemaining <= 0);
-        console.log("Limit reached check:", limitReached, "messagesRemaining:", messagesRemaining); // Add log
-    
-        chatInput.disabled = limitReached;
-        sendButton.disabled = limitReached;
-        chatInput.placeholder = limitReached ? "Daily limit reached." : "Type your question...";
-    
-    }
-
-    // Function to toggle loading indicator and disable/enable input
-    function setLoading(isLoading) {
-        loadingIndicator.style.display = isLoading ? 'inline-block' : 'none';
-        // Only disable send button if loading, re-enable based on message count later
-        sendButton.disabled = isLoading || (messagesRemaining <= 0);
-         chatInput.disabled = isLoading || (messagesRemaining <= 0);
-    }
-
-     function showError(message) {
-        chatError.textContent = message;
-        chatError.style.display = 'block';
-    }
-
-     function clearError() {
-        chatError.textContent = '';
-        chatError.style.display = 'none';
-    }
-
-     // Auto-resize textarea height
-     function autoResizeTextarea() {
-        chatInput.style.height = 'auto'; // Reset height
-        let scrollHeight = chatInput.scrollHeight;
-        // Consider max-height from CSS. Apply scrollHeight only if less than max.
-        // Get max-height value (e.g., '80px') and parse it.
-         let maxHeight = parseInt(window.getComputedStyle(chatInput).maxHeight, 10);
-         if (scrollHeight > maxHeight) {
-             chatInput.style.height = maxHeight + 'px';
-         } else {
-             chatInput.style.height = scrollHeight + 'px';
-         }
-     }
-
-     let conversationHistory = []; // Array to hold message objectsr
-     async function loadConversationList() {
-        const token = localStorage.getItem('authToken');
-        if (!token) return; // Handle not logged in
-        try {
-            const response = await fetch(`${BACKEND_URL.replace('/api/chat', '')}/api/conversations`, { // Adjust URL based on backend base
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to load conversations');
-            const conversations = await response.json();
-            displayConversationList(conversations);
-        } catch (error) {
-            console.error("Error loading conversation list:", error);
-            showError("Could not load conversations.");
-        }
-    }
-
-    function displayConversationList(conversations) {
-        conversationListElement.innerHTML = ''; // Clear list
-        if (!conversations || conversations.length === 0) {
-            conversationListElement.innerHTML = '<li>No past conversations found.</li>';
-            return;
-        }
-        conversations.forEach(convo => {
-            const li = document.createElement('li');
-            li.textContent = convo.title || `Chat from ${new Date(convo.updated_at).toLocaleDateString()}`; // Example title
-            li.dataset.id = convo.id;
-            li.addEventListener('click', () => loadSpecificConversation(convo.id));
-
-            // Add delete button (optional)
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'X';
-            deleteBtn.onclick = (e) => { e.stopPropagation(); deleteConversation(convo.id); };
-            li.appendChild(deleteBtn);
-
-            conversationListElement.appendChild(li);
+  async function startNewConversation() {
+    if (!currentUser || isCreatingConversation) return null;
+    isCreatingConversation = true;
+    try {
+        const convosRef = db.collection("users").doc(currentUser.uid).collection("conversations");
+        const newConvoDoc = await convosRef.add({
+            title: `New Chat ${new Date().toLocaleTimeString()}`,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            history: [],
+            isPinned: false,
         });
-    }
-
-    async function loadSpecificConversation(conversationId) {
-        console.log("Loading conversation:", conversationId);
-        currentConversationId = conversationId; // Set active conversation
-        const token = localStorage.getItem('authToken');
-        if (!token) return;
-        setLoading(true); // Show loading state
-        chatBox.innerHTML = ''; // Clear visual chat box
-
-        try {
-            const response = await fetch(`${BACKEND_URL.replace('/api/chat', '')}/api/conversations/${conversationId}`, {
-                 headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to load history');
-            const data = await response.json();
-
-            // Populate chat UI from history
-            if (data.history && data.history.length > 0) {
-                 data.history.forEach(msg => {
-                     // Use addMessage, but prevent it from adding to local history array
-                     // Need to slightly modify addMessage or bypass its history logic if it had any
-                     addMessage(msg.parts[0].text, msg.role);
-                 });
-            } else {
-                 // Maybe add initial greeting if history is empty?
-                 addMessage("How can I help you learn today?", 'ai');
-            }
-
-        } catch (error) {
-            console.error("Error loading specific conversation:", error);
-            showError("Could not load conversation history.");
-            currentConversationId = null; // Reset if load failed
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    async function startNewConversation() {
-        console.log("Starting new conversation...");
-        const token = localStorage.getItem('authToken');
-        if (!token) return;
-        setLoading(true);
-        chatBox.innerHTML = ''; // Clear visual chat box
-
-        try {
-             const response = await fetch(`${BACKEND_URL.replace('/api/chat', '')}/api/conversations`, {
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/json',
-                     'Authorization': `Bearer ${token}`
-                 },
-                 body: JSON.stringify({ title: "New Chat " + new Date().toLocaleTimeString() }) // Optional title
-             });
-             if (!response.ok) throw new Error('Failed to create conversation');
-             const newConversation = await response.json();
-             currentConversationId = newConversation.id; // Set new active ID
-             addMessage("How can I help you learn today?", 'ai'); // Add initial message UI
-             loadConversationList(); // Refresh list to show the new one
-        } catch (error) {
-             console.error("Error starting new conversation:", error);
-             showError("Could not start new chat.");
-             currentConversationId = null;
-        } finally {
-             setLoading(false);
-        }
-    }
-
-     async function deleteConversation(conversationId) {
-        if (!confirm("Are you sure you want to delete this conversation?")) return;
-
-        console.log("Deleting conversation:", conversationId);
-        const token = localStorage.getItem('authToken');
-        if (!token) return;
-
-        try {
-             const response = await fetch(`${BACKEND_URL.replace('/api/chat', '')}/api/conversations/${conversationId}`, {
-                 method: 'DELETE',
-                 headers: { 'Authorization': `Bearer ${token}` }
-             });
-             if (!response.ok) throw new Error('Failed to delete conversation');
-
-             // If deleted conversation was the current one, clear the chat
-             if (currentConversationId === conversationId) {
-                  currentConversationId = null;
-                  chatBox.innerHTML = '<div class="message ai"><p>Select or start a new conversation.</p></div>';
-             }
-             loadConversationList(); // Refresh the list
-
-        } catch (error) {
-             console.error("Error deleting conversation:", error);
-             showError("Could not delete conversation.");
-        }
-    }
-
-    // --- MODIFIED: sendMessage function ---
-    async function sendMessage() {
-        const newMessageText = chatInput.value.trim(); // Renamed for clarity
-        const token = localStorage.getItem('authToken');
-
-        if (!currentConversationId) { // << Check if a conversation is active
-             showError("Please select or start a new conversation first.");
-             return;
-        }
-        // ... (keep other checks: userId, token, newMessageText, messagesRemaining) ...
-        if (!userId || !token || !newMessageText || messagesRemaining <= 0) {
-            // Handle missing info or limit reached
-            return;
-        }
-
-        addMessage(newMessageText, 'user'); // Add to UI
-        // NO need to add to local conversationHistory array anymore
-
-        chatInput.value = '';
-        chatInput.style.height = 'auto';
-        setLoading(true);
-        clearError();
-
-        try {
-            // Call the MODIFIED /api/chat endpoint
-            const response = await fetch(BACKEND_URL, { // Still POST to /api/chat
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Send token in header for isAuth middleware
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    // Send conversationId and the new message text
-                    conversationId: currentConversationId,
-                    newMessageText: newMessageText,
-                    extensionUserId: userId // Still needed for rate limiting key
-                    // No need to send 'token' in body if using Authorization header
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                // No need to pop history here, as we didn't add optimistically
-                throw new Error(data.error || `HTTP error! status: ${response.status}`);
-            }
-
-            // Success - Add AI reply to UI
-            addMessage(data.reply, 'ai');
-            // NO need to add AI reply to local history array
-            updateRemainingCount(data.remaining);
-
-             // Optional: Refresh conversation list to update 'updated_at' sort order
-             // loadConversationList();
-
-        } catch (error) {
-             console.error("Error sending/receiving chat message:", error);
-             showError(`Error: ${error.message}.`);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    // --- Initialize App ---
-    async function initializeApp() {
-        await loadAndApplyTheme(); // Load theme
-
-        if (!document.getElementById('chat-box')) { // Check if chat UI exists
-             console.log("Chat elements not found, skipping chat initialization.");
-             return;
-        }
-
-        userId = await getUserId();
-        if (!userId) return;
-
-        updateRemainingCount(10); // Set initial visual count
-        setLoading(false);
-        clearError();
-
-        // Setup event listeners
-        if(newChatButton) newChatButton.addEventListener('click', startNewConversation);
-        if(sendButton) sendButton.addEventListener('click', sendMessage);
-        if(chatInput) {
-            chatInput.addEventListener('keypress', function(event) {
-                if (event.key === 'Enter' && !event.shiftKey) {
-                    event.preventDefault();
-                    sendMessage();
-                }
-            });
-            chatInput.addEventListener('input', autoResizeTextarea);
-            autoResizeTextarea();
-        }
-
-        // Load initial conversation list
+        currentConversationId = newConvoDoc.id;
+        chatBox.innerHTML = `<div class="message model"><p>How can I help you today?</p></div>`;
         await loadConversationList();
-
-        // Optionally load the latest conversation automatically? Or show a welcome message.
-        if (!currentConversationId) {
-            chatBox.innerHTML = '<div class="message ai"><p>Select or start a new conversation.</p></div>';
-        }
-
-        console.log("AI Chat initialized successfully.");
+        return currentConversationId;
+    } catch (error) {
+        showError("Could not start a new chat.");
+        console.error("Error starting conversation:", error);
+        return null;
+    } finally {
+        isCreatingConversation = false;
     }
+  }
+  async function loadConversationList() {
+    if (!currentUser) return;
+    conversationListElement.innerHTML = "<li>Loading...</li>";
+    try {
+      const convosRef = db.collection("users").doc(currentUser.uid).collection("conversations")
+        .orderBy("isPinned", "desc")
+        .orderBy("updatedAt", "desc");
+      const snapshot = await convosRef.get();
+      conversationListElement.innerHTML = "";
+      if (snapshot.empty) {
+        conversationListElement.innerHTML = "<li>No conversations yet.</li>";
+        return;
+      }
+      snapshot.forEach((doc) => {
+        const convo = doc.data();
+        const convoId = doc.id;
+        const li = document.createElement("li");
+        const titleSpan = document.createElement("span");
+        titleSpan.textContent = convo.title || `Chat from ${convo.updatedAt.toDate().toLocaleDateString()}`;
+        titleSpan.addEventListener("click", () => loadSpecificConversation(convoId));
+        if (convo.isPinned) {
+            li.classList.add("pinned");
+            const pinIcon = document.createElement("div");
+            pinIcon.className = 'pin-icon';
+            pinIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="currentColor"><path d="M680-880v80h-40L496-544v224l104 104v80H360v-80l104-104v-224L320-800H280v-80h400Z"/></svg>`;
+            li.appendChild(pinIcon);
+        }
+        li.appendChild(titleSpan);
+        const menuContainer = document.createElement("div");
+        menuContainer.className = "convo-menu-container";
+        const menuButton = document.createElement("button");
+        menuButton.className = "convo-menu-button";
+        menuButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>`;
+        const dropdownMenu = document.createElement("div");
+        dropdownMenu.className = "convo-dropdown-menu";
+        dropdownMenu.innerHTML = `<a href="#" class="pin-action">${convo.isPinned ? "Unpin" : "Pin"}</a><a href="#" class="rename-action">Rename</a><a href="#" class="delete-action">Delete</a>`;
+        menuButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isVisible = dropdownMenu.classList.contains('visible');
+            document.querySelectorAll('.convo-dropdown-menu.visible').forEach(menu => { menu.classList.remove('visible'); });
+            if (!isVisible) {
+                const rect = menuButton.getBoundingClientRect();
+                dropdownMenu.style.top = `${rect.bottom + 2}px`;
+                dropdownMenu.style.right = `${window.innerWidth - rect.right - (dropdownMenu.offsetWidth / 2) - (rect.width / 2)}px`;
+                dropdownMenu.classList.add("visible");
+            }
+        });
+        dropdownMenu.querySelector('.pin-action').addEventListener('click', (e) => { e.preventDefault(); handlePinConversation(convoId, convo.isPinned); });
+        dropdownMenu.querySelector('.rename-action').addEventListener('click', (e) => { e.preventDefault(); handleRenameConversation(convoId, convo.title); });
+        dropdownMenu.querySelector('.delete-action').addEventListener('click', (e) => { e.preventDefault(); handleDeleteConversation(convoId); });
+        menuContainer.appendChild(menuButton);
+        document.body.appendChild(dropdownMenu);
+        li.appendChild(menuContainer);
+        conversationListElement.appendChild(li);
+      });
+    } catch (error) {
+      showError("Could not load conversations.");
+      console.error("Error loading conversations:", error);
+    }
+  }
+  async function loadSpecificConversation(convoId) { if (!currentUser) return; currentConversationId = convoId; chatBox.innerHTML = ""; try { const convoRef = db.collection("users").doc(currentUser.uid).collection("conversations").doc(convoId); const doc = await convoRef.get(); if (doc.exists) { const history = doc.data().history || []; history.forEach((turn) => { const textPart = turn.parts.find(p => p.text)?.text || ""; const imagePart = turn.parts.find(p => p.imageUrl)?.imageUrl || null; addMessage(turn.role, textPart, imagePart, true); }); } } catch (error) { showError("Could not load conversation history."); console.error("Error loading history:", error); } }
+  function addMessage(role, text, imageUrl, isHistory = false, messageId = null) { const msgEl = document.createElement("div"); if (messageId) msgEl.id = messageId; msgEl.classList.add("message", role); if (imageUrl) { const img = document.createElement("img"); img.src = imageUrl; img.className = "chat-history-image"; msgEl.appendChild(img); } const contentEl = document.createElement("div"); contentEl.className = 'message-content'; msgEl.appendChild(contentEl); if (text) { if (role === 'user' || isHistory) { contentEl.innerHTML = marked.parse(text, { sanitize: true }); } } else if (role === 'model' && !isHistory) { msgEl.classList.add('generating'); contentEl.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`; } chatBox.appendChild(msgEl); chatBox.scrollTop = chatBox.scrollHeight; }
+  function updateGeneratingMessage(messageId, newText, isError = false) { const msgEl = document.getElementById(messageId); if (!msgEl) return; msgEl.classList.remove('generating'); if (isError) msgEl.classList.add('error'); const contentEl = msgEl.querySelector('.message-content'); if (isError) { contentEl.innerHTML = `<p>${newText}</p>`; } else { typeOutMessage(contentEl, newText); } }
+  function typeOutMessage(element, text) { const words = text.split(' '); let currentContent = ''; let wordIndex = 0; function addWord() { if (wordIndex < words.length) { currentContent += words[wordIndex] + ' '; element.innerHTML = marked.parse(currentContent, { sanitize: true }); chatBox.scrollTop = chatBox.scrollHeight; wordIndex++; setTimeout(addWord, 50); } } addWord(); }
+  document.addEventListener('click', () => { document.querySelectorAll('.convo-dropdown-menu.visible').forEach(menu => { menu.classList.remove('visible'); }); });
+  async function checkAndDisplayPremiumStatus() { try { const getStatus = functions.httpsCallable('getPremiumStatus'); const result = await getStatus(); premiumStatusDiv.textContent = result.data.is_premium ? 'Status: Premium' : 'Status: Free'; if (result.data.is_premium) { premiumStatusDiv.classList.add('premium'); } else { premiumStatusDiv.classList.remove('premium'); } } catch (error) { premiumStatusDiv.textContent = 'Status: Error'; console.error("Could not check premium status:", error); } }
+  async function claimLicense() { const code = licenseInput.value.trim(); if (!code) { alert("Please enter a license code."); return; } try { const claim = functions.httpsCallable('claimLicense'); const result = await claim({ licenseCode: code }); alert(result.data.message); if (result.data.success) { licenseInput.value = ''; checkAndDisplayPremiumStatus(); } } catch (error) { alert(`An error occurred: ${error.message}`); console.error("Error claiming license:", error); } }
+  async function handlePinConversation(convoId, isPinned) { if (!currentUser) return; const convoRef = db.collection("users").doc(currentUser.uid).collection("conversations").doc(convoId); await convoRef.update({ isPinned: !isPinned }); loadConversationList(); }
+  async function handleRenameConversation(convoId, currentTitle) { if (!currentUser) return; const newTitle = prompt("Enter a new name for the chat:", currentTitle); if (newTitle && newTitle.trim() !== "") { const convoRef = db.collection("users").doc(currentUser.uid).collection("conversations").doc(convoId); await convoRef.update({ title: newTitle.trim() }); loadConversationList(); } }
+  async function handleDeleteConversation(convoId) {
+      if (!currentUser) return;
 
-    initializeApp();
+      const overlay = document.getElementById("custom-confirm-overlay");
+      const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+      const confirmCancelBtn = document.getElementById("confirm-cancel-btn");
 
-}); // End DOMContentLoaded listener
+      overlay.style.display = 'flex';
+
+      // We use a Promise to wait for the user's choice
+      const userChoice = new Promise(resolve => {
+          confirmDeleteBtn.onclick = () => resolve(true);
+          confirmCancelBtn.onclick = () => resolve(false);
+      });
+
+      const shouldDelete = await userChoice;
+      overlay.style.display = 'none'; // Hide the popup after choice
+
+      if (shouldDelete) {
+          try {
+              const deleteFunction = functions.httpsCallable("deleteConversation");
+              await deleteFunction({ conversationId: convoId });
+              
+              if (currentConversationId === convoId) {
+                  currentConversationId = null;
+                  chatBox.innerHTML = `<div class="message model"><p>Select or start a new conversation.</p></div>`;
+              }
+              loadConversationList();
+          } catch (error) {
+              showError("Could not delete conversation.");
+              console.error("Error deleting conversation:", error);
+          }
+      }
+  }
+  function clearImagePreview() { const previewImg = imagePreviewContainer.querySelector("img"); if (previewImg) { URL.revokeObjectURL(previewImg.src); } pendingScreenshotBlob = null; imagePreviewContainer.innerHTML = ""; imagePreviewContainer.style.display = 'none'; }
+  function showLoginMessage() { chatBox.innerHTML = `<div class="message model"><p>Please log in to use the AI Helper.</p></div>`; conversationListElement.innerHTML = ""; [sendButton, chatInput, newChatButton, screenshotBtn].forEach((el) => (el.disabled = true)); }
+  function showError(msg){ chatError.textContent = msg; chatError.style.display = "block";}
+  async function takeScreenshot() { chrome.tabs.captureVisibleTab(null, { format: "jpeg" }, (dataUrl) => { if (chrome.runtime.lastError) { return showError("Could not capture tab: " + chrome.runtime.lastError.message); } const img = new Image(); img.onload = () => { const canvas = document.createElement("canvas"); const ctx = canvas.getContext("2d"); const maxWidth = 1024; const aspectRatio = img.width / img.height; canvas.width = Math.min(maxWidth, img.width); canvas.height = canvas.width / aspectRatio; ctx.drawImage(img, 0, 0, canvas.width, canvas.height); canvas.toBlob((blob) => { pendingScreenshotBlob = blob; displayImagePreview(URL.createObjectURL(blob)); }, "image/jpeg", 0.7); }; img.src = dataUrl; }); }
+  function displayImagePreview(blobUrl) { imagePreviewContainer.innerHTML = `<img src="${blobUrl}" alt="Screenshot preview">`; imagePreviewContainer.style.display = 'block'; }
+  async function loadAndApplyTheme() { const themeToggle = document.getElementById('themeToggle'); const body = document.body; function setTheme(theme) { body.classList.remove('light-mode', 'dark-mode'); body.classList.add(theme + '-mode'); themeToggle.checked = (theme === 'dark'); chrome.storage.local.set({ preferredTheme: theme }); } if (themeToggle) { themeToggle.addEventListener('change', () => { setTheme(themeToggle.checked ? 'dark' : 'light'); }); } try { const data = await chrome.storage.local.get('preferredTheme'); setTheme(data.preferredTheme || 'light'); } catch (error) { console.error("Error loading theme:", error); setTheme('light'); } }
+});
