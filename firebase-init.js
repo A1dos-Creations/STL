@@ -15,6 +15,3 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const functions = firebase.functions();
 const storage = firebase.storage();
-
-auth.useDeviceLanguage();
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);

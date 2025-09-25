@@ -1,6 +1,6 @@
 {
     "name": "School Tools",
-    "description": "Allows students and teachers to launch useful school tools quickly and easily.",
+    "description": "Simplifies the school day with useful school tools and resources.",
     "version": "2.0.0",
     "manifest_version": 3,
     "background": {
