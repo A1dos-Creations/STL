@@ -5,7 +5,7 @@
 # 🚀[STL] School Tool Launcher ✨
 
 <div align="center">
-<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf"><img alt="Static Badge" src="https://img.shields.io/badge/Chrome%20Web%20Store%20-%20green?style=for-the-badge&label=v1.4.2"></a>
+<a align="center" href="https://chromewebstore.google.com/detail/school-portal-launcher/pafdkffolelojifgeepmjjofdendeojf"><img alt="Static Badge" src="https://img.shields.io/badge/Chrome%20Web%20Store%20-%20green?style=for-the-badge&label=v2.0"></a>
 <a align="center" href="https://a1dos-creations.com"><img alt="Static Badge" src="https://img.shields.io/badge/Official%20Website%20-%20green?style=for-the-badge"></a>
 <a href="https://discord.gg/F2aC2yJq"><img alt="Static Badge" src="https://img.shields.io/badge/Discord%20-%20green?style=for-the-badge&label=Join%20The"></a>
 <a href="https://paypal.me/a1dos?country.x=US&locale.x=en_US"><img alt="Static Badge" src="https://img.shields.io/badge/Consider%20Donating%20%F0%9F%92%96%20-%20darkred?style=for-the-badge"></a>
@@ -14,7 +14,7 @@
 <br>
 
 >[!IMPORTANT]
->**You can now create an A1dos Creations account on our website!** You can also sign-in to this account on STL. Please note that this isn't free for me! *Please* consider donating to keep STL alive!
+>**You can now create accounts on School Tools [extension only for now]**
 
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
 As new updates roll out, this github will be updated. 
@@ -30,10 +30,10 @@ Donation Link:
 https://paypal.me/a1dos?country.x=US&locale.x=en_US
 
 # 📑Information
-> Whats STL?
-STL is an abreviation of 'School Tool Launcher'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
+> Whats ST?
+ST is an abreviation of 'School Tools'. This extension simplifies the school day by allowing students to access necesary resources with the click of a button.
 
-**What are STL's benefits?**
+**What are ST's benefits?**
 STL allows students to access required and necesary school resuources quickly to ensure a smooth learning experience with as little destractions as possible.  
 
 >[!NOTE]
@@ -50,11 +50,9 @@ Currently, only Admins have infinite messages with ST_AI
 Take control of your academic life with this game-changing Chrome extension. Effortlessly access your school portals, organize assignments with custom tasks, and add personalized portals for quick, easy access to the resources you need. Built with students in mind, it’s designed to simplify your daily routine and keep you ahead of the curve.
 
 # 🌀 What's next?
-I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in STL! ❤️
+I am planning on adding a link to Google's Calendar and Google Classroom for more dynamic tasks and task integration with Google Calendar. Signing in with google will be optional, but required for certain features. I am also planning on adding more features such as reminders for tasks that show in-line with the website you're on. I am also hoping to add dynamic external connection to my website A1dos-Creations.com to update the discover page without the hassle of getting the extension re-evaluated. More updates will be availible later in the month! Thank you for your interest in ST! ❤️
 
 - A1dos, 2/4/25
-
-We are currently in the process of rolling out (A1dos Creations) accounts! Soon you will be able to create an account with A1dos! This will allow you to manage your tasks from anywhere (even without the extension installed!) and more *epic* features that are coming soon! Stay tuned for updates, and check out the official [A1dos Login API website github](https://github.com/A1dos-Creations/login-api-website).
 
 # 🛡️Your Privacy
 >[!IMPORTANT]
@@ -67,8 +65,8 @@ In the published version of STL, users have the option to enter their name in se
 >[!NOTE]
 >  This github is automatically updated with the source files.
 
-Current github Version: v1.6.2
-Current Published Version: v1.6.1 (v1.6.2 In review)
+Current github Version: v2
+Current Published Version: v1.6.2 (v2.0 In review)
 
 >[!IMPORTANT]
 >The version displayed here is not the same as the published version, this is due to the syncing of Visual Studio (what I use to code this extension) being linked directly to this GitHub repository through git. The recently edited files (<4 days ago) are not included in the current version, you can find more information in the [Commits section](https://github.com/A1dos-Creations/STL/commits/main/).
@@ -76,8 +74,11 @@ Current Published Version: v1.6.1 (v1.6.2 In review)
 
 # ☁️Updates:
 >[!NOTE]
-> **Version 1.6.1 of STL has released!**
+> **Version 1.6.2 of STL has released!**
 
+- 9/24/2025: Submitted v2.0 to Chrome Web Store. Expecting response by 9/29. [Fri]
+- 7-9/1-24/2025: Updated ST_AI to newer & faster model, added chat history, updated UI/UX, migrated backend, updated user sign-in/register logic.
+- 5/2-31/2025: Took a break
 - 5/1/2025: Updated ST_AI to newer & faster, added memory, added new Promodoro Timer feature
 - 4/23-30/2025: Polishing ST_AI (AI Helper).
 - 4/15-22/2025: Added calculator & base of ST_AI feature.
