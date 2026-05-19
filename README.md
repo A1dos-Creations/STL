@@ -14,6 +14,9 @@
 <br>
 
 >[!IMPORTANT]
+>**STL HAS BEEN DISCONTINUED**
+
+>[!IMPORTANT]
 >**You can now create accounts on School Tools [extension only for now]**
 
 This is the official github for School Tool Launcher. Here you will find the source code for the extension. 
